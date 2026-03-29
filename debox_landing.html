@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>debox — Your Vibe. Your Loop.</title>
+<link href="https://fonts.googleapis.com/css2?family=VT323&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0d0d1a;
+    --bg2: #13132a;
+    --bg3: #1a1a35;
+    --cyan: #00e5cc;
+    --red: #ff2060;
+    --yellow: #ffe500;
+    --white: #e0e0f0;
+    --muted: #555577;
+    --mid: #1e1e3e;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--white);
+    font-family: 'Space Mono', monospace;
+    overflow-x: hidden;
+    cursor: crosshair;
+  }
+
+  /* SCANLINE OVERLAY */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 3px,
+      rgba(0,0,0,0.07) 3px,
+      rgba(0,0,0,0.07) 4px
+    );
+    pointer-events: none;
+    z-index: 9999;
+  }
+
+  /* PIXEL CURSOR */
+  body::after {
+    content: '';
+    position: fixed;
+    width: 8px; height: 8px;
+    background: var(--cyan);
+    pointer-events: none;
+    z-index: 10000;
+    transform: translate(-50%, -50%);
+    transition: background .1s;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 18px 48px;
+    display: flex; align-items: center; justify-content: space-between;
+    border-bottom: 1px solid var(--mid);
+    background: rgba(13,13,26,0.92);
+    backdrop-filter: blur(8px);
+  }
+
+  .nav-logo { font-family: 'VT323', monospace; font-size: 36px; line-height: 1; text-decoration: none; }
+  .nav-logo span:first-child { color: var(--cyan); }
+  .nav-logo span:last-child  { color: var(--white); }
+
+  .nav-links { display: flex; gap: 32px; list-style: none; }
+  .nav-links a {
+    font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+    color: var(--muted); text-decoration: none; transition: color .2s;
+  }
+  .nav-links a:hover { color: var(--cyan); }
+
+  .nav-cta {
+    border: 2px solid var(--yellow);
+    color: var(--yellow);
+    font-family: 'VT323', monospace;
+    font-size: 22px;
+    padding: 6px 24px;
+    text-decoration: none;
+    transition: all .2s;
+    letter-spacing: 1px;
+  }
+  .nav-cta:hover { background: var(--yellow); color: var(--bg); }
+
+  /* ── HERO ── */
+  #hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    padding: 120px 48px 80px;
+    position: relative;
+    text-align: center;
+    overflow: hidden;
+  }
+
+  /* animated grid bg */
+  #hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(var(--mid) 1px, transparent 1px),
+      linear-gradient(90deg, var(--mid) 1px, transparent 1px);
+    background-size: 48px 48px;
+    opacity: .35;
+    animation: gridPulse 6s ease-in-out infinite;
+  }
+
+  @keyframes gridPulse {
+    0%,100% { opacity: .35; }
+    50%      { opacity: .18; }
+  }
+
+  /* glowing orbs */
+  .orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    pointer-events: none;
+    animation: float 8s ease-in-out infinite;
+  }
+  .orb-cyan  { width:400px; height:400px; background:rgba(0,229,204,.08); top:10%; left:-5%; animation-delay:0s; }
+  .orb-red   { width:300px; height:300px; background:rgba(255,32,96,.07); bottom:15%; right:-5%; animation-delay:3s; }
+  .orb-yell  { width:200px; height:200px; background:rgba(255,229,0,.05); top:50%; left:60%; animation-delay:5s; }
+
+  @keyframes float {
+    0%,100% { transform: translateY(0) scale(1); }
+    50%      { transform: translateY(-30px) scale(1.05); }
+  }
+
+  .hero-label {
+    font-size: 11px; letter-spacing: 4px; color: var(--cyan);
+    border: 1px solid var(--cyan); padding: 5px 16px;
+    margin-bottom: 32px; position: relative; z-index: 1;
+    animation: fadeUp .6s ease both;
+  }
+
+  .hero-title {
+    font-family: 'VT323', monospace;
+    font-size: clamp(72px, 14vw, 160px);
+    line-height: .9;
+    position: relative; z-index: 1;
+    animation: fadeUp .7s .1s ease both;
+    color: var(--white);
+  }
+  .hero-title .accent { color: var(--cyan); }
+  .hero-title .strike {
+    position: relative; color: var(--muted);
+  }
+  .hero-title .strike::after {
+    content: '';
+    position: absolute; left: 0; right: 0;
+    top: 50%; height: 3px; background: var(--red);
+  }
+
+  .hero-sub {
+    font-size: 13px; color: var(--muted); max-width: 440px;
+    line-height: 1.9; margin-top: 28px; position: relative; z-index: 1;
+    animation: fadeUp .7s .2s ease both;
+  }
+
+  .hero-ctas {
+    display: flex; gap: 16px; margin-top: 40px; flex-wrap: wrap;
+    justify-content: center; position: relative; z-index: 1;
+    animation: fadeUp .7s .3s ease both;
+  }
+
+  .btn-primary {
+    font-family: 'VT323', monospace; font-size: 26px;
+    background: var(--cyan); color: var(--bg);
+    border: none; padding: 10px 40px; cursor: pointer;
+    letter-spacing: 1px; transition: all .15s;
+    text-decoration: none; display: inline-block;
+  }
+  .btn-primary:hover { background: var(--yellow); transform: translateY(-2px); }
+
+  .btn-ghost {
+    font-family: 'VT323', monospace; font-size: 26px;
+    background: transparent; color: var(--white);
+    border: 2px solid var(--mid); padding: 10px 40px; cursor: pointer;
+    letter-spacing: 1px; transition: all .15s;
+    text-decoration: none; display: inline-block;
+  }
+  .btn-ghost:hover { border-color: var(--white); }
+
+  /* hero GIF box illustration */
+  .hero-device {
+    position: relative; z-index: 1; margin-top: 56px;
+    animation: fadeUp .8s .4s ease both;
+  }
+
+  .device-box {
+    width: 280px; height: 220px; margin: 0 auto;
+    position: relative;
+  }
+
+  .device-lid {
+    position: absolute; top: 0; left: 0; right: 0;
+    height: 44px;
+    background: var(--bg2);
+    border: 2px solid var(--cyan);
+    clip-path: polygon(12% 0%, 88% 0%, 100% 100%, 0% 100%);
+  }
+  .device-body {
+    position: absolute; top: 40px; left: 0; right: 0; bottom: 0;
+    background: var(--bg2); border: 2px solid var(--cyan);
+  }
+  .device-screen {
+    position: absolute; inset: 16px;
+    background: #080814; border: 1.5px solid var(--cyan);
+    overflow: hidden;
+  }
+  .gif-row {
+    height: 22px; display: flex; gap: 0;
+    animation: scroll 2s linear infinite;
+  }
+  @keyframes scroll {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  .gif-block { height: 100%; flex-shrink: 0; }
+  .device-dot-r { position: absolute; top: 6px; left: 10px;  width: 8px; height: 8px; background: var(--red); }
+  .device-dot-y { position: absolute; top: 6px; right: 10px; width: 8px; height: 8px; background: var(--yellow); }
+
+  /* scroll cue */
+  .scroll-hint {
+    position: absolute; bottom: 32px; left: 50%; transform: translateX(-50%);
+    font-size: 11px; letter-spacing: 3px; color: var(--muted);
+    animation: blink 2s ease infinite;
+  }
+  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.2} }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── DIVIDER ── */
+  .divider {
+    display: flex; align-items: center; gap: 0;
+    padding: 0 48px;
+    overflow: hidden;
+  }
+  .divider-line { flex: 1; height: 1px; background: var(--mid); }
+  .divider-ticker {
+    font-family: 'VT323', monospace; font-size: 20px;
+    color: var(--muted); letter-spacing: 2px;
+    white-space: nowrap; overflow: hidden;
+    padding: 16px 0;
+  }
+  .ticker-inner {
+    display: inline-flex; gap: 48px;
+    animation: ticker 20s linear infinite;
+  }
+  @keyframes ticker {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+
+  /* ── FEATURES ── */
+  #features {
+    padding: 100px 48px;
+    max-width: 1100px; margin: 0 auto;
+  }
+
+  .section-label {
+    font-size: 11px; letter-spacing: 4px; color: var(--red);
+    margin-bottom: 16px;
+  }
+  .section-title {
+    font-family: 'VT323', monospace;
+    font-size: clamp(48px, 7vw, 80px);
+    line-height: 1; color: var(--white);
+    margin-bottom: 60px;
+  }
+  .section-title span { color: var(--cyan); }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2px;
+  }
+
+  .feature-card {
+    background: var(--bg2);
+    border: 1px solid var(--mid);
+    padding: 36px 32px;
+    transition: border-color .2s, transform .2s;
+    position: relative; overflow: hidden;
+  }
+  .feature-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: var(--cyan);
+    transform: scaleX(0); transform-origin: left;
+    transition: transform .3s;
+  }
+  .feature-card:hover { border-color: var(--cyan); transform: translateY(-4px); }
+  .feature-card:hover::before { transform: scaleX(1); }
+  .feature-card:nth-child(2)::before { background: var(--red); }
+  .feature-card:nth-child(3)::before { background: var(--yellow); }
+
+  .feature-num {
+    font-family: 'VT323', monospace; font-size: 56px; line-height: 1;
+    color: var(--mid); margin-bottom: 16px; transition: color .2s;
+  }
+  .feature-card:hover .feature-num { color: var(--cyan); }
+  .feature-card:nth-child(2):hover .feature-num { color: var(--red); }
+  .feature-card:nth-child(3):hover .feature-num { color: var(--yellow); }
+
+  .feature-title {
+    font-family: 'VT323', monospace; font-size: 30px; color: var(--white);
+    margin-bottom: 12px;
+  }
+  .feature-desc {
+    font-size: 11px; color: var(--muted); line-height: 1.9;
+  }
+
+  /* ── HOW IT WORKS ── */
+  #how {
+    padding: 100px 48px;
+    background: var(--bg2);
+    border-top: 1px solid var(--mid);
+    border-bottom: 1px solid var(--mid);
+  }
+
+  .how-inner { max-width: 1100px; margin: 0 auto; }
+
+  .steps {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 0; margin-top: 60px; position: relative;
+  }
+  .steps::before {
+    content: '';
+    position: absolute; top: 28px; left: 10%; right: 10%; height: 2px;
+    background: repeating-linear-gradient(90deg, var(--cyan) 0, var(--cyan) 12px, transparent 12px, transparent 20px);
+  }
+
+  .step {
+    padding: 0 24px; text-align: center; position: relative;
+  }
+  .step-dot {
+    width: 56px; height: 56px; margin: 0 auto 24px;
+    border: 2px solid var(--cyan);
+    background: var(--bg);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'VT323', monospace; font-size: 30px; color: var(--cyan);
+    position: relative; z-index: 1;
+  }
+  .step:nth-child(2) .step-dot { border-color: var(--red); color: var(--red); }
+  .step:nth-child(3) .step-dot { border-color: var(--yellow); color: var(--yellow); }
+  .step:nth-child(4) .step-dot { border-color: var(--cyan); color: var(--cyan); }
+
+  .step-title { font-family: 'VT323', monospace; font-size: 24px; color: var(--white); margin-bottom: 8px; }
+  .step-desc  { font-size: 10px; color: var(--muted); line-height: 1.8; }
+
+  /* ── SPECS ── */
+  #specs {
+    padding: 100px 48px;
+    max-width: 1100px; margin: 0 auto;
+  }
+
+  .specs-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 2px;
+    margin-top: 48px;
+  }
+  .spec-row {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 20px 28px;
+    background: var(--bg2); border: 1px solid var(--mid);
+    transition: border-color .2s;
+  }
+  .spec-row:hover { border-color: var(--mid); background: var(--bg3); }
+  .spec-key { font-size: 10px; letter-spacing: 2px; color: var(--muted); text-transform: uppercase; }
+  .spec-val { font-family: 'VT323', monospace; font-size: 22px; color: var(--cyan); }
+
+  /* ── PRICING ── */
+  #pricing {
+    padding: 100px 48px;
+    background: var(--bg2);
+    border-top: 1px solid var(--mid);
+    border-bottom: 1px solid var(--mid);
+    text-align: center;
+  }
+
+  .pricing-inner { max-width: 900px; margin: 0 auto; }
+
+  .pricing-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 2px; margin-top: 56px;
+  }
+
+  .price-card {
+    background: var(--bg); border: 1px solid var(--mid);
+    padding: 40px 32px;
+    position: relative; transition: transform .2s;
+  }
+  .price-card:hover { transform: translateY(-6px); }
+  .price-card.featured {
+    border-color: var(--cyan);
+    background: rgba(0,229,204,.04);
+  }
+  .price-badge {
+    position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+    background: var(--cyan); color: var(--bg);
+    font-size: 10px; letter-spacing: 2px; padding: 4px 16px;
+    font-weight: 700; white-space: nowrap;
+  }
+
+  .price-tier { font-size: 10px; letter-spacing: 3px; color: var(--muted); margin-bottom: 16px; }
+  .price-val {
+    font-family: 'VT323', monospace; font-size: 72px; line-height: 1;
+    color: var(--white);
+  }
+  .price-val sup { font-size: 32px; vertical-align: top; margin-top: 12px; }
+  .price-desc { font-size: 11px; color: var(--muted); margin-top: 12px; line-height: 1.8; }
+  .price-features { list-style: none; margin-top: 24px; text-align: left; }
+  .price-features li {
+    font-size: 11px; color: var(--muted); padding: 7px 0;
+    border-bottom: 1px solid var(--mid);
+    display: flex; gap: 10px; align-items: center;
+  }
+  .price-features li::before {
+    content: '▸'; color: var(--cyan); flex-shrink: 0;
+  }
+  .price-card:nth-child(1) .price-features li::before { color: var(--muted); }
+  .price-card:nth-child(3) .price-features li::before { color: var(--yellow); }
+
+  .price-btn {
+    display: block; width: 100%; margin-top: 28px;
+    font-family: 'VT323', monospace; font-size: 24px;
+    background: transparent; border: 2px solid var(--mid);
+    color: var(--white); padding: 10px; cursor: pointer;
+    letter-spacing: 1px; transition: all .15s; text-decoration: none;
+  }
+  .price-btn:hover { border-color: var(--cyan); color: var(--cyan); }
+  .price-card.featured .price-btn {
+    background: var(--cyan); border-color: var(--cyan); color: var(--bg);
+  }
+  .price-card.featured .price-btn:hover { background: var(--yellow); border-color: var(--yellow); }
+
+  /* ── SOCIAL PROOF ── */
+  #reviews {
+    padding: 100px 48px;
+    max-width: 1100px; margin: 0 auto;
+  }
+
+  .reviews-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2px; margin-top: 56px;
+  }
+
+  .review-card {
+    background: var(--bg2); border: 1px solid var(--mid);
+    padding: 32px 28px;
+  }
+  .review-stars {
+    font-family: 'VT323', monospace; font-size: 24px;
+    color: var(--yellow); margin-bottom: 16px; letter-spacing: 2px;
+  }
+  .review-text {
+    font-size: 12px; color: var(--white); line-height: 1.9;
+    margin-bottom: 20px; font-style: italic;
+  }
+  .review-author {
+    font-size: 10px; letter-spacing: 2px; color: var(--muted);
+  }
+  .review-author span { color: var(--cyan); }
+
+  /* ── CTA SECTION ── */
+  #cta {
+    padding: 120px 48px;
+    text-align: center;
+    position: relative; overflow: hidden;
+  }
+  #cta::before {
+    content: '';
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(var(--mid) 1px, transparent 1px),
+      linear-gradient(90deg, var(--mid) 1px, transparent 1px);
+    background-size: 48px 48px; opacity: .2;
+  }
+
+  .cta-title {
+    font-family: 'VT323', monospace;
+    font-size: clamp(56px, 10vw, 120px);
+    line-height: 1; color: var(--white);
+    position: relative; z-index: 1;
+  }
+  .cta-title .c { color: var(--cyan); }
+  .cta-title .r { color: var(--red); }
+  .cta-title .y { color: var(--yellow); }
+
+  .cta-sub {
+    font-size: 12px; color: var(--muted);
+    margin-top: 24px; position: relative; z-index: 1;
+    letter-spacing: 1px;
+  }
+
+  .cta-btns {
+    display: flex; gap: 16px; justify-content: center;
+    margin-top: 40px; flex-wrap: wrap;
+    position: relative; z-index: 1;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    border-top: 1px solid var(--mid);
+    padding: 32px 48px;
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 16px;
+  }
+  .footer-logo { font-family: 'VT323', monospace; font-size: 28px; }
+  .footer-logo span { color: var(--cyan); }
+  .footer-copy { font-size: 10px; color: var(--muted); letter-spacing: 1px; }
+  .footer-dots { display: flex; gap: 8px; }
+  .footer-dot { width: 10px; height: 10px; }
+
+  /* ── UTILITY ── */
+  .pixel-line {
+    display: flex; align-items: center; gap: 12px;
+    margin: 0 48px 0;
+  }
+  .pixel-line-bar { flex: 1; height: 1px; background: var(--mid); }
+  .pixel-dot { width: 8px; height: 8px; background: var(--cyan); }
+
+  @media (max-width: 640px) {
+    nav { padding: 16px 20px; }
+    .nav-links { display: none; }
+    #hero, #features, #how, #specs, #pricing, #reviews, #cta { padding-left: 20px; padding-right: 20px; }
+    .specs-grid { grid-template-columns: 1fr; }
+    footer { padding: 24px 20px; }
+    .steps::before { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#"><span>de</span><span>box</span></a>
+  <ul class="nav-links">
+    <li><a href="#features">features</a></li>
+    <li><a href="#how">how it works</a></li>
+    <li><a href="#specs">specs</a></li>
+    <li><a href="#pricing">pricing</a></li>
+  </ul>
+  <a href="#pricing" class="nav-cta">▶ ORDER NOW</a>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="orb orb-cyan"></div>
+  <div class="orb orb-red"></div>
+  <div class="orb orb-yell"></div>
+
+  <div class="hero-label">NEW DROP — LIMITED UNITS AVAILABLE</div>
+
+  <h1 class="hero-title">
+    <span class="accent">your</span> gif<br>
+    <span class="strike">stuck</span><br>
+    on&nbsp;<span class="accent">your desk</span>
+  </h1>
+
+  <p class="hero-sub">
+    debox is a compact desktop display that loops your favorite GIF — forever.
+    Plug in, load up, vibe out.
+  </p>
+
+  <div class="hero-ctas">
+    <a href="#pricing" class="btn-primary">▶ GET YOURS — $69</a>
+    <a href="#how" class="btn-ghost">see how it works</a>
+  </div>
+
+  <!-- Device illustration -->
+  <div class="hero-device">
+    <div class="device-box">
+      <div class="device-lid">
+        <div class="device-dot-r"></div>
+        <div class="device-dot-y"></div>
+      </div>
+      <div class="device-body">
+        <div class="device-screen">
+          <!-- animated gif rows -->
+          <div style="padding:6px 0; display:flex; flex-direction:column; gap:4px;">
+            <div class="gif-row">
+              <div class="gif-block" style="width:72px;background:#00e5cc;opacity:.85;"></div>
+              <div class="gif-block" style="width:96px;background:#ff2060;opacity:.8;"></div>
+              <div class="gif-block" style="width:48px;background:#ffe500;opacity:.9;"></div>
+              <div class="gif-block" style="width:72px;background:#00e5cc;opacity:.85;"></div>
+              <div class="gif-block" style="width:96px;background:#ff2060;opacity:.8;"></div>
+              <div class="gif-block" style="width:48px;background:#ffe500;opacity:.9;"></div>
+            </div>
+            <div class="gif-row" style="animation-duration:3s;animation-direction:reverse;">
+              <div class="gif-block" style="width:48px;background:#ffe500;opacity:.7;"></div>
+              <div class="gif-block" style="width:80px;background:#00e5cc;opacity:.6;"></div>
+              <div class="gif-block" style="width:64px;background:#ff2060;opacity:.75;"></div>
+              <div class="gif-block" style="width:48px;background:#ffe500;opacity:.7;"></div>
+              <div class="gif-block" style="width:80px;background:#00e5cc;opacity:.6;"></div>
+              <div class="gif-block" style="width:64px;background:#ff2060;opacity:.75;"></div>
+            </div>
+            <div class="gif-row" style="animation-duration:2.5s;">
+              <div class="gif-block" style="width:56px;background:#ff2060;opacity:.65;"></div>
+              <div class="gif-block" style="width:88px;background:#ffe500;opacity:.7;"></div>
+              <div class="gif-block" style="width:60px;background:#00e5cc;opacity:.55;"></div>
+              <div class="gif-block" style="width:56px;background:#ff2060;opacity:.65;"></div>
+              <div class="gif-block" style="width:88px;background:#ffe500;opacity:.7;"></div>
+              <div class="gif-block" style="width:60px;background:#00e5cc;opacity:.55;"></div>
+            </div>
+            <div class="gif-row" style="animation-duration:4s;animation-direction:reverse;">
+              <div class="gif-block" style="width:104px;background:#00e5cc;opacity:.45;"></div>
+              <div class="gif-block" style="width:40px;background:#ff2060;opacity:.5;"></div>
+              <div class="gif-block" style="width:72px;background:#ffe500;opacity:.45;"></div>
+              <div class="gif-block" style="width:104px;background:#00e5cc;opacity:.45;"></div>
+              <div class="gif-block" style="width:40px;background:#ff2060;opacity:.5;"></div>
+              <div class="gif-block" style="width:72px;background:#ffe500;opacity:.45;"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="scroll-hint">▼ &nbsp; SCROLL &nbsp; ▼</div>
+</section>
+
+<!-- TICKER -->
+<div class="divider">
+  <div class="divider-ticker">
+    <div class="ticker-inner">
+      <span>YOUR VIBE. YOUR LOOP.</span>
+      <span style="color:var(--red)">✦</span>
+      <span>DROP THE GIF. OWN THE DESK.</span>
+      <span style="color:var(--yellow)">✦</span>
+      <span>UNBOX THE FEELING.</span>
+      <span style="color:var(--cyan)">✦</span>
+      <span>ALWAYS FRESH. ALWAYS FIRE.</span>
+      <span style="color:var(--red)">✦</span>
+      <span>YOUR VIBE. YOUR LOOP.</span>
+      <span style="color:var(--yellow)">✦</span>
+      <span>DROP THE GIF. OWN THE DESK.</span>
+      <span style="color:var(--cyan)">✦</span>
+      <span>UNBOX THE FEELING.</span>
+      <span style="color:var(--red)">✦</span>
+      <span>ALWAYS FRESH. ALWAYS FIRE.</span>
+      <span style="color:var(--yellow)">✦</span>
+    </div>
+  </div>
+</div>
+
+<!-- FEATURES -->
+<section id="features">
+  <div class="section-label">// WHY DEBOX</div>
+  <h2 class="section-title">your GIF<br><span>deserves a stage</span></h2>
+  <div class="features-grid">
+    <div class="feature-card">
+      <div class="feature-num">01</div>
+      <div class="feature-title">Plug & loop</div>
+      <p class="feature-desc">One USB cable. Zero setup hell. Drag your GIF onto the drive and watch it come to life in under 60 seconds.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-num">02</div>
+      <div class="feature-title">Any GIF. Every loop.</div>
+      <p class="feature-desc">Supports all major GIF formats. Anime, memes, glitch art, your own recordings — if it loops, debox runs it.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-num">03</div>
+      <div class="feature-title">Built for desks</div>
+      <p class="feature-desc">Compact form factor designed to sit next to your keyboard, mic, or monitor — without stealing the show. Until it does.</p>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section id="how">
+  <div class="how-inner">
+    <div class="section-label">// HOW IT WORKS</div>
+    <h2 class="section-title">four steps<br><span>to the loop</span></h2>
+    <div class="steps">
+      <div class="step">
+        <div class="step-dot">1</div>
+        <div class="step-title">Unbox</div>
+        <p class="step-desc">Crack it open. Admire the hardware. Feel like a main character.</p>
+      </div>
+      <div class="step">
+        <div class="step-dot">2</div>
+        <div class="step-title">Plug in</div>
+        <p class="step-desc">Connect via USB to your PC, Mac, or any USB power brick.</p>
+      </div>
+      <div class="step">
+        <div class="step-dot">3</div>
+        <div class="step-title">Drop your GIF</div>
+        <p class="step-desc">Copy your GIF file to the debox drive. It auto-detects it instantly.</p>
+      </div>
+      <div class="step">
+        <div class="step-dot">4</div>
+        <div class="step-title">Vibe out</div>
+        <p class="step-desc">Your GIF loops. Forever. Change it whenever. Your desk. Your rules.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SPECS -->
+<section id="specs">
+  <div class="section-label">// TECH SPECS</div>
+  <h2 class="section-title">what's<br><span>inside the box</span></h2>
+  <div class="specs-grid">
+    <div class="spec-row"><span class="spec-key">Display</span><span class="spec-val">2.4" IPS LCD</span></div>
+    <div class="spec-row"><span class="spec-key">Resolution</span><span class="spec-val">240 × 320 px</span></div>
+    <div class="spec-row"><span class="spec-key">Refresh rate</span><span class="spec-val">30 FPS</span></div>
+    <div class="spec-row"><span class="spec-key">Connection</span><span class="spec-val">USB-C</span></div>
+    <div class="spec-row"><span class="spec-key">Storage</span><span class="spec-val">8 GB built-in</span></div>
+    <div class="spec-row"><span class="spec-key">Power draw</span><span class="spec-val">2.5W max</span></div>
+    <div class="spec-row"><span class="spec-key">Formats</span><span class="spec-val">GIF, WEBP, MP4</span></div>
+    <div class="spec-row"><span class="spec-key">Dimensions</span><span class="spec-val">85 × 68 × 42mm</span></div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing">
+  <div class="pricing-inner">
+    <div class="section-label">// PRICING</div>
+    <h2 class="section-title">pick your <span style="color:var(--cyan)">drop</span></h2>
+    <div class="pricing-grid">
+      <div class="price-card">
+        <div class="price-tier">EARLY BIRD</div>
+        <div class="price-val"><sup>$</sup>49</div>
+        <p class="price-desc">First 50 units only.<br>Limited. No restock at this price.</p>
+        <ul class="price-features">
+          <li>debox unit</li>
+          <li>USB-C cable included</li>
+          <li>Quick start guide</li>
+        </ul>
+        <a href="#" class="price-btn">▶ GRAB EARLY BIRD</a>
+      </div>
+      <div class="price-card featured">
+        <div class="price-badge">MOST POPULAR</div>
+        <div class="price-tier">STANDARD</div>
+        <div class="price-val"><sup>$</sup>69</div>
+        <p class="price-desc">The full debox experience.<br>Ships in 5–7 business days.</p>
+        <ul class="price-features">
+          <li>debox unit</li>
+          <li>USB-C cable included</li>
+          <li>5 starter GIF pack</li>
+          <li>Sticker sheet</li>
+        </ul>
+        <a href="#" class="price-btn">▶ ORDER STANDARD</a>
+      </div>
+      <div class="price-card">
+        <div class="price-tier">LIMITED EDITION</div>
+        <div class="price-val"><sup>$</sup>89</div>
+        <p class="price-desc">Special colourway drop.<br>Numbered. Collector-ready.</p>
+        <ul class="price-features">
+          <li>debox unit (special colourway)</li>
+          <li>USB-C braided cable</li>
+          <li>20 curated GIF pack</li>
+          <li>Numbered certificate</li>
+          <li>Exclusive sticker sheet</li>
+        </ul>
+        <a href="#" class="price-btn">▶ GET LIMITED ED.</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section id="reviews">
+  <div class="section-label">// EARLY REVIEWS</div>
+  <h2 class="section-title">the people<br><span>have spoken</span></h2>
+  <div class="reviews-grid">
+    <div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">"Bro I put a One Piece gif on mine and my entire streaming setup just leveled up. Chat keeps asking about it every single session."</p>
+      <div class="review-author"><span>@nakama_streams</span> — Twitch Streamer</div>
+    </div>
+    <div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">"Setup in literally 45 seconds. No drivers, no app. Just plug, drop the file, done. This is how hardware should work."</p>
+      <div class="review-author"><span>@codewithkev</span> — Developer</div>
+    </div>
+    <div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">"Got it as a gift for my boyfriend who games and he literally gasped when it booted up. Perfect gift if you know someone with a desk."</p>
+      <div class="review-author"><span>@pixelgirl_rae</span> — Early Buyer</div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="cta">
+  <h2 class="cta-title">
+    <span class="c">drop</span> the gif.<br>
+    <span class="r">own</span> the desk.<br>
+    <span class="y">loop</span> forever.
+  </h2>
+  <p class="cta-sub">limited units — early bird price won't last long</p>
+  <div class="cta-btns">
+    <a href="#pricing" class="btn-primary">▶ ORDER NOW — $69</a>
+    <a href="https://instagram.com/deboxhq" class="btn-ghost">follow @deboxhq</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo"><span>de</span>box</div>
+  <div class="footer-copy">© 2025 debox. all rights reserved. your vibe. your loop.</div>
+  <div class="footer-dots">
+    <div class="footer-dot" style="background:var(--cyan);"></div>
+    <div class="footer-dot" style="background:var(--red);"></div>
+    <div class="footer-dot" style="background:var(--yellow);"></div>
+  </div>
+</footer>
+
+<script>
+  // smooth active nav highlight on scroll
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => {
+      if (window.scrollY >= s.offsetTop - 120) current = s.id;
+    });
+    navLinks.forEach(a => {
+      a.style.color = a.getAttribute('href') === '#' + current ? 'var(--cyan)' : '';
+    });
+  });
+
+  // stagger-reveal on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        e.target.style.animation = `fadeUp .6s ${i * .08}s ease both`;
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: .15 });
+
+  document.querySelectorAll('.feature-card, .step, .spec-row, .price-card, .review-card').forEach(el => {
+    el.style.opacity = '0';
+    observer.observe(el);
+  });
+</script>
+</body>
+</html>
