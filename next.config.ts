@@ -1,14 +1,5 @@
 import type { NextConfig } from "next";
 
-const basePath = process.env.PAGES_BASE_PATH || "";
-
-const nextConfig: NextConfig = {
-  output: "export",
-  trailingSlash: true,
-  basePath,
-  assetPrefix: basePath || undefined,
-  images: { unoptimized: true },
-  turbopack: { root: process.cwd() },
-};
+const nextConfig: NextConfig = {};
 
 export default nextConfig;
