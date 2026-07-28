@@ -320,7 +320,7 @@ export default function Portfolio() {
 
       <section className="profile-section">
         <div className="profile-photo-wrap">
-          <img src="/rama-profile.jpeg" alt="Rama Rizky Belrouzy Habir" />
+          <img src="/rama-profile.jpg" alt="Rama Rizky Belrouzy Habir" />
         </div>
         <div className="profile-copy">
           <p className="eyebrow">Beyond the workbench</p>
