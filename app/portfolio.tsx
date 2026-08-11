@@ -7,7 +7,7 @@ const links = {
   linkedin:
     "https://www.linkedin.com/in/rama-rizky-belrouzy-habir-a354b9185/",
   email: "mailto:rizkyhabir88@gmail.com",
-  simulator: "https://rama-6dof-simulator.azzurro2584.chatgpt.site",
+  simulator: "https://ramahabir.github.io/6dof-simulator/",
 };
 
 const navItems = [
