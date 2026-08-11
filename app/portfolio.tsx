@@ -7,6 +7,7 @@ const links = {
   linkedin:
     "https://www.linkedin.com/in/rama-rizky-belrouzy-habir-a354b9185/",
   email: "mailto:rizkyhabir88@gmail.com",
+  simulator: "https://rama-6dof-simulator.azzurro2584.chatgpt.site",
 };
 
 const navItems = [
@@ -194,7 +195,10 @@ export default function Portfolio() {
             and telecommunications.
           </p>
           <div className="hero-actions reveal delay-three">
-            <a className="button button-primary" href="#projects">
+            <a className="button button-primary" href={links.simulator} target="_blank" rel="noreferrer">
+              Launch 6-DOF Simulator <span aria-hidden="true">↗</span>
+            </a>
+            <a className="button button-ghost" href="#projects">
               Explore my systems <span aria-hidden="true">↓</span>
             </a>
             <a className="button button-ghost" href={links.github} target="_blank" rel="noreferrer">
