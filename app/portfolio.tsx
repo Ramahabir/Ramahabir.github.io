@@ -86,12 +86,15 @@ const projects: Project[] = [
     ],
     href: "https://github.com/Ramahabir",
     images: [
+      "/projects/la-braille-cad-concept.png",
       "/projects/la-braille-pcb-layout.png",
-      "/projects/la-braille-assembly-1.png",
+      "/projects/la-braille-schematic-driver.png",
+      "/projects/la-braille-schematic-matrix.png",
+      "/projects/la-braille-system-architecture.png",
     ],
     image: "",
-    placeholderHint: "Photos of LA-Braille: Driver PCB, cam mechanism, 3D printed cell, and LMS interface",
-    recommendedFile: "/projects/la-braille-pcb-layout.png",
+    placeholderHint: "Photos of LA-Braille: 3D CAD render, driver PCB, schematics, and LMS architecture",
+    recommendedFile: "/projects/la-braille-cad-concept.png",
   },
   {
     number: "03",
