@@ -4,8 +4,7 @@ import { useEffect, useState } from "react";
 
 const links = {
   github: "https://github.com/Ramahabir",
-  linkedin:
-    "https://www.linkedin.com/in/rama-rizky-belrouzy-habir-a354b9185/",
+  linkedin: "https://www.linkedin.com/in/rama-rizky-belrouzy-habir-a354b9185/",
   email: "mailto:rizkyhabir88@gmail.com",
   simulator: "https://ramahabir.github.io/6dof-simulator/",
 };
@@ -15,109 +14,335 @@ const navItems = [
   ["Projects", "projects"],
   ["Experience", "experience"],
   ["Credentials", "credentials"],
+  ["Contact", "contact"],
 ] as const;
 
-const projects = [
+interface Project {
+  number: string;
+  category: string;
+  title: string;
+  summary: string;
+  role: string;
+  stack: string[];
+  outcome: string;
+  highlights: string[];
+  href: string;
+  image?: string;
+  placeholderHint: string;
+  recommendedFile: string;
+}
+
+const projects: Project[] = [
   {
     number: "01",
-    label: "Embedded telemetry",
+    category: "Embedded & Telemetry",
     title: "Solar Panel Telemetry",
-    description:
-      "An ESP32-based monitoring system that samples temperature, humidity, voltage, current, and power, then publishes structured telemetry over MQTT.",
-    role: "Embedded & IoT developer",
-    stack: ["ESP32", "C++", "MQTT", "INA219", "DHT22"],
-    outcome: "Bidirectional, real-time device telemetry",
+    summary:
+      "An ESP32-based environmental monitoring station that measures solar output parameters (voltage, current, power) and atmospheric conditions, then streams structured telemetry payloads over MQTT for live analysis.",
+    role: "Embedded & IoT Developer",
+    stack: ["ESP32", "C++", "MQTT", "INA219", "DHT22", "FreeRTOS"],
+    outcome: "Real-time bidirectional telemetry with persistent sensor streaming",
+    highlights: [
+      "Interfaced INA219 current/power monitor and DHT22 environment sensor over I²C & digital GPIO.",
+      "Engineered structured JSON telemetry schemas published over secure MQTT broker topics.",
+      "Configured non-blocking sensor acquisition loops with automated Wi-Fi reconnect handling.",
+    ],
     href: "https://github.com/Ramahabir/Solar-Panel",
-    className: "project-blue",
-    visual: "telemetry",
+    image: "", // Place your photo in public/projects/solar-telemetry.jpg and enter the path here
+    placeholderHint: "Photo of ESP32 setup, INA219 current sensor wiring, or telemetry dashboard",
+    recommendedFile: "/projects/solar-telemetry.jpg",
   },
   {
     number: "02",
-    label: "Device communication",
+    category: "Device Communication Protocol",
     title: "STM32 ↔ ESP32",
-    description:
-      "A documented UART/USART link between an STM32F401 and ESP32, built to understand framing, synchronization, memory representation, and reliable serial transfer.",
-    role: "Firmware developer",
-    stack: ["STM32", "ESP32", "C", "UART", "115200 8N1"],
-    outcome: "Reliable cross-device serial communication",
+    summary:
+      "A bare-metal and HAL serial bridge linking an STM32F401 microcontroller and an ESP32. Designed to evaluate binary packet framing, byte synchronization, hardware ring buffers, and lossless UART transfers under high message throughput.",
+    role: "Firmware Developer",
+    stack: ["STM32F401", "ESP32", "C", "C++", "UART / USART", "Logic Analyzer"],
+    outcome: "Reliable, zero-packet-drop cross-MCU serial communications at 115200 baud",
+    highlights: [
+      "Implemented byte-level framing with custom start delimiters, payload length, and checksum validation.",
+      "Configured interrupt-driven RX circular ring buffers on STM32 to avoid buffer overflow.",
+      "Verified waveform rise times and signal integrity using a digital logic analyzer.",
+    ],
     href: "https://github.com/Ramahabir/Day-2---USART-and-UART-STM32-ESP32",
-    className: "project-violet",
-    visual: "signal",
+    image: "", // Place your photo in public/projects/stm32-esp32-serial.jpg and enter the path here
+    placeholderHint: "Photo of STM32 + ESP32 breadboard wiring, logic analyzer, or serial terminal logs",
+    recommendedFile: "/projects/stm32-esp32-serial.jpg",
   },
   {
     number: "03",
-    label: "Hardware systems",
+    category: "Hardware & PCB Integration",
     title: "Hardy IoT Platform",
-    description:
-      "An evolving hardware-to-dashboard system combining ESP32 electronics, custom PCB work in KiCad, device-side IoT code, and a web monitoring interface.",
-    role: "Hardware–software integrator",
-    stack: ["KiCad", "ESP32", "Node.js", "IoT", "PCB"],
-    outcome: "End-to-end prototype in active development",
+    summary:
+      "An end-to-end hardware-to-cloud device monitoring platform integrating custom schematic design, PCB layout in KiCad, ESP32 firmware, and a real-time monitoring web dashboard.",
+    role: "Hardware & Systems Integrator",
+    stack: ["KiCad", "PCB Design", "ESP32", "Node.js", "WebSockets", "IoT"],
+    outcome: "Modular hardware prototype from schematic to connected web interface",
+    highlights: [
+      "Engineered 2-layer PCB layout in KiCad with dedicated ground planes and power isolation.",
+      "Integrated sensor breakouts, onboard status LEDs, and flash programming headers.",
+      "Constructed lightweight Node.js telemetry receiver for live data streaming.",
+    ],
     href: "https://github.com/Ramahabir/IoT-Hardy",
-    className: "project-cyan",
-    visual: "pcb",
+    image: "", // Place your photo in public/projects/hardy-iot.jpg and enter the path here
+    placeholderHint: "Photo of KiCad 3D PCB render, assembled circuit board, or web telemetry dashboard",
+    recommendedFile: "/projects/hardy-iot.jpg",
   },
 ];
 
-const experience = [
+interface Experience {
+  period: string;
+  role: string;
+  organization: string;
+  type: string;
+  location: string;
+  description: string;
+  bullets: string[];
+  image?: string;
+  placeholderHint: string;
+  recommendedFile: string;
+}
+
+const experience: Experience[] = [
   {
-    years: "2025 — Now",
+    period: "2025 — Present",
     role: "KRSRI Software Engineer",
-    company: "Brawijaya Robotics Team",
-    copy: "Developing robotics software while strengthening embedded control, device integration, and systematic debugging skills.",
+    organization: "Brawijaya Robotics Team",
+    type: "Autonomous Robotics Division",
+    location: "Malang, Indonesia",
+    description:
+      "Developing software, firmware routines, and motor drive algorithms for the Indonesian Fire-Fighting Robot Contest (Kontes Robot SAR Indonesia - KRSRI).",
+    bullets: [
+      "Programming microcontroller logic for autonomous maze navigation, flame detection, and obstacle avoidance.",
+      "Calibrating actuator control loops and sensor timing for sub-millisecond reaction speeds.",
+      "Conducting extensive arena testing, hardware-in-the-loop debugging, and field readiness evaluations.",
+    ],
+    image: "", // Place your photo in public/activities/krsri-robotics.jpg
+    placeholderHint: "Activity Photo: KRSRI robot chassis, test field debugging, or team workshop",
+    recommendedFile: "/activities/krsri-robotics.jpg",
   },
   {
-    years: "2023 — Now",
+    period: "2023 — Present",
     role: "Electrical Engineering Student",
-    company: "Universitas Brawijaya",
-    copy: "Studying telecommunications, embedded electronics, control systems, and robotics with a current GPA of 3.35/4.00.",
+    organization: "Universitas Brawijaya",
+    type: "Undergraduate Program (GPA 3.35 / 4.00)",
+    location: "Malang, Indonesia",
+    description:
+      "Pursuing a degree in Electrical Engineering with an academic concentration on telecommunications, embedded microcontroller systems, signal processing, and control engineering.",
+    bullets: [
+      "Hands-on lab work: analog & digital circuits, microprocessors (STM32 / 8051), and signal analysis.",
+      "Key Courses: Microprocessors & Microcontrollers, Telecommunication Systems, Control Engineering, Signals & Systems.",
+      "Selected as Academic Peer Tutor for university remedial physics program (PKRb).",
+    ],
+    image: "", // Place your photo in public/activities/brawijaya-lab.jpg
+    placeholderHint: "Activity Photo: University electronics workbench, oscilloscope testing, or campus lab",
+    recommendedFile: "/activities/brawijaya-lab.jpg",
   },
   {
-    years: "2022 — 2023",
+    period: "2022 — 2023",
     role: "Secretary I, Student Council",
-    company: "MAN Insan Cendekia Gorontalo",
-    copy: "Managed core administration and organizational coordination, building a foundation in documentation and team leadership.",
+    organization: "MAN Insan Cendekia Gorontalo",
+    type: "Student Leadership & Administration",
+    location: "Gorontalo, Indonesia",
+    description:
+      "Headed executive administrative operations, official correspondence, and inter-organizational documentation for student council initiatives and events.",
+    bullets: [
+      "Managed administrative workflows, meeting records, and structured documentation across departments.",
+      "Coordinated committee logistics for regional student competitions and academic conferences.",
+    ],
+    image: "", // Place your photo in public/activities/leadership-council.jpg
+    placeholderHint: "Activity Photo: Student council committee, event coordination, or organization meeting",
+    recommendedFile: "/activities/leadership-council.jpg",
   },
 ];
 
-const credentials = [
+interface Credential {
+  year: string;
+  title: string;
+  issuer: string;
+  detail: string;
+  badge?: string;
+  image?: string;
+  placeholderHint: string;
+  recommendedFile: string;
+}
+
+const credentials: Credential[] = [
   {
     year: "2026",
     title: "PRIME Business Case Competition",
-    detail: "Semifinalist — Petroleum Research & Innovation to Magnify Engineers",
+    issuer: "Petroleum Research & Innovation to Magnify Engineers",
+    detail: "Semifinalist — Formulated comprehensive technical solutions and business strategies for complex engineering scenarios.",
+    badge: "Semifinalist",
+    image: "",
+    placeholderHint: "Certificate / presentation photo: PRIME Business Case Competition",
+    recommendedFile: "/activities/prime-competition.jpg",
   },
   {
     year: "2025",
     title: "Scientific Design Competition",
-    detail: "1st Place — Online Asian Agrocomplex Student Competition",
+    issuer: "Online Asian Agrocomplex Student Competition",
+    detail: "1st Place (Gold Medal) — Designed and defended an engineering technology concept evaluated by an international academic jury.",
+    badge: "1st Place Winner",
+    image: "",
+    placeholderHint: "Award / certificate photo: Scientific Design Competition 1st Place",
+    recommendedFile: "/activities/agrocomplex-award.jpg",
   },
   {
     year: "2026",
     title: "MATLAB & Simulink Onramp",
-    detail: "MathWorks self-paced training, 100% completed",
+    issuer: "MathWorks",
+    detail: "Completed certified self-paced training covering numerical computation, data visualization, dynamic modeling, and Simulink state machines.",
+    badge: "Certified",
+    image: "",
+    placeholderHint: "MathWorks certification screenshot or course completion badge",
+    recommendedFile: "/activities/matlab-cert.jpg",
   },
   {
     year: "2023",
     title: "Physics Peer Tutor",
-    detail: "Selected tutor for the PKRb remedial learning program",
+    issuer: "PKRb Remedial Learning Program",
+    detail: "Selected as instructor to mentor undergraduate students in foundational physics, problem analysis, and circuit fundamentals.",
+    badge: "Academic Honor",
+    image: "",
+    placeholderHint: "Tutor appointment letter or study session photo",
+    recommendedFile: "/activities/tutor-physics.jpg",
   },
 ];
 
-const skills = [
-  ["Embedded", "C, C++, STM32, ESP32, Arduino, Raspberry Pi, PlatformIO"],
-  ["Communication", "UART/USART, MQTT, I²C, SPI, CAN, Wi-Fi, Bluetooth, LoRa"],
-  ["Intelligence", "Python, OpenCV, TensorFlow, PyTorch, TinyML, Scikit-learn"],
-  ["Engineering", "MATLAB, Simulink, KiCad, Fusion 360, Linux, Git, Docker"],
+const skillCategories = [
+  {
+    name: "Hardware & Microcontrollers",
+    skills: ["STM32 (Cortex-M)", "ESP32", "Arduino", "Raspberry Pi", "FreeRTOS", "PlatformIO"],
+  },
+  {
+    name: "Communication & Bus Protocols",
+    skills: ["UART / USART", "MQTT", "I²C", "SPI", "CAN Bus", "Wi-Fi (802.11)", "Bluetooth BLE", "LoRa"],
+  },
+  {
+    name: "Programming & Intelligence",
+    skills: ["C", "C++", "Python", "OpenCV", "TensorFlow", "TinyML", "MATLAB", "Simulink"],
+  },
+  {
+    name: "Engineering Tools & Design",
+    skills: ["KiCad (Schematic & PCB)", "Fusion 360", "Linux / Bash", "Git", "Docker", "Oscilloscopes & Logic Analyzers"],
+  },
 ];
+
+// Clean standard SVG icons (Lucide / Feather style)
+function IconMail() {
+  return (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <rect width="20" height="16" x="2" y="4" rx="2" />
+      <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+    </svg>
+  );
+}
+
+function IconGithub() {
+  return (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
+      <path d="M9 18c-4.51 2-5-2-7-2" />
+    </svg>
+  );
+}
+
+function IconLinkedin() {
+  return (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+      <rect width="4" height="12" x="2" y="9" />
+      <circle cx="4" cy="4" r="2" />
+    </svg>
+  );
+}
+
+function IconExternal() {
+  return (
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+      <polyline points="15 3 21 3 21 9" />
+      <line x1="10" y1="14" x2="21" y2="3" />
+    </svg>
+  );
+}
+
+function IconMapPin() {
+  return (
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
+      <circle cx="12" cy="10" r="3" />
+    </svg>
+  );
+}
+
+function IconAward() {
+  return (
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <circle cx="12" cy="8" r="6" />
+      <path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11" />
+    </svg>
+  );
+}
+
+function IconCamera() {
+  return (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z" />
+      <circle cx="12" cy="13" r="3" />
+    </svg>
+  );
+}
+
+function ActivityImagePlaceholder({
+  image,
+  alt,
+  placeholderHint,
+  recommendedFile,
+  aspectRatio = "16/9",
+}: {
+  image?: string;
+  alt: string;
+  placeholderHint: string;
+  recommendedFile: string;
+  aspectRatio?: string;
+}) {
+  if (image && image.trim() !== "") {
+    return (
+      <div className="activity-image-box" style={{ aspectRatio }}>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src={image} alt={alt} className="activity-img" loading="lazy" />
+      </div>
+    );
+  }
+
+  return (
+    <div className="activity-placeholder" style={{ aspectRatio }} aria-label={`Placeholder for: ${alt}`}>
+      <div className="placeholder-content">
+        <div className="placeholder-icon-wrap" aria-hidden="true">
+          <IconCamera />
+        </div>
+        <span className="placeholder-tag">PHOTO PLACEHOLDER</span>
+        <p className="placeholder-hint">{placeholderHint}</p>
+        <span className="placeholder-path">
+          File: <code>public{recommendedFile}</code>
+        </span>
+      </div>
+    </div>
+  );
+}
 
 export default function Portfolio() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [active, setActive] = useState("about");
 
   useEffect(() => {
-    const sections = ["about", "projects", "experience", "credentials", "contact"]
-      .map((id) => document.getElementById(id))
-      .filter(Boolean) as HTMLElement[];
+    const sectionIds = ["about", "projects", "experience", "credentials", "contact"];
+    const sections = sectionIds.map((id) => document.getElementById(id)).filter(Boolean) as HTMLElement[];
+
     const observer = new IntersectionObserver(
       (entries) => {
         const visible = entries
@@ -125,8 +350,9 @@ export default function Portfolio() {
           .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
         if (visible) setActive(visible.target.id);
       },
-      { rootMargin: "-25% 0px -60% 0px", threshold: [0, 0.2, 0.5] },
+      { rootMargin: "-20% 0px -50% 0px", threshold: [0, 0.2, 0.5] }
     );
+
     sections.forEach((section) => observer.observe(section));
     return () => observer.disconnect();
   }, []);
@@ -139,226 +365,422 @@ export default function Portfolio() {
   const closeMenu = () => setMenuOpen(false);
 
   return (
-    <main>
-      <a className="skip-link" href="#content">Skip to content</a>
+    <div className="portfolio-shell">
+      <a className="skip-link" href="#content">
+        Skip to content
+      </a>
 
+      {/* Clean Light Header */}
       <header className="site-header">
-        <a className="brand" href="#top" aria-label="Rama, back to top">
-          <span className="brand-mark">RB</span>
-          <span>Rama Habir</span>
-        </a>
-        <nav id="mobile-navigation" className={menuOpen ? "nav open" : "nav"} aria-label="Primary navigation">
-          {navItems.map(([label, id]) => (
-            <a key={id} href={`#${id}`} className={active === id ? "active" : ""} onClick={closeMenu}>
-              {label}
-            </a>
-          ))}
-          <a className="nav-cta" href="#contact" onClick={closeMenu}>
-            Let&apos;s connect <span aria-hidden="true">↗</span>
+        <div className="header-container">
+          <a className="brand" href="#top" aria-label="Rama Habir, top of page">
+            <span className="brand-badge">RH</span>
+            <span className="brand-name">Rama Habir</span>
+            <span className="brand-role">· Robotics & Embedded</span>
           </a>
-        </nav>
-        <button
-          className="menu-button"
-          type="button"
-          aria-expanded={menuOpen}
-          aria-controls="mobile-navigation"
-          aria-label={menuOpen ? "Close navigation" : "Open navigation"}
-          onClick={() => setMenuOpen((value) => !value)}
-        >
-          <span /><span />
-        </button>
+
+          <nav id="mobile-navigation" className={menuOpen ? "nav open" : "nav"} aria-label="Primary navigation">
+            {navItems.map(([label, id]) => (
+              <a
+                key={id}
+                href={`#${id}`}
+                className={active === id ? "active" : ""}
+                onClick={closeMenu}
+              >
+                {label}
+              </a>
+            ))}
+            <a className="nav-cta" href={links.email} onClick={closeMenu}>
+              Contact Me
+            </a>
+          </nav>
+
+          <button
+            className="menu-button"
+            type="button"
+            aria-expanded={menuOpen}
+            aria-controls="mobile-navigation"
+            aria-label={menuOpen ? "Close navigation" : "Open navigation"}
+            onClick={() => setMenuOpen((value) => !value)}
+          >
+            <span />
+            <span />
+          </button>
+        </div>
       </header>
 
-      <section className="hero robotics-hero" id="top" aria-labelledby="hero-title">
-        <div className="hero-glow glow-one" />
-        <div className="hero-glow glow-two" />
-        <div className="signal-field" aria-hidden="true">
-          <i className="signal-ring ring-one" />
-          <i className="signal-ring ring-two" />
-          <i className="signal-ring ring-three" />
-          <i className="signal-node node-one" />
-          <i className="signal-node node-two" />
-          <i className="signal-node node-three" />
-        </div>
-        <div className="hero-content" id="content">
-          <p className="eyebrow reveal">
-            <span className="status-dot" /> Malang, Indonesia · Open to opportunities
-          </p>
-          <h1 className="reveal delay-one" id="hero-title">
-            Machines that
-            <br />
-            <span>sense &amp; connect.</span>
-          </h1>
-          <p className="hero-copy reveal delay-two">
-            I&apos;m Rama Rizky Belrouzy Habir, an Electrical Engineering student
-            building at the intersection of robotics software, embedded systems,
-            and telecommunications.
-          </p>
-          <div className="hero-actions reveal delay-three">
-            <a className="button button-primary" href={links.simulator} target="_blank" rel="noreferrer">
-              Launch 6-DOF Simulator <span aria-hidden="true">↗</span>
-            </a>
-            <a className="button button-ghost" href="#projects">
-              Explore my systems <span aria-hidden="true">↓</span>
-            </a>
-            <a className="button button-ghost" href={links.github} target="_blank" rel="noreferrer">
-              GitHub <span aria-hidden="true">↗</span>
-            </a>
-          </div>
-        </div>
-        <div className="scroll-cue" aria-hidden="true"><span>Follow the signal</span><i /></div>
-      </section>
+      <main id="content">
+        {/* Clean Wix-Style Hero Section */}
+        <section className="hero" id="top" aria-labelledby="hero-title">
+          <div className="hero-container">
+            <div className="hero-layout">
+              <div className="hero-text-col">
+                <div className="hero-tag">
+                  <IconMapPin />
+                  <span>Malang, Indonesia · Open to Opportunities</span>
+                </div>
 
-      <section className="tech-strip" aria-label="Core technologies">
-        <span>STM32</span><i /><span>ESP32</span><i /><span>C / C++</span><i />
-        <span>MQTT</span><i /><span>MATLAB</span><i /><span>KiCad</span>
-      </section>
+                <h1 id="hero-title" className="hero-title">
+                  Rama Rizky Belrouzy Habir
+                  <span className="hero-subtitle">Engineering machines that sense, communicate, and act.</span>
+                </h1>
 
-      <section className="section about-section" id="about">
-        <div className="section-label"><span>01</span><p>Engineering profile</p></div>
-        <div className="about-grid">
-          <h2>Bridging electrons, algorithms, and communication.</h2>
-          <div className="about-copy">
-            <p>
-              My work starts where software meets the physical world: reading a
-              sensor, moving an actuator, transferring data reliably, and turning
-              a prototype into an understandable system.
-            </p>
-            <p>
-              At Universitas Brawijaya and the Brawijaya Robotics Team, I&apos;m
-              developing the embedded and software foundations for a career in
-              robotics and telecommunications.
-            </p>
-            <a className="text-link" href="#experience">
-              See my trajectory <span aria-hidden="true">→</span>
-            </a>
-          </div>
-        </div>
-        <div className="capability-grid">
-          <article><span className="capability-icon">MCU</span><h3>Embedded intelligence</h3><p>Firmware, sensors, actuators, and resource-aware software for real devices.</p></article>
-          <article><span className="capability-icon">RF</span><h3>Connected systems</h3><p>Serial, wireless, and IoT communication designed around reliable data flow.</p></article>
-          <article><span className="capability-icon">CV</span><h3>Machine perception</h3><p>Exploring computer vision and edge AI that help machines interpret their environment.</p></article>
-        </div>
-      </section>
+                <p className="hero-lead">
+                  Electrical Engineering student at <strong>Universitas Brawijaya</strong> and KRSRI Software Engineer with the <strong>Brawijaya Robotics Team</strong>. Focused on microcontroller firmware (STM32, ESP32), sensor telemetry, and reliable communication protocols.
+                </p>
 
-      <section className="section projects-section" id="projects">
-        <div className="section-heading">
-          <div className="section-label"><span>02</span><p>Selected systems</p></div>
-          <h2>From circuit-level signals to useful data.</h2>
-        </div>
-        <div className="project-list">
-          {projects.map((project) => (
-            <article className={`project-card ${project.className}`} key={project.title}>
-              <div className={`project-visual visual-${project.visual}`} aria-hidden="true">
-                <div className="visual-orbit orbit-one" />
-                <div className="visual-orbit orbit-two" />
-                <span className="visual-number">{project.number} / SYSTEM</span>
-                <div className="visual-window engineering-window">
-                  <div className="window-top"><i /><i /><i /><b>LIVE TELEMETRY</b></div>
-                  <div className="window-body">
-                    <span /><span /><span />
-                    <div className="data-row"><em>RX</em><strong>115200</strong><em>OK</em></div>
+                <div className="hero-actions">
+                  <a className="btn btn-primary" href={links.simulator} target="_blank" rel="noreferrer">
+                    Launch 6-DOF Simulator
+                    <IconExternal />
+                  </a>
+                  <a className="btn btn-outline" href="#projects">
+                    View Projects
+                  </a>
+                  <a className="btn btn-secondary" href={links.email}>
+                    <IconMail />
+                    Email Me
+                  </a>
+                  <a className="btn btn-secondary" href={links.github} target="_blank" rel="noreferrer">
+                    <IconGithub />
+                    GitHub
+                  </a>
+                  <a className="btn btn-secondary" href={links.linkedin} target="_blank" rel="noreferrer">
+                    <IconLinkedin />
+                    LinkedIn
+                  </a>
+                </div>
+
+                <div className="hero-stats-row">
+                  <div className="hero-stat-card">
+                    <span className="stat-label">Current Role</span>
+                    <strong className="stat-val">KRSRI Software Engineer</strong>
+                    <span className="stat-sub">Brawijaya Robotics Team</span>
+                  </div>
+                  <div className="hero-stat-card">
+                    <span className="stat-label">Education</span>
+                    <strong className="stat-val">Electrical Engineering</strong>
+                    <span className="stat-sub">Universitas Brawijaya (GPA 3.35)</span>
+                  </div>
+                  <div className="hero-stat-card">
+                    <span className="stat-label">Core Stack</span>
+                    <strong className="stat-val">STM32 · ESP32 · C/C++</strong>
+                    <span className="stat-sub">FreeRTOS · MQTT · KiCad</span>
                   </div>
                 </div>
               </div>
-              <div className="project-content">
-                <p className="project-label">{project.label}</p>
-                <h3>{project.title}</h3>
-                <p className="project-description">{project.description}</p>
-                <dl className="project-details">
-                  <div><dt>Role</dt><dd>{project.role}</dd></div>
-                  <div><dt>Stack</dt><dd>{project.stack.join(" · ")}</dd></div>
-                  <div><dt>Result</dt><dd>{project.outcome}</dd></div>
-                </dl>
-                <div className="project-links">
-                  <a className="text-link" href={project.href} target="_blank" rel="noreferrer">
-                    View repository <span aria-hidden="true">↗</span>
-                  </a>
+
+              <div className="hero-photo-col">
+                <div className="hero-photo-card">
+                  <div className="hero-photo-wrap">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src="/rama-profile.jpg" alt="Rama Rizky Belrouzy Habir" className="hero-profile-img" />
+                  </div>
+                  <div className="hero-photo-caption">
+                    <h3>Rama Habir</h3>
+                    <p>Robotics & Embedded Systems</p>
+                    <span>Universitas Brawijaya</span>
+                  </div>
                 </div>
               </div>
-            </article>
-          ))}
-        </div>
-      </section>
+            </div>
+          </div>
+        </section>
 
-      <section className="section experience-section" id="experience">
-        <div className="section-heading compact">
-          <div className="section-label"><span>03</span><p>Trajectory</p></div>
-          <h2>Learning by building real systems.</h2>
-        </div>
-        <div className="timeline">
-          {experience.map((item) => (
-            <article key={`${item.years}-${item.role}`}>
-              <p className="timeline-years">{item.years}</p>
-              <div><h3>{item.role}</h3><p className="company">{item.company}</p></div>
-              <p className="timeline-copy">{item.copy}</p>
-            </article>
-          ))}
-        </div>
-      </section>
+        {/* About Section */}
+        <section className="section section-alt" id="about">
+          <div className="section-container">
+            <div className="section-header">
+              <span className="section-label">ABOUT ME</span>
+              <h2>Engineering Background</h2>
+              <p className="section-desc">
+                Bridging embedded electronics, software algorithms, and physical actuation.
+              </p>
+            </div>
 
-      <section className="section skills-section" id="credentials">
-        <div className="section-heading compact">
-          <div className="section-label"><span>04</span><p>Proof of work</p></div>
-          <h2>Recognition backed by continuous learning.</h2>
-        </div>
-        <div className="credential-grid">
-          {credentials.map((item, index) => (
-            <article key={item.title}>
-              <span>0{index + 1} · {item.year}</span>
-              <h3>{item.title}</h3>
-              <p>{item.detail}</p>
-            </article>
-          ))}
-        </div>
-        <div className="section-heading compact toolkit-heading">
-          <div className="section-label"><span>05</span><p>Technical toolkit</p></div>
-          <h2>Tools for intelligent, connected hardware.</h2>
-        </div>
-        <div className="skills-grid">
-          {skills.map(([category, detail], index) => (
-            <article key={category}><span>0{index + 1}</span><h3>{category}</h3><p>{detail}</p></article>
-          ))}
-        </div>
-      </section>
+            <div className="about-cards-grid">
+              <div className="info-card">
+                <h3>Embedded Hardware & Firmware</h3>
+                <p>
+                  I build firmware close to the metal: sampling analog sensors with precision ADCs, controlling actuators, implementing hardware ring buffers, and organizing non-blocking tasks under FreeRTOS.
+                </p>
+              </div>
 
-      <section className="profile-section">
-        <div className="profile-photo-wrap">
-          <img src="/rama-profile.jpg" alt="Rama Rizky Belrouzy Habir" />
-        </div>
-        <div className="profile-copy">
-          <p className="eyebrow">Beyond the workbench</p>
-          <h2>Curious enough to open the box.</h2>
-          <p>
-            I&apos;m motivated by systems that look simple from the outside but
-            demand careful thinking underneath—from a UART frame to a robot
-            interpreting its environment.
-          </p>
-          <a className="text-link" href={links.linkedin} target="_blank" rel="noreferrer">
-            Connect on LinkedIn <span aria-hidden="true">↗</span>
-          </a>
-        </div>
-      </section>
+              <div className="info-card">
+                <h3>Autonomous Robotics</h3>
+                <p>
+                  In the Brawijaya Robotics Team, I work on software algorithms for the national KRSRI autonomous fire-fighting robot contest—focusing on arena navigation, obstacle avoidance, and real-time responsiveness.
+                </p>
+              </div>
 
-      <section className="contact-section" id="contact">
-        <div className="contact-glow" />
-        <p className="eyebrow"><span className="status-dot" /> Open to robotics &amp; telecom opportunities</p>
-        <h2>Let&apos;s build systems that move and communicate.</h2>
-        <p>Internships, research, engineering collaborations, and ambitious embedded projects are welcome.</p>
-        <a className="button button-light" href={links.email}>
-          rizkyhabir88@gmail.com <span aria-hidden="true">↗</span>
-        </a>
-      </section>
+              <div className="info-card">
+                <h3>Communication Protocols</h3>
+                <p>
+                  Specializing in reliable device communication: UART/USART serial bridges, packet framing with checksum verification, MQTT IoT telemetry, and bus protocols like I²C, SPI, and CAN.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
 
-      <footer>
-        <a className="brand" href="#top"><span className="brand-mark">RB</span><span>Rama Habir</span></a>
-        <p>Robotics · Embedded Systems · Telecommunications</p>
-        <div className="social-links">
-          <a href={links.github} target="_blank" rel="noreferrer">GitHub</a>
-          <a href={links.linkedin} target="_blank" rel="noreferrer">LinkedIn</a>
-          <a href={links.email}>Email</a>
+        {/* Projects Section */}
+        <section className="section" id="projects">
+          <div className="section-container">
+            <div className="section-header">
+              <span className="section-label">FEATURED WORK</span>
+              <h2>Selected Engineering Projects</h2>
+              <p className="section-desc">
+                Practical hardware and firmware implementations with verifiable source code.
+              </p>
+            </div>
+
+            <div className="project-cards-container">
+              {projects.map((project) => (
+                <article className="project-card" key={project.title}>
+                  <div className="project-image-side">
+                    <ActivityImagePlaceholder
+                      image={project.image}
+                      alt={project.title}
+                      placeholderHint={project.placeholderHint}
+                      recommendedFile={project.recommendedFile}
+                      aspectRatio="16/10"
+                    />
+                  </div>
+
+                  <div className="project-info-side">
+                    <div className="project-badge-row">
+                      <span className="project-category-badge">{project.category}</span>
+                      <span className="project-num-tag">Project {project.number}</span>
+                    </div>
+
+                    <h3 className="project-card-title">{project.title}</h3>
+                    <p className="project-card-summary">{project.summary}</p>
+
+                    <div className="project-key-points">
+                      <strong>Key Engineering Work:</strong>
+                      <ul>
+                        {project.highlights.map((point, idx) => (
+                          <li key={idx}>{point}</li>
+                        ))}
+                      </ul>
+                    </div>
+
+                    <div className="project-tags">
+                      {project.stack.map((item) => (
+                        <span className="tag-pill" key={item}>
+                          {item}
+                        </span>
+                      ))}
+                    </div>
+
+                    <div className="project-btn-row">
+                      <a className="btn btn-sm btn-primary" href={project.href} target="_blank" rel="noreferrer">
+                        View on GitHub
+                        <IconExternal />
+                      </a>
+                    </div>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Experience & Activities */}
+        <section className="section section-alt" id="experience">
+          <div className="section-container">
+            <div className="section-header">
+              <span className="section-label">ACTIVITIES & EXPERIENCE</span>
+              <h2>Practical Experience & Trajectory</h2>
+              <p className="section-desc">
+                Hands-on engineering through robotics competitions, university lab work, and leadership.
+              </p>
+            </div>
+
+            <div className="experience-cards-container">
+              {experience.map((item) => (
+                <article className="experience-card" key={`${item.period}-${item.role}`}>
+                  <div className="exp-image-side">
+                    <ActivityImagePlaceholder
+                      image={item.image}
+                      alt={`${item.role} at ${item.organization}`}
+                      placeholderHint={item.placeholderHint}
+                      recommendedFile={item.recommendedFile}
+                      aspectRatio="16/10"
+                    />
+                  </div>
+
+                  <div className="exp-info-side">
+                    <div className="exp-top-line">
+                      <span className="exp-period-pill">{item.period}</span>
+                      <span className="exp-location-text">{item.location}</span>
+                    </div>
+
+                    <h3 className="exp-title">{item.role}</h3>
+                    <p className="exp-org-name">
+                      <strong>{item.organization}</strong> · <span>{item.type}</span>
+                    </p>
+
+                    <p className="exp-paragraph">{item.description}</p>
+
+                    <div className="exp-checklist">
+                      <strong>Responsibilities & Outcomes:</strong>
+                      <ul>
+                        {item.bullets.map((bullet, idx) => (
+                          <li key={idx}>{bullet}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Credentials & Verification */}
+        <section className="section" id="credentials">
+          <div className="section-container">
+            <div className="section-header">
+              <span className="section-label">ACHIEVEMENTS</span>
+              <h2>Credentials & Competitions</h2>
+              <p className="section-desc">
+                Verified competitions, awards, and technical training.
+              </p>
+            </div>
+
+            <div className="credentials-grid">
+              {credentials.map((cred) => (
+                <article className="cred-card" key={cred.title}>
+                  <div className="cred-header">
+                    <div className="cred-icon-wrap">
+                      <IconAward />
+                    </div>
+                    {cred.badge && <span className="cred-badge-pill">{cred.badge}</span>}
+                  </div>
+
+                  <span className="cred-year-tag">{cred.year}</span>
+                  <h3 className="cred-card-title">{cred.title}</h3>
+                  <p className="cred-issuer-text">{cred.issuer}</p>
+                  <p className="cred-description">{cred.detail}</p>
+
+                  <div className="cred-photo-slot">
+                    <ActivityImagePlaceholder
+                      image={cred.image}
+                      alt={cred.title}
+                      placeholderHint={cred.placeholderHint}
+                      recommendedFile={cred.recommendedFile}
+                      aspectRatio="21/9"
+                    />
+                  </div>
+                </article>
+              ))}
+            </div>
+
+            {/* Skills Toolkit */}
+            <div className="skills-section-box">
+              <div className="skills-header">
+                <h3>Technical Skills & Toolkit</h3>
+                <p>Core competencies in hardware, programming languages, and engineering software.</p>
+              </div>
+
+              <div className="skills-columns">
+                {skillCategories.map((cat) => (
+                  <div className="skill-col-card" key={cat.name}>
+                    <h4 className="skill-col-title">{cat.name}</h4>
+                    <div className="skill-pills-wrap">
+                      {cat.skills.map((skill) => (
+                        <span className="skill-badge" key={skill}>
+                          {skill}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Contact Section */}
+        <section className="section section-alt" id="contact">
+          <div className="section-container">
+            <div className="contact-card">
+              <div className="contact-content">
+                <span className="section-label">GET IN TOUCH</span>
+                <h2>Let&apos;s Connect</h2>
+                <p>
+                  I am open to robotics engineering internships, embedded firmware roles, and IoT collaborations. Feel free to reach out directly.
+                </p>
+
+                <div className="contact-details-list">
+                  <div className="contact-detail-item">
+                    <span className="cd-title">Email Address:</span>
+                    <a className="cd-link" href={links.email}>
+                      rizkyhabir88@gmail.com
+                    </a>
+                  </div>
+                  <div className="contact-detail-item">
+                    <span className="cd-title">Location:</span>
+                    <span className="cd-val">Malang, East Java, Indonesia</span>
+                  </div>
+                  <div className="contact-detail-item">
+                    <span className="cd-title">Profiles:</span>
+                    <div className="cd-links">
+                      <a href={links.github} target="_blank" rel="noreferrer">
+                        GitHub ↗
+                      </a>
+                      <span>·</span>
+                      <a href={links.linkedin} target="_blank" rel="noreferrer">
+                        LinkedIn ↗
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="contact-cta-panel">
+                <a className="btn btn-primary btn-lg" href={links.email}>
+                  <IconMail />
+                  Send Me an Email
+                </a>
+                <a className="btn btn-outline btn-lg" href={links.linkedin} target="_blank" rel="noreferrer">
+                  <IconLinkedin />
+                  Connect on LinkedIn
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      {/* Clean Footer */}
+      <footer className="site-footer">
+        <div className="footer-container">
+          <div className="footer-left">
+            <span className="brand-badge">RH</span>
+            <div>
+              <strong>Rama Rizky Belrouzy Habir</strong>
+              <p>Robotics & Telecommunications · Universitas Brawijaya</p>
+            </div>
+          </div>
+
+          <div className="footer-right">
+            <a href={links.github} target="_blank" rel="noreferrer">
+              GitHub
+            </a>
+            <a href={links.linkedin} target="_blank" rel="noreferrer">
+              LinkedIn
+            </a>
+            <a href={links.email}>
+              Email
+            </a>
+            <a href="#top">
+              Back to Top ↑
+            </a>
+          </div>
         </div>
       </footer>
-    </main>
+    </div>
   );
 }
