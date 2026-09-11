@@ -6,7 +6,6 @@ const links = {
   github: "https://github.com/Ramahabir",
   linkedin: "https://www.linkedin.com/in/rama-rizky-belrouzy-habir-a354b9185/",
   email: "mailto:rizkyhabir88@gmail.com",
-  simulator: "https://ramahabir.github.io/6dof-simulator/",
 };
 
 const navItems = [
@@ -430,14 +429,10 @@ export default function Portfolio() {
                 </p>
 
                 <div className="hero-actions">
-                  <a className="btn btn-primary" href={links.simulator} target="_blank" rel="noreferrer">
-                    Launch 6-DOF Simulator
-                    <IconExternal />
-                  </a>
-                  <a className="btn btn-outline" href="#projects">
+                  <a className="btn btn-primary" href="#projects">
                     View Projects
                   </a>
-                  <a className="btn btn-secondary" href={links.email}>
+                  <a className="btn btn-outline" href={links.email}>
                     <IconMail />
                     Email Me
                   </a>
