@@ -128,10 +128,10 @@ const experience: Experience[] = [
       "Calibrating actuator control loops and sensor timing for sub-millisecond reaction speeds.",
       "Conducting extensive arena testing, hardware-in-the-loop debugging, and field readiness evaluations.",
     ],
-    images: [], // Pass multiple photos: ["/activities/krsri-robot-1.jpg", "/activities/krsri-robot-2.jpg"]
+    images: ["/activities/sertifikat-krsri-hme.png"],
     image: "",
     placeholderHint: "Activity Photos: KRSRI robot chassis, test field arena, or team workshop debugging",
-    recommendedFile: "/activities/krsri-robotics.jpg",
+    recommendedFile: "/activities/sertifikat-krsri-hme.png",
   },
   {
     period: "2023 — Present",
