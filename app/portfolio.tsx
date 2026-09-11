@@ -375,7 +375,27 @@ function IconChevronRight() {
   );
 }
 
-// Multi-Photo Gallery Slider with fallback placeholder
+function IconZoomIn() {
+  return (
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <circle cx="11" cy="11" r="8" />
+      <line x1="21" y1="21" x2="16.65" y2="16.65" />
+      <line x1="11" y1="8" x2="11" y2="14" />
+      <line x1="8" y1="11" x2="14" y2="11" />
+    </svg>
+  );
+}
+
+function IconClose() {
+  return (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <line x1="18" y1="6" x2="6" y2="18" />
+      <line x1="6" y1="6" x2="18" y2="18" />
+    </svg>
+  );
+}
+
+// Multi-Photo Gallery Slider with fallback placeholder & click-to-enlarge Lightbox
 function ActivityImageGallery({
   images,
   image,
@@ -392,6 +412,7 @@ function ActivityImageGallery({
   aspectRatio?: string;
 }) {
   const [currentIdx, setCurrentIdx] = useState(0);
+  const [isLightboxOpen, setIsLightboxOpen] = useState(false);
 
   // Normalize photo sources from both array and single string prop
   const photoList = [
@@ -399,75 +420,198 @@ function ActivityImageGallery({
     ...(Array.isArray(image) ? image : image ? [image] : []),
   ].filter((src): src is string => typeof src === "string" && src.trim() !== "");
 
+  const activeIndex = photoList.length > 0 ? Math.min(currentIdx, photoList.length - 1) : 0;
+  const activePhoto = photoList[activeIndex];
+
+  const prevPhoto = (e?: React.MouseEvent) => {
+    if (e) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+    setCurrentIdx((prev) => (prev === 0 ? photoList.length - 1 : prev - 1));
+  };
+
+  const nextPhoto = (e?: React.MouseEvent) => {
+    if (e) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+    setCurrentIdx((prev) => (prev === photoList.length - 1 ? 0 : prev + 1));
+  };
+
+  useEffect(() => {
+    if (!isLightboxOpen) return;
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setIsLightboxOpen(false);
+      } else if (e.key === "ArrowLeft" && photoList.length > 1) {
+        setCurrentIdx((prev) => (prev === 0 ? photoList.length - 1 : prev - 1));
+      } else if (e.key === "ArrowRight" && photoList.length > 1) {
+        setCurrentIdx((prev) => (prev === photoList.length - 1 ? 0 : prev + 1));
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+      document.body.style.overflow = prevOverflow;
+    };
+  }, [isLightboxOpen, photoList.length]);
+
   if (photoList.length > 0) {
-    const activeIndex = Math.min(currentIdx, photoList.length - 1);
-    const activePhoto = photoList[activeIndex];
-
-    const prevPhoto = (e: React.MouseEvent) => {
-      e.preventDefault();
-      e.stopPropagation();
-      setCurrentIdx((prev) => (prev === 0 ? photoList.length - 1 : prev - 1));
-    };
-
-    const nextPhoto = (e: React.MouseEvent) => {
-      e.preventDefault();
-      e.stopPropagation();
-      setCurrentIdx((prev) => (prev === photoList.length - 1 ? 0 : prev + 1));
-    };
-
     return (
-      <div className="activity-gallery-box" style={{ aspectRatio }}>
-        <div className="gallery-slide-wrap">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src={activePhoto}
-            alt={`${alt} (Photo ${activeIndex + 1} of ${photoList.length})`}
-            className="activity-img"
-            loading="lazy"
-          />
+      <>
+        <div className="activity-gallery-box" style={{ aspectRatio }}>
+          <div
+            className="gallery-slide-wrap"
+            onClick={() => setIsLightboxOpen(true)}
+            role="button"
+            tabIndex={0}
+            title="Click to expand photo"
+            onKeyDown={(e) => {
+              if (e.key === "Enter" || e.key === " ") {
+                e.preventDefault();
+                setIsLightboxOpen(true);
+              }
+            }}
+          >
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={activePhoto}
+              alt={`${alt} (Photo ${activeIndex + 1} of ${photoList.length})`}
+              className="activity-img"
+              loading="lazy"
+            />
+
+            <div className="gallery-zoom-hint" aria-hidden="true">
+              <IconZoomIn />
+              <span>Click to expand</span>
+            </div>
+          </div>
+
+          {photoList.length > 1 && (
+            <>
+              <button
+                type="button"
+                className="gallery-nav-btn gallery-prev"
+                onClick={prevPhoto}
+                aria-label="Previous photo"
+              >
+                <IconChevronLeft />
+              </button>
+              <button
+                type="button"
+                className="gallery-nav-btn gallery-next"
+                onClick={nextPhoto}
+                aria-label="Next photo"
+              >
+                <IconChevronRight />
+              </button>
+
+              <div className="gallery-counter-badge">
+                {activeIndex + 1} / {photoList.length}
+              </div>
+
+              <div className="gallery-dots-row">
+                {photoList.map((_, idx) => (
+                  <button
+                    key={idx}
+                    type="button"
+                    className={`gallery-dot ${idx === activeIndex ? "active" : ""}`}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      e.stopPropagation();
+                      setCurrentIdx(idx);
+                    }}
+                    aria-label={`View photo ${idx + 1}`}
+                  />
+                ))}
+              </div>
+            </>
+          )}
         </div>
 
-        {photoList.length > 1 && (
-          <>
-            <button
-              type="button"
-              className="gallery-nav-btn gallery-prev"
-              onClick={prevPhoto}
-              aria-label="Previous photo"
-            >
-              <IconChevronLeft />
-            </button>
-            <button
-              type="button"
-              className="gallery-nav-btn gallery-next"
-              onClick={nextPhoto}
-              aria-label="Next photo"
-            >
-              <IconChevronRight />
-            </button>
-
-            <div className="gallery-counter-badge">
-              {activeIndex + 1} / {photoList.length}
-            </div>
-
-            <div className="gallery-dots-row">
-              {photoList.map((_, idx) => (
+        {isLightboxOpen && (
+          <div
+            className="lightbox-overlay"
+            onClick={() => setIsLightboxOpen(false)}
+            role="dialog"
+            aria-modal="true"
+            aria-label={`${alt} full view`}
+          >
+            <div className="lightbox-content" onClick={(e) => e.stopPropagation()}>
+              <div className="lightbox-header">
+                <div className="lightbox-title-text">
+                  <span>{alt}</span>
+                  {photoList.length > 1 && (
+                    <span className="lightbox-counter">
+                      ({activeIndex + 1} of {photoList.length})
+                    </span>
+                  )}
+                </div>
                 <button
-                  key={idx}
                   type="button"
-                  className={`gallery-dot ${idx === activeIndex ? "active" : ""}`}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    setCurrentIdx(idx);
-                  }}
-                  aria-label={`View photo ${idx + 1}`}
+                  className="lightbox-close-btn"
+                  onClick={() => setIsLightboxOpen(false)}
+                  aria-label="Close full view"
+                >
+                  <IconClose />
+                </button>
+              </div>
+
+              <div className="lightbox-image-container">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={activePhoto}
+                  alt={`${alt} (Full view, photo ${activeIndex + 1} of ${photoList.length})`}
+                  className="lightbox-image"
                 />
-              ))}
+
+                {photoList.length > 1 && (
+                  <>
+                    <button
+                      type="button"
+                      className="lightbox-nav-btn lightbox-prev"
+                      onClick={prevPhoto}
+                      aria-label="Previous photo"
+                    >
+                      <IconChevronLeft />
+                    </button>
+                    <button
+                      type="button"
+                      className="lightbox-nav-btn lightbox-next"
+                      onClick={nextPhoto}
+                      aria-label="Next photo"
+                    >
+                      <IconChevronRight />
+                    </button>
+                  </>
+                )}
+              </div>
+
+              {photoList.length > 1 && (
+                <div className="lightbox-footer">
+                  <div className="gallery-dots-row static-dots">
+                    {photoList.map((_, idx) => (
+                      <button
+                        key={idx}
+                        type="button"
+                        className={`gallery-dot ${idx === activeIndex ? "active" : ""}`}
+                        onClick={() => setCurrentIdx(idx)}
+                        aria-label={`Jump to photo ${idx + 1}`}
+                      />
+                    ))}
+                  </div>
+                </div>
+              )}
             </div>
-          </>
+          </div>
         )}
-      </div>
+      </>
     );
   }
 
@@ -828,7 +972,7 @@ export default function Portfolio() {
                       alt={cred.title}
                       placeholderHint={cred.placeholderHint}
                       recommendedFile={cred.recommendedFile}
-                      aspectRatio="21/9"
+                      aspectRatio="4/3"
                     />
                   </div>
                 </article>
