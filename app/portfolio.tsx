@@ -6,7 +6,6 @@ const links = {
   github: "https://github.com/Ramahabir",
   linkedin: "https://www.linkedin.com/in/rama-rizky-belrouzy-habir-a354b9185/",
   email: "mailto:rizkyhabir88@gmail.com",
-  simulator: "https://ramahabir.github.io/6dof-simulator/",
 };
 
 const navItems = [
@@ -205,7 +204,7 @@ const credentials: Credential[] = [
     title: "Physics Peer Tutor",
     issuer: "PKRb Remedial Learning Program",
     detail: "Selected as instructor to mentor undergraduate students in foundational physics, problem analysis, and circuit fundamentals.",
-    badge: "Academic Honor",
+    badge: "Honors",
     image: "",
     placeholderHint: "Tutor appointment letter or study session photo",
     recommendedFile: "/activities/tutor-physics.jpg",
@@ -231,72 +230,6 @@ const skillCategories = [
   },
 ];
 
-// Clean standard SVG icons (Lucide / Feather style)
-function IconMail() {
-  return (
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      <rect width="20" height="16" x="2" y="4" rx="2" />
-      <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
-    </svg>
-  );
-}
-
-function IconGithub() {
-  return (
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
-      <path d="M9 18c-4.51 2-5-2-7-2" />
-    </svg>
-  );
-}
-
-function IconLinkedin() {
-  return (
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
-      <rect width="4" height="12" x="2" y="9" />
-      <circle cx="4" cy="4" r="2" />
-    </svg>
-  );
-}
-
-function IconExternal() {
-  return (
-    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
-      <polyline points="15 3 21 3 21 9" />
-      <line x1="10" y1="14" x2="21" y2="3" />
-    </svg>
-  );
-}
-
-function IconMapPin() {
-  return (
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
-      <circle cx="12" cy="10" r="3" />
-    </svg>
-  );
-}
-
-function IconAward() {
-  return (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      <circle cx="12" cy="8" r="6" />
-      <path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11" />
-    </svg>
-  );
-}
-
-function IconCamera() {
-  return (
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      <path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z" />
-      <circle cx="12" cy="13" r="3" />
-    </svg>
-  );
-}
-
 function ActivityImagePlaceholder({
   image,
   alt,
@@ -321,9 +254,14 @@ function ActivityImagePlaceholder({
 
   return (
     <div className="activity-placeholder" style={{ aspectRatio }} aria-label={`Placeholder for: ${alt}`}>
+      <div className="placeholder-pattern" aria-hidden="true" />
       <div className="placeholder-content">
         <div className="placeholder-icon-wrap" aria-hidden="true">
-          <IconCamera />
+          <svg className="placeholder-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+            <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
+            <circle cx="8.5" cy="8.5" r="1.5" />
+            <polyline points="21 15 16 10 5 21" />
+          </svg>
         </div>
         <span className="placeholder-tag">PHOTO PLACEHOLDER</span>
         <p className="placeholder-hint">{placeholderHint}</p>
@@ -370,13 +308,13 @@ export default function Portfolio() {
         Skip to content
       </a>
 
-      {/* Clean Light Header */}
+      {/* Clean Technical Header */}
       <header className="site-header">
         <div className="header-container">
           <a className="brand" href="#top" aria-label="Rama Habir, top of page">
             <span className="brand-badge">RH</span>
             <span className="brand-name">Rama Habir</span>
-            <span className="brand-role">· Robotics & Embedded</span>
+            <span className="brand-role">/ Robotics & Embedded</span>
           </a>
 
           <nav id="mobile-navigation" className={menuOpen ? "nav open" : "nav"} aria-label="Primary navigation">
@@ -391,7 +329,7 @@ export default function Portfolio() {
               </a>
             ))}
             <a className="nav-cta" href={links.email} onClick={closeMenu}>
-              Contact Me
+              Get in touch
             </a>
           </nav>
 
@@ -410,134 +348,128 @@ export default function Portfolio() {
       </header>
 
       <main id="content">
-        {/* Clean Wix-Style Hero Section */}
+        {/* Clean Hero Section */}
         <section className="hero" id="top" aria-labelledby="hero-title">
           <div className="hero-container">
-            <div className="hero-layout">
-              <div className="hero-text-col">
-                <div className="hero-tag">
-                  <IconMapPin />
-                  <span>Malang, Indonesia · Open to Opportunities</span>
-                </div>
+            <div className="hero-status">
+              <span className="status-indicator" />
+              <span className="status-text">Malang, Indonesia · Open to Robotics & Embedded Systems Opportunities</span>
+            </div>
 
-                <h1 id="hero-title" className="hero-title">
-                  Rama Rizky Belrouzy Habir
-                  <span className="hero-subtitle">Engineering machines that sense, communicate, and act.</span>
-                </h1>
+            <h1 id="hero-title" className="hero-title">
+              Rama Rizky Belrouzy Habir
+              <span className="hero-subtitle">Engineering machines that sense, communicate, and act.</span>
+            </h1>
 
-                <p className="hero-lead">
-                  Electrical Engineering student at <strong>Universitas Brawijaya</strong> and KRSRI Software Engineer with the <strong>Brawijaya Robotics Team</strong>. Focused on microcontroller firmware (STM32, ESP32), sensor telemetry, and reliable communication protocols.
-                </p>
+            <p className="hero-lead">
+              Electrical Engineering student at <strong>Universitas Brawijaya</strong> and KRSRI Software Engineer with the <strong>Brawijaya Robotics Team</strong>. Specializing in bare-metal and RTOS firmware (STM32, ESP32), sensor telemetry, and reliable device-to-cloud communication.
+            </p>
 
-                <div className="hero-actions">
-                  <a className="btn btn-primary" href={links.simulator} target="_blank" rel="noreferrer">
-                    Launch 6-DOF Simulator
-                    <IconExternal />
-                  </a>
-                  <a className="btn btn-outline" href="#projects">
-                    View Projects
-                  </a>
-                  <a className="btn btn-secondary" href={links.email}>
-                    <IconMail />
-                    Email Me
-                  </a>
-                  <a className="btn btn-secondary" href={links.github} target="_blank" rel="noreferrer">
-                    <IconGithub />
-                    GitHub
-                  </a>
-                  <a className="btn btn-secondary" href={links.linkedin} target="_blank" rel="noreferrer">
-                    <IconLinkedin />
-                    LinkedIn
-                  </a>
-                </div>
+            <div className="hero-actions">
+              <a className="btn btn-primary" href="#projects">
+                View Engineering Projects ↓
+              </a>
+              <a className="btn btn-secondary" href={links.github} target="_blank" rel="noreferrer">
+                GitHub ↗
+              </a>
+              <a className="btn btn-secondary" href={links.linkedin} target="_blank" rel="noreferrer">
+                LinkedIn ↗
+              </a>
+              <a className="btn btn-secondary" href={links.email}>
+                Email Directly ↗
+              </a>
+            </div>
 
-                <div className="hero-stats-row">
-                  <div className="hero-stat-card">
-                    <span className="stat-label">Current Role</span>
-                    <strong className="stat-val">KRSRI Software Engineer</strong>
-                    <span className="stat-sub">Brawijaya Robotics Team</span>
-                  </div>
-                  <div className="hero-stat-card">
-                    <span className="stat-label">Education</span>
-                    <strong className="stat-val">Electrical Engineering</strong>
-                    <span className="stat-sub">Universitas Brawijaya (GPA 3.35)</span>
-                  </div>
-                  <div className="hero-stat-card">
-                    <span className="stat-label">Core Stack</span>
-                    <strong className="stat-val">STM32 · ESP32 · C/C++</strong>
-                    <span className="stat-sub">FreeRTOS · MQTT · KiCad</span>
-                  </div>
-                </div>
+            <div className="spec-bar">
+              <div className="spec-item">
+                <span className="spec-label">Primary Stack</span>
+                <span className="spec-value">C / C++, STM32, ESP32, FreeRTOS</span>
               </div>
-
-              <div className="hero-photo-col">
-                <div className="hero-photo-card">
-                  <div className="hero-photo-wrap">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src="/rama-profile.jpg" alt="Rama Rizky Belrouzy Habir" className="hero-profile-img" />
-                  </div>
-                  <div className="hero-photo-caption">
-                    <h3>Rama Habir</h3>
-                    <p>Robotics & Embedded Systems</p>
-                    <span>Universitas Brawijaya</span>
-                  </div>
-                </div>
+              <div className="spec-item">
+                <span className="spec-label">Current Role</span>
+                <span className="spec-value">KRSRI Software Engineer @ Brawijaya Robotics</span>
+              </div>
+              <div className="spec-item">
+                <span className="spec-label">Education</span>
+                <span className="spec-value">B.Eng in Electrical Engineering (GPA 3.35)</span>
+              </div>
+              <div className="spec-item">
+                <span className="spec-label">Core Focus</span>
+                <span className="spec-value">Robotics, Embedded Firmware, Telemetry</span>
               </div>
             </div>
           </div>
         </section>
 
-        {/* About Section */}
-        <section className="section section-alt" id="about">
+        {/* About & Engineering Philosophy */}
+        <section className="section" id="about">
           <div className="section-container">
             <div className="section-header">
-              <span className="section-label">ABOUT ME</span>
-              <h2>Engineering Background</h2>
+              <span className="section-index">01 / OVERVIEW</span>
+              <h2>Engineering Profile</h2>
               <p className="section-desc">
-                Bridging embedded electronics, software algorithms, and physical actuation.
+                Building reliable software where code directly interfaces with physical hardware, actuators, and communication buses.
               </p>
             </div>
 
-            <div className="about-cards-grid">
-              <div className="info-card">
-                <h3>Embedded Hardware & Firmware</h3>
+            <div className="about-layout">
+              <div className="about-bio">
                 <p>
-                  I build firmware close to the metal: sampling analog sensors with precision ADCs, controlling actuators, implementing hardware ring buffers, and organizing non-blocking tasks under FreeRTOS.
+                  As an Electrical Engineering student, my work is centered around the physical layer and firmware execution: reading ADC and digital sensors, parsing serial streams, synchronizing motor actuators, and optimizing microcontroller memory constraints.
                 </p>
+                <p>
+                  In the <strong>Brawijaya Robotics Team</strong>, I contribute to the KRSRI autonomous fire-fighting robotics division, engineering algorithms that help autonomous robots navigate dynamic arena environments under real-time constraints.
+                </p>
+                <div className="about-details-table">
+                  <div className="table-row">
+                    <span className="row-key">Full Name</span>
+                    <span className="row-val">Rama Rizky Belrouzy Habir</span>
+                  </div>
+                  <div className="table-row">
+                    <span className="row-key">Institution</span>
+                    <span className="row-val">Universitas Brawijaya (Faculty of Engineering)</span>
+                  </div>
+                  <div className="table-row">
+                    <span className="row-key">Major</span>
+                    <span className="row-val">Electrical Engineering (Telecommunications & Electronics)</span>
+                  </div>
+                  <div className="table-row">
+                    <span className="row-key">Primary Focus</span>
+                    <span className="row-val">Autonomous Robotics, Embedded Firmware, IoT Telemetry</span>
+                  </div>
+                </div>
               </div>
 
-              <div className="info-card">
-                <h3>Autonomous Robotics</h3>
-                <p>
-                  In the Brawijaya Robotics Team, I work on software algorithms for the national KRSRI autonomous fire-fighting robot contest—focusing on arena navigation, obstacle avoidance, and real-time responsiveness.
-                </p>
-              </div>
-
-              <div className="info-card">
-                <h3>Communication Protocols</h3>
-                <p>
-                  Specializing in reliable device communication: UART/USART serial bridges, packet framing with checksum verification, MQTT IoT telemetry, and bus protocols like I²C, SPI, and CAN.
-                </p>
+              <div className="about-profile-card">
+                <div className="profile-img-wrap">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src="/rama-profile.jpg" alt="Rama Rizky Belrouzy Habir" className="profile-photo" />
+                </div>
+                <div className="profile-card-caption">
+                  <h3>Rama Habir</h3>
+                  <p>Electrical Engineering & Robotics</p>
+                  <span className="profile-meta">Universitas Brawijaya · Class of 2027</span>
+                </div>
               </div>
             </div>
           </div>
         </section>
 
-        {/* Projects Section */}
-        <section className="section" id="projects">
+        {/* Selected Projects with Image Placeholders */}
+        <section className="section section-bordered" id="projects">
           <div className="section-container">
             <div className="section-header">
-              <span className="section-label">FEATURED WORK</span>
+              <span className="section-index">02 / PROJECTS</span>
               <h2>Selected Engineering Projects</h2>
               <p className="section-desc">
-                Practical hardware and firmware implementations with verifiable source code.
+                Documented hardware and firmware implementations with verifiable code and architecture.
               </p>
             </div>
 
-            <div className="project-cards-container">
+            <div className="project-grid">
               {projects.map((project) => (
                 <article className="project-card" key={project.title}>
-                  <div className="project-image-side">
+                  <div className="project-media-col">
                     <ActivityImagePlaceholder
                       image={project.image}
                       alt={project.title}
@@ -547,17 +479,17 @@ export default function Portfolio() {
                     />
                   </div>
 
-                  <div className="project-info-side">
-                    <div className="project-badge-row">
-                      <span className="project-category-badge">{project.category}</span>
-                      <span className="project-num-tag">Project {project.number}</span>
+                  <div className="project-body-col">
+                    <div className="project-meta-top">
+                      <span className="project-num">PROJECT {project.number}</span>
+                      <span className="project-cat">{project.category}</span>
                     </div>
 
-                    <h3 className="project-card-title">{project.title}</h3>
-                    <p className="project-card-summary">{project.summary}</p>
+                    <h3 className="project-title">{project.title}</h3>
+                    <p className="project-summary">{project.summary}</p>
 
-                    <div className="project-key-points">
-                      <strong>Key Engineering Work:</strong>
+                    <div className="project-highlights">
+                      <span className="highlights-title">Engineering Highlights:</span>
                       <ul>
                         {project.highlights.map((point, idx) => (
                           <li key={idx}>{point}</li>
@@ -565,18 +497,28 @@ export default function Portfolio() {
                       </ul>
                     </div>
 
-                    <div className="project-tags">
-                      {project.stack.map((item) => (
-                        <span className="tag-pill" key={item}>
-                          {item}
+                    <div className="project-specs-grid">
+                      <div>
+                        <span className="spec-mini-title">Role</span>
+                        <span className="spec-mini-val">{project.role}</span>
+                      </div>
+                      <div>
+                        <span className="spec-mini-title">Outcome</span>
+                        <span className="spec-mini-val">{project.outcome}</span>
+                      </div>
+                    </div>
+
+                    <div className="project-stack-wrap">
+                      {project.stack.map((tech) => (
+                        <span className="tech-chip" key={tech}>
+                          {tech}
                         </span>
                       ))}
                     </div>
 
-                    <div className="project-btn-row">
+                    <div className="project-cta-row">
                       <a className="btn btn-sm btn-primary" href={project.href} target="_blank" rel="noreferrer">
-                        View on GitHub
-                        <IconExternal />
+                        View Repository ↗
                       </a>
                     </div>
                   </div>
@@ -586,21 +528,22 @@ export default function Portfolio() {
           </div>
         </section>
 
-        {/* Experience & Activities */}
-        <section className="section section-alt" id="experience">
+        {/* Hands-on Activities & Experience with Image Placeholders */}
+        <section className="section" id="experience">
           <div className="section-container">
             <div className="section-header">
-              <span className="section-label">ACTIVITIES & EXPERIENCE</span>
-              <h2>Practical Experience & Trajectory</h2>
+              <span className="section-index">03 / EXPERIENCE & ACTIVITIES</span>
+              <h2>Hands-on Activities & Trajectory</h2>
               <p className="section-desc">
-                Hands-on engineering through robotics competitions, university lab work, and leadership.
+                Practical engineering experience gained through competitive robotics, university lab research, and leadership.
               </p>
             </div>
 
-            <div className="experience-cards-container">
+            <div className="experience-list">
               {experience.map((item) => (
+              {experience.map((item, index) => (
                 <article className="experience-card" key={`${item.period}-${item.role}`}>
-                  <div className="exp-image-side">
+                  <div className="exp-media-col">
                     <ActivityImagePlaceholder
                       image={item.image}
                       alt={`${item.role} at ${item.organization}`}
@@ -610,21 +553,21 @@ export default function Portfolio() {
                     />
                   </div>
 
-                  <div className="exp-info-side">
-                    <div className="exp-top-line">
-                      <span className="exp-period-pill">{item.period}</span>
-                      <span className="exp-location-text">{item.location}</span>
+                  <div className="exp-content-col">
+                    <div className="exp-badge-row">
+                      <span className="exp-period">{item.period}</span>
+                      <span className="exp-location">{item.location}</span>
                     </div>
 
-                    <h3 className="exp-title">{item.role}</h3>
-                    <p className="exp-org-name">
+                    <h3 className="exp-role">{item.role}</h3>
+                    <p className="exp-org">
                       <strong>{item.organization}</strong> · <span>{item.type}</span>
                     </p>
 
-                    <p className="exp-paragraph">{item.description}</p>
+                    <p className="exp-desc">{item.description}</p>
 
-                    <div className="exp-checklist">
-                      <strong>Responsibilities & Outcomes:</strong>
+                    <div className="exp-bullets">
+                      <span className="highlights-title">Key Responsibilities & Deliverables:</span>
                       <ul>
                         {item.bullets.map((bullet, idx) => (
                           <li key={idx}>{bullet}</li>
@@ -638,33 +581,30 @@ export default function Portfolio() {
           </div>
         </section>
 
-        {/* Credentials & Verification */}
-        <section className="section" id="credentials">
+        {/* Credentials, Awards, and Verification */}
+        <section className="section section-bordered" id="credentials">
           <div className="section-container">
             <div className="section-header">
-              <span className="section-label">ACHIEVEMENTS</span>
-              <h2>Credentials & Competitions</h2>
+              <span className="section-index">04 / VERIFICATION</span>
+              <h2>Credentials & Achievements</h2>
               <p className="section-desc">
-                Verified competitions, awards, and technical training.
+                Competitive achievements, certifications, and academic tutoring honors.
               </p>
             </div>
 
             <div className="credentials-grid">
               {credentials.map((cred) => (
-                <article className="cred-card" key={cred.title}>
-                  <div className="cred-header">
-                    <div className="cred-icon-wrap">
-                      <IconAward />
-                    </div>
-                    {cred.badge && <span className="cred-badge-pill">{cred.badge}</span>}
+                <article className="credential-card" key={cred.title}>
+                  <div className="credential-top">
+                    <span className="credential-year">{cred.year}</span>
+                    {cred.badge && <span className="credential-badge">{cred.badge}</span>}
                   </div>
-
-                  <span className="cred-year-tag">{cred.year}</span>
-                  <h3 className="cred-card-title">{cred.title}</h3>
-                  <p className="cred-issuer-text">{cred.issuer}</p>
-                  <p className="cred-description">{cred.detail}</p>
-
-                  <div className="cred-photo-slot">
+                  <h3 className="credential-title">{cred.title}</h3>
+                  <p className="credential-issuer">{cred.issuer}</p>
+                  <p className="credential-detail">{cred.detail}</p>
+                  
+                  {/* Subtle placeholder/image slot for certificate or medal */}
+                  <div className="credential-media-slot">
                     <ActivityImagePlaceholder
                       image={cred.image}
                       alt={cred.title}
@@ -677,24 +617,25 @@ export default function Portfolio() {
               ))}
             </div>
 
-            {/* Skills Toolkit */}
-            <div className="skills-section-box">
-              <div className="skills-header">
-                <h3>Technical Skills & Toolkit</h3>
-                <p>Core competencies in hardware, programming languages, and engineering software.</p>
+            {/* Technical Toolkit Matrix */}
+            <div className="toolkit-wrap">
+              <div className="section-subheading">
+                <h3>Technical Skill Matrix</h3>
+                <p>Categorized by hardware, communication standards, and development tools.</p>
               </div>
 
-              <div className="skills-columns">
+              <div className="skill-matrix-grid">
                 {skillCategories.map((cat) => (
-                  <div className="skill-col-card" key={cat.name}>
-                    <h4 className="skill-col-title">{cat.name}</h4>
-                    <div className="skill-pills-wrap">
+                  <div className="matrix-column" key={cat.name}>
+                    <h4 className="matrix-title">{cat.name}</h4>
+                    <ul className="matrix-list">
                       {cat.skills.map((skill) => (
-                        <span className="skill-badge" key={skill}>
-                          {skill}
-                        </span>
+                        <li key={skill}>
+                          <span className="skill-dot" />
+                          <span>{skill}</span>
+                        </li>
                       ))}
-                    </div>
+                    </ul>
                   </div>
                 ))}
               </div>
@@ -702,51 +643,48 @@ export default function Portfolio() {
           </div>
         </section>
 
-        {/* Contact Section */}
-        <section className="section section-alt" id="contact">
+        {/* Contact & Recruitment Info */}
+        <section className="section contact-section" id="contact">
           <div className="section-container">
-            <div className="contact-card">
-              <div className="contact-content">
-                <span className="section-label">GET IN TOUCH</span>
-                <h2>Let&apos;s Connect</h2>
+            <div className="contact-box">
+              <div className="contact-info">
+                <span className="section-index">05 / GET IN TOUCH</span>
+                <h2>Let&apos;s Discuss Engineering Opportunities</h2>
                 <p>
-                  I am open to robotics engineering internships, embedded firmware roles, and IoT collaborations. Feel free to reach out directly.
+                  I am actively seeking robotics, embedded firmware, telecommunications, and IoT engineering internships or project collaborations.
                 </p>
-
-                <div className="contact-details-list">
-                  <div className="contact-detail-item">
-                    <span className="cd-title">Email Address:</span>
-                    <a className="cd-link" href={links.email}>
-                      rizkyhabir88@gmail.com
+                <div className="contact-meta-table">
+                  <div>
+                    <span className="cm-label">Direct Email</span>
+                    <a className="cm-val cm-link" href={links.email}>
+                      rizkyhabir88@gmail.com ↗
                     </a>
                   </div>
-                  <div className="contact-detail-item">
-                    <span className="cd-title">Location:</span>
-                    <span className="cd-val">Malang, East Java, Indonesia</span>
+                  <div>
+                    <span className="cm-label">Location</span>
+                    <span className="cm-val">Malang, East Java, Indonesia (WIB / UTC+7)</span>
                   </div>
-                  <div className="contact-detail-item">
-                    <span className="cd-title">Profiles:</span>
-                    <div className="cd-links">
+                  <div>
+                    <span className="cm-label">Profiles</span>
+                    <div className="cm-links-row">
                       <a href={links.github} target="_blank" rel="noreferrer">
-                        GitHub ↗
+                        GitHub Profile ↗
                       </a>
-                      <span>·</span>
+                      <span className="sep">·</span>
                       <a href={links.linkedin} target="_blank" rel="noreferrer">
-                        LinkedIn ↗
+                        LinkedIn Profile ↗
                       </a>
                     </div>
                   </div>
                 </div>
               </div>
 
-              <div className="contact-cta-panel">
+              <div className="contact-actions">
                 <a className="btn btn-primary btn-lg" href={links.email}>
-                  <IconMail />
-                  Send Me an Email
+                  Send Email to Rama ↗
                 </a>
-                <a className="btn btn-outline btn-lg" href={links.linkedin} target="_blank" rel="noreferrer">
-                  <IconLinkedin />
-                  Connect on LinkedIn
+                <a className="btn btn-secondary btn-lg" href={links.linkedin} target="_blank" rel="noreferrer">
+                  Connect on LinkedIn ↗
                 </a>
               </div>
             </div>
@@ -754,18 +692,16 @@ export default function Portfolio() {
         </section>
       </main>
 
-      {/* Clean Footer */}
       <footer className="site-footer">
         <div className="footer-container">
-          <div className="footer-left">
+          <div className="footer-brand">
             <span className="brand-badge">RH</span>
             <div>
               <strong>Rama Rizky Belrouzy Habir</strong>
-              <p>Robotics & Telecommunications · Universitas Brawijaya</p>
+              <p>Robotics · Embedded Systems · Telecommunications</p>
             </div>
           </div>
-
-          <div className="footer-right">
+          <div className="footer-links">
             <a href={links.github} target="_blank" rel="noreferrer">
               GitHub
             </a>
