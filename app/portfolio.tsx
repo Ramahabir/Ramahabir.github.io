@@ -27,7 +27,7 @@ interface Project {
   highlights: string[];
   href: string;
   images?: string[];
-  image?: string;
+  image?: string | string[];
   placeholderHint: string;
   recommendedFile: string;
 }
@@ -48,8 +48,13 @@ const projects: Project[] = [
       "Implemented packet parsing with checksum validation, status return error handling, and smooth trajectory planning.",
     ],
     href: "https://github.com/Ramahabir/6-DOF-Robotics-Arm-Dynamixel",
-    images: [], // Pass multiple photos: ["/projects/robot-arm-1.jpg", "/projects/robot-arm-2.jpg"]
-    image: "", // Or single photo path here
+    images: [
+      "/projects/robot-arm-1.png",
+      "/projects/robot-arm-2.png",
+      "/projects/robot-arm-3.png",
+      "/projects/robot-arm-4.png",
+    ],
+    image: "",
     placeholderHint: "Photos of 5/6-DOF arm assembly, Dynamixel actuators, or KiCad controller PCB",
     recommendedFile: "/projects/robot-arm-dynamixel.jpg",
   },
@@ -104,7 +109,7 @@ interface Experience {
   description: string;
   bullets: string[];
   images?: string[];
-  image?: string;
+  image?: string | string[];
   placeholderHint: string;
   recommendedFile: string;
 }
@@ -172,7 +177,7 @@ interface Credential {
   detail: string;
   badge?: string;
   images?: string[];
-  image?: string;
+  image?: string | string[];
   placeholderHint: string;
   recommendedFile: string;
 }
@@ -335,7 +340,7 @@ function ActivityImageGallery({
   aspectRatio = "16/10",
 }: {
   images?: string[];
-  image?: string;
+  image?: string | string[];
   alt: string;
   placeholderHint: string;
   recommendedFile: string;
@@ -346,7 +351,7 @@ function ActivityImageGallery({
   // Normalize photo sources from both array and single string prop
   const photoList = [
     ...(Array.isArray(images) ? images : []),
-    ...(image ? [image] : []),
+    ...(Array.isArray(image) ? image : image ? [image] : []),
   ].filter((src): src is string => typeof src === "string" && src.trim() !== "");
 
   if (photoList.length > 0) {
