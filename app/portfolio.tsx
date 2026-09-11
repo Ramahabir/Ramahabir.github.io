@@ -163,10 +163,10 @@ const experience: Experience[] = [
       "Managed administrative workflows, meeting records, and structured documentation across departments.",
       "Coordinated committee logistics for regional student competitions and academic conferences.",
     ],
-    images: [],
+    images: ["/activities/sertif-sekre-osis.jpg"],
     image: "",
     placeholderHint: "Activity Photos: Student council committee, event coordination, or organization meeting",
-    recommendedFile: "/activities/leadership-council.jpg",
+    recommendedFile: "/activities/sertif-sekre-osis.jpg",
   },
 ];
 
@@ -189,21 +189,32 @@ const credentials: Credential[] = [
     issuer: "Petroleum Research & Innovation to Magnify Engineers",
     detail: "Semifinalist — Formulated comprehensive technical solutions and business strategies for complex engineering scenarios.",
     badge: "Semifinalist",
-    images: [],
+    images: ["/activities/certificate-prime.png"],
     image: "",
     placeholderHint: "Certificate / presentation photo: PRIME Business Case Competition",
-    recommendedFile: "/activities/prime-competition.jpg",
+    recommendedFile: "/activities/certificate-prime.png",
+  },
+  {
+    year: "2026",
+    title: "2nd International Student Summit (ISS)",
+    issuer: "Sentosa Foundation & INSAN, USIM, WAYS (Malaysia)",
+    detail: "Poster Presentation Finalist — Selected as finalist representing international academic collaboration across Indonesia and Malaysia.",
+    badge: "International Finalist",
+    images: ["/activities/sertif-iss.png"],
+    image: "",
+    placeholderHint: "Certificate: 2nd International Student Summit 2026",
+    recommendedFile: "/activities/sertif-iss.png",
   },
   {
     year: "2025",
     title: "Scientific Design Competition",
-    issuer: "Online Asian Agrocomplex Student Competition",
+    issuer: "Online Asian Agrocomplex Student Competition (OAASC)",
     detail: "1st Place (Gold Medal) — Designed and defended an engineering technology concept evaluated by an international academic jury.",
     badge: "1st Place Winner",
-    images: [],
+    images: ["/activities/sertif-oaasc.jpg"],
     image: "",
     placeholderHint: "Award / certificate photo: Scientific Design Competition 1st Place",
-    recommendedFile: "/activities/agrocomplex-award.jpg",
+    recommendedFile: "/activities/sertif-oaasc.jpg",
   },
   {
     year: "2026",
@@ -211,21 +222,43 @@ const credentials: Credential[] = [
     issuer: "MathWorks",
     detail: "Completed certified self-paced training covering numerical computation, data visualization, dynamic modeling, and Simulink state machines.",
     badge: "Certified",
-    images: [],
+    images: ["/activities/certificate-matlab.png", "/activities/certificate-simulink.png"],
     image: "",
     placeholderHint: "MathWorks certification screenshot or course completion badge",
-    recommendedFile: "/activities/matlab-cert.jpg",
+    recommendedFile: "/activities/certificate-matlab.png",
+  },
+  {
+    year: "2025",
+    title: "Environmental Sustainability",
+    issuer: "Universitas Brawijaya",
+    detail: "Completed certified institutional coursework covering environmental sustainability, renewable resources, and ecological impact.",
+    badge: "Certified",
+    images: ["/activities/sertif-env-sustain.png"],
+    image: "",
+    placeholderHint: "Certificate: Environmental Sustainability",
+    recommendedFile: "/activities/sertif-env-sustain.png",
+  },
+  {
+    year: "2024",
+    title: "Fundamental Python & Data Analysis",
+    issuer: "Coding Studio Digital Skill Course",
+    detail: "Certified mastery of foundational Python scripting, algorithmic problem solving, and professional data analysis in Excel.",
+    badge: "Certified",
+    images: ["/activities/sertif-python.png", "/activities/sertif-excel.png"],
+    image: "",
+    placeholderHint: "Certificates: Fundamental Python & Excel",
+    recommendedFile: "/activities/sertif-python.png",
   },
   {
     year: "2023",
-    title: "Physics Peer Tutor",
-    issuer: "PKRb Remedial Learning Program",
-    detail: "Selected as instructor to mentor undergraduate students in foundational physics, problem analysis, and circuit fundamentals.",
+    title: "Physics Peer Tutor (PKRb)",
+    issuer: "PKRb Remedial Learning Program — MAN Insan Cendekia Gorontalo",
+    detail: "Selected as instructor to mentor students in foundational physics, problem analysis, and circuit fundamentals.",
     badge: "Academic Honor",
-    images: [],
+    images: ["/activities/sertif-tutor.png"],
     image: "",
     placeholderHint: "Tutor appointment letter or study session photo",
-    recommendedFile: "/activities/tutor-physics.jpg",
+    recommendedFile: "/activities/sertif-tutor.png",
   },
 ];
 
@@ -301,6 +334,18 @@ function IconAward() {
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
       <circle cx="12" cy="8" r="6" />
       <path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11" />
+    </svg>
+  );
+}
+
+function IconFileText() {
+  return (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+      <polyline points="14 2 14 8 20 8" />
+      <line x1="16" y1="13" x2="8" y2="13" />
+      <line x1="16" y1="17" x2="8" y2="17" />
+      <polyline points="10 9 9 9 8 9" />
     </svg>
   );
 }
@@ -546,6 +591,10 @@ export default function Portfolio() {
                   <a className="btn btn-outline" href={links.email}>
                     <IconMail />
                     Email Me
+                  </a>
+                  <a className="btn btn-secondary" href="/CV-Rama-Rizky-Belrouzy-Habir.pdf" target="_blank" rel="noreferrer">
+                    <IconFileText />
+                    Download CV
                   </a>
                   <a className="btn btn-secondary" href={links.github} target="_blank" rel="noreferrer">
                     <IconGithub />
