@@ -26,6 +26,7 @@ interface Project {
   outcome: string;
   highlights: string[];
   href: string;
+  images?: string[];
   image?: string;
   placeholderHint: string;
   recommendedFile: string;
@@ -47,8 +48,9 @@ const projects: Project[] = [
       "Implemented packet parsing with checksum validation, status return error handling, and smooth trajectory planning.",
     ],
     href: "https://github.com/Ramahabir/6-DOF-Robotics-Arm-Dynamixel",
-    image: "", // Place your photo in public/projects/robot-arm-dynamixel.jpg and enter the path here
-    placeholderHint: "Photo of 5/6-DOF robotic arm assembly, Dynamixel smart servos, or KiCad controller PCB",
+    images: [], // Pass multiple photos: ["/projects/robot-arm-1.jpg", "/projects/robot-arm-2.jpg"]
+    image: "", // Or single photo path here
+    placeholderHint: "Photos of 5/6-DOF arm assembly, Dynamixel actuators, or KiCad controller PCB",
     recommendedFile: "/projects/robot-arm-dynamixel.jpg",
   },
   {
@@ -66,8 +68,9 @@ const projects: Project[] = [
       "Verified waveform rise times and signal integrity using a digital logic analyzer.",
     ],
     href: "https://github.com/Ramahabir/Day-2---USART-and-UART-STM32-ESP32",
-    image: "", // Place your photo in public/projects/stm32-esp32-serial.jpg and enter the path here
-    placeholderHint: "Photo of STM32 + ESP32 breadboard wiring, logic analyzer, or serial terminal logs",
+    images: [], // Pass multiple photos: ["/projects/stm32-esp32-1.jpg", "/projects/stm32-esp32-2.jpg"]
+    image: "",
+    placeholderHint: "Photos of STM32 + ESP32 breadboard setup, logic analyzer captures, or serial terminal logs",
     recommendedFile: "/projects/stm32-esp32-serial.jpg",
   },
   {
@@ -85,8 +88,9 @@ const projects: Project[] = [
       "Constructed lightweight Node.js telemetry receiver for live data streaming.",
     ],
     href: "https://github.com/Ramahabir/IoT-Hardy",
-    image: "", // Place your photo in public/projects/hardy-iot.jpg and enter the path here
-    placeholderHint: "Photo of KiCad 3D PCB render, assembled circuit board, or web telemetry dashboard",
+    images: [], // Pass multiple photos: ["/projects/hardy-iot-1.jpg", "/projects/hardy-iot-2.jpg"]
+    image: "",
+    placeholderHint: "Photos of KiCad 3D PCB render, assembled circuit board, or web telemetry dashboard",
     recommendedFile: "/projects/hardy-iot.jpg",
   },
 ];
@@ -99,6 +103,7 @@ interface Experience {
   location: string;
   description: string;
   bullets: string[];
+  images?: string[];
   image?: string;
   placeholderHint: string;
   recommendedFile: string;
@@ -118,8 +123,9 @@ const experience: Experience[] = [
       "Calibrating actuator control loops and sensor timing for sub-millisecond reaction speeds.",
       "Conducting extensive arena testing, hardware-in-the-loop debugging, and field readiness evaluations.",
     ],
-    image: "", // Place your photo in public/activities/krsri-robotics.jpg
-    placeholderHint: "Activity Photo: KRSRI robot chassis, test field debugging, or team workshop",
+    images: [], // Pass multiple photos: ["/activities/krsri-robot-1.jpg", "/activities/krsri-robot-2.jpg"]
+    image: "",
+    placeholderHint: "Activity Photos: KRSRI robot chassis, test field arena, or team workshop debugging",
     recommendedFile: "/activities/krsri-robotics.jpg",
   },
   {
@@ -135,8 +141,9 @@ const experience: Experience[] = [
       "Key Courses: Microprocessors & Microcontrollers, Telecommunication Systems, Control Engineering, Signals & Systems.",
       "Selected as Academic Peer Tutor for university remedial physics program (PKRb).",
     ],
-    image: "", // Place your photo in public/activities/brawijaya-lab.jpg
-    placeholderHint: "Activity Photo: University electronics workbench, oscilloscope testing, or campus lab",
+    images: [], // Pass multiple photos: ["/activities/brawijaya-lab-1.jpg", "/activities/brawijaya-lab-2.jpg"]
+    image: "",
+    placeholderHint: "Activity Photos: University electronics workbench, oscilloscope testing, or campus lab",
     recommendedFile: "/activities/brawijaya-lab.jpg",
   },
   {
@@ -151,8 +158,9 @@ const experience: Experience[] = [
       "Managed administrative workflows, meeting records, and structured documentation across departments.",
       "Coordinated committee logistics for regional student competitions and academic conferences.",
     ],
-    image: "", // Place your photo in public/activities/leadership-council.jpg
-    placeholderHint: "Activity Photo: Student council committee, event coordination, or organization meeting",
+    images: [],
+    image: "",
+    placeholderHint: "Activity Photos: Student council committee, event coordination, or organization meeting",
     recommendedFile: "/activities/leadership-council.jpg",
   },
 ];
@@ -163,6 +171,7 @@ interface Credential {
   issuer: string;
   detail: string;
   badge?: string;
+  images?: string[];
   image?: string;
   placeholderHint: string;
   recommendedFile: string;
@@ -175,6 +184,7 @@ const credentials: Credential[] = [
     issuer: "Petroleum Research & Innovation to Magnify Engineers",
     detail: "Semifinalist — Formulated comprehensive technical solutions and business strategies for complex engineering scenarios.",
     badge: "Semifinalist",
+    images: [],
     image: "",
     placeholderHint: "Certificate / presentation photo: PRIME Business Case Competition",
     recommendedFile: "/activities/prime-competition.jpg",
@@ -185,6 +195,7 @@ const credentials: Credential[] = [
     issuer: "Online Asian Agrocomplex Student Competition",
     detail: "1st Place (Gold Medal) — Designed and defended an engineering technology concept evaluated by an international academic jury.",
     badge: "1st Place Winner",
+    images: [],
     image: "",
     placeholderHint: "Award / certificate photo: Scientific Design Competition 1st Place",
     recommendedFile: "/activities/agrocomplex-award.jpg",
@@ -195,6 +206,7 @@ const credentials: Credential[] = [
     issuer: "MathWorks",
     detail: "Completed certified self-paced training covering numerical computation, data visualization, dynamic modeling, and Simulink state machines.",
     badge: "Certified",
+    images: [],
     image: "",
     placeholderHint: "MathWorks certification screenshot or course completion badge",
     recommendedFile: "/activities/matlab-cert.jpg",
@@ -205,6 +217,7 @@ const credentials: Credential[] = [
     issuer: "PKRb Remedial Learning Program",
     detail: "Selected as instructor to mentor undergraduate students in foundational physics, problem analysis, and circuit fundamentals.",
     badge: "Academic Honor",
+    images: [],
     image: "",
     placeholderHint: "Tutor appointment letter or study session photo",
     recommendedFile: "/activities/tutor-physics.jpg",
@@ -296,24 +309,114 @@ function IconCamera() {
   );
 }
 
-function ActivityImagePlaceholder({
+function IconChevronLeft() {
+  return (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <polyline points="15 18 9 12 15 6" />
+    </svg>
+  );
+}
+
+function IconChevronRight() {
+  return (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <polyline points="9 18 15 12 9 6" />
+    </svg>
+  );
+}
+
+// Multi-Photo Gallery Slider with fallback placeholder
+function ActivityImageGallery({
+  images,
   image,
   alt,
   placeholderHint,
   recommendedFile,
-  aspectRatio = "16/9",
+  aspectRatio = "16/10",
 }: {
+  images?: string[];
   image?: string;
   alt: string;
   placeholderHint: string;
   recommendedFile: string;
   aspectRatio?: string;
 }) {
-  if (image && image.trim() !== "") {
+  const [currentIdx, setCurrentIdx] = useState(0);
+
+  // Normalize photo sources from both array and single string prop
+  const photoList = [
+    ...(Array.isArray(images) ? images : []),
+    ...(image ? [image] : []),
+  ].filter((src): src is string => typeof src === "string" && src.trim() !== "");
+
+  if (photoList.length > 0) {
+    const activeIndex = Math.min(currentIdx, photoList.length - 1);
+    const activePhoto = photoList[activeIndex];
+
+    const prevPhoto = (e: React.MouseEvent) => {
+      e.preventDefault();
+      e.stopPropagation();
+      setCurrentIdx((prev) => (prev === 0 ? photoList.length - 1 : prev - 1));
+    };
+
+    const nextPhoto = (e: React.MouseEvent) => {
+      e.preventDefault();
+      e.stopPropagation();
+      setCurrentIdx((prev) => (prev === photoList.length - 1 ? 0 : prev + 1));
+    };
+
     return (
-      <div className="activity-image-box" style={{ aspectRatio }}>
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={image} alt={alt} className="activity-img" loading="lazy" />
+      <div className="activity-gallery-box" style={{ aspectRatio }}>
+        <div className="gallery-slide-wrap">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={activePhoto}
+            alt={`${alt} (Photo ${activeIndex + 1} of ${photoList.length})`}
+            className="activity-img"
+            loading="lazy"
+          />
+        </div>
+
+        {photoList.length > 1 && (
+          <>
+            <button
+              type="button"
+              className="gallery-nav-btn gallery-prev"
+              onClick={prevPhoto}
+              aria-label="Previous photo"
+            >
+              <IconChevronLeft />
+            </button>
+            <button
+              type="button"
+              className="gallery-nav-btn gallery-next"
+              onClick={nextPhoto}
+              aria-label="Next photo"
+            >
+              <IconChevronRight />
+            </button>
+
+            <div className="gallery-counter-badge">
+              {activeIndex + 1} / {photoList.length}
+            </div>
+
+            <div className="gallery-dots-row">
+              {photoList.map((_, idx) => (
+                <button
+                  key={idx}
+                  type="button"
+                  className={`gallery-dot ${idx === activeIndex ? "active" : ""}`}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    setCurrentIdx(idx);
+                  }}
+                  aria-label={`View photo ${idx + 1}`}
+                />
+              ))}
+            </div>
+          </>
+        )}
       </div>
     );
   }
@@ -324,10 +427,13 @@ function ActivityImagePlaceholder({
         <div className="placeholder-icon-wrap" aria-hidden="true">
           <IconCamera />
         </div>
-        <span className="placeholder-tag">PHOTO PLACEHOLDER</span>
+        <span className="placeholder-tag">PHOTO GALLERY PLACEHOLDER</span>
         <p className="placeholder-hint">{placeholderHint}</p>
         <span className="placeholder-path">
           File: <code>public{recommendedFile}</code>
+        </span>
+        <span className="placeholder-multi-hint">
+          Supports multiple photos: <code>images: [&quot;...&quot;, &quot;...&quot;]</code>
         </span>
       </div>
     </div>
@@ -533,7 +639,8 @@ export default function Portfolio() {
               {projects.map((project) => (
                 <article className="project-card" key={project.title}>
                   <div className="project-image-side">
-                    <ActivityImagePlaceholder
+                    <ActivityImageGallery
+                      images={project.images}
                       image={project.image}
                       alt={project.title}
                       placeholderHint={project.placeholderHint}
@@ -596,7 +703,8 @@ export default function Portfolio() {
               {experience.map((item) => (
                 <article className="experience-card" key={`${item.period}-${item.role}`}>
                   <div className="exp-image-side">
-                    <ActivityImagePlaceholder
+                    <ActivityImageGallery
+                      images={item.images}
                       image={item.image}
                       alt={`${item.role} at ${item.organization}`}
                       placeholderHint={item.placeholderHint}
@@ -660,7 +768,8 @@ export default function Portfolio() {
                   <p className="cred-description">{cred.detail}</p>
 
                   <div className="cred-photo-slot">
-                    <ActivityImagePlaceholder
+                    <ActivityImageGallery
+                      images={cred.images}
                       image={cred.image}
                       alt={cred.title}
                       placeholderHint={cred.placeholderHint}
