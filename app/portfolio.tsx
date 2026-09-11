@@ -176,6 +176,7 @@ interface Credential {
   issuer: string;
   detail: string;
   badge?: string;
+  href?: string;
   images?: string[];
   image?: string | string[];
   placeholderHint: string;
@@ -183,6 +184,18 @@ interface Credential {
 }
 
 const credentials: Credential[] = [
+  {
+    year: "2026",
+    title: "Gemini Certified University Student",
+    issuer: "Google for Education",
+    detail: "Demonstrated foundational knowledge and practical competence in generative AI concepts, prompt engineering, and core Gemini capabilities in educational and technical workflows. Valid 2026 — 2029.",
+    badge: "Google Certified",
+    href: "https://edu.google.accredible.com/b816db6c-c9ea-477a-8a01-83f4f04bd14c#acc.niwKq5Nt",
+    images: ["/activities/google-gemini-certified.png", "/activities/google-gemini-badge.png"],
+    image: "",
+    placeholderHint: "Certificate & Badge: Google Gemini Certified University Student",
+    recommendedFile: "/activities/google-gemini-certified.png",
+  },
   {
     year: "2026",
     title: "PRIME Business Case Competition",
@@ -961,7 +974,16 @@ export default function Portfolio() {
                   </div>
 
                   <span className="cred-year-tag">{cred.year}</span>
-                  <h3 className="cred-card-title">{cred.title}</h3>
+                  <h3 className="cred-card-title">
+                    {cred.href ? (
+                      <a href={cred.href} target="_blank" rel="noreferrer" className="cred-title-link">
+                        {cred.title}
+                        <IconExternal />
+                      </a>
+                    ) : (
+                      cred.title
+                    )}
+                  </h3>
                   <p className="cred-issuer-text">{cred.issuer}</p>
                   <p className="cred-description">{cred.detail}</p>
 

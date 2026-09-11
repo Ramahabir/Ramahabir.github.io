@@ -1149,6 +1149,20 @@ button {
   margin-bottom: 4px;
 }
 
+.cred-title-link {
+  color: inherit;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.cred-title-link:hover {
+  color: var(--primary);
+  text-decoration: underline;
+}
+
 .cred-issuer-text {
   font-size: 13px;
   font-weight: 600;
