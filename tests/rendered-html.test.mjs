@@ -13,6 +13,8 @@ test("exports the complete portfolio structure", () => {
   assert.match(html, /5-DOF Robotic Arm/);
   assert.match(html, /LA-Braille/);
   assert.match(html, /Hardy IoT Platform/);
+  assert.match(html, /IoT Introduction to Senior High School/);
+  assert.match(html, /Bone Bolango/);
   assert.doesNotMatch(html, /Sentinelle/);
 });
 

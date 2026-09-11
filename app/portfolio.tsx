@@ -170,6 +170,52 @@ const experience: Experience[] = [
     recommendedFile: "/activities/brawijaya-lab.jpg",
   },
   {
+    period: "2025",
+    role: "IoT Introduction to Senior High School",
+    organization: "Pengabdian Kepada Masyarakat (PKM) Quantum 2025",
+    type: "STEM Outreach & Sustainable Technology",
+    location: "Malang, Indonesia",
+    description:
+      "As part of a community outreach program, I contributed to educational sessions aimed at inspiring students and young learners about sustainable technology and modern innovation. Our team introduced participants to the fundamentals of renewable energy systems, the potential of Internet of Things (IoT) technology, and the basics of programming.",
+    bullets: [
+      "Personally led the IoT segment, explaining core concepts and demonstrating real-world applications of IoT in society.",
+      "Demonstrated IoT hardware including microcontrollers, sensor modules, and wireless data streaming.",
+      "Showed how IoT can be integrated with renewable energy systems for smarter monitoring and automated control.",
+      "Guided hands-on activities enabling high school participants to experience IoT hardware and programming in action.",
+      "Shared technical knowledge to foster early curiosity and inspire the next generation to explore technology for a greener future.",
+    ],
+    images: [
+      "/activities/volunteer-iot-classroom.jpg",
+      "/activities/volunteer-iot-quantum.jpg",
+    ],
+    image: "",
+    placeholderHint: "Photos: High school IoT lecture session and Quantum 2025 community outreach team",
+    recommendedFile: "/activities/volunteer-iot-classroom.jpg",
+  },
+  {
+    period: "2024",
+    role: "Community Volunteer — Bone Bolango, Gorontalo",
+    organization: "Community Volunteer Program",
+    type: "Youth Education & Environmental Advocacy",
+    location: "Bone Bolango, Gorontalo, Indonesia",
+    description:
+      "As a community volunteer, I contributed as an educator and environmental advocate. I taught children in the community, focusing on essential subjects and creative activities to support their learning and growth. Additionally, I collaborated with fellow volunteers to clean and improve the local area, creating a healthier and more organized environment for residents.",
+    bullets: [
+      "Taught local community children essential subjects and conducted creative activities to encourage learning and cognitive development.",
+      "Engaged directly with village residents and community elders to understand grassroots needs and contribute meaningfully to community well-being.",
+      "Collaborated with fellow volunteers to organize neighborhood cleanup and environmental sanitation drives.",
+      "Developed strong communication, intercultural teamwork, and social empathy while making a direct community impact.",
+    ],
+    images: [
+      "/activities/volunteer-bone-bolango-children.jpg",
+      "/activities/volunteer-bone-bolango-dialogue.jpg",
+      "/activities/volunteer-bone-bolango-cleanup.jpg",
+    ],
+    image: "",
+    placeholderHint: "Photos: Teaching children, community resident dialogue, and environmental clean-up in Bone Bolango",
+    recommendedFile: "/activities/volunteer-bone-bolango-children.jpg",
+  },
+  {
     period: "2022 — 2023",
     role: "Secretary I, Student Council",
     organization: "MAN Insan Cendekia Gorontalo",
@@ -924,7 +970,7 @@ export default function Portfolio() {
               <span className="section-label">ACTIVITIES & EXPERIENCE</span>
               <h2>Practical Experience & Trajectory</h2>
               <p className="section-desc">
-                Hands-on engineering through robotics competitions, university lab work, and leadership.
+                Hands-on engineering through robotics competitions, university lab work, community outreach, and leadership.
               </p>
             </div>
 
