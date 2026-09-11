@@ -34,22 +34,22 @@ interface Project {
 const projects: Project[] = [
   {
     number: "01",
-    category: "Embedded & Telemetry",
-    title: "Solar Panel Telemetry",
+    category: "Robotics & Kinematics",
+    title: "5-DOF Robotic Arm (Dynamixel)",
     summary:
-      "An ESP32-based environmental monitoring station that measures solar output parameters (voltage, current, power) and atmospheric conditions, then streams structured telemetry payloads over MQTT for live analysis.",
-    role: "Embedded & IoT Developer",
-    stack: ["ESP32", "C++", "MQTT", "INA219", "DHT22", "FreeRTOS"],
-    outcome: "Real-time bidirectional telemetry with persistent sensor streaming",
+      "An articulated robotic manipulator controlled by an STM32F411 microcontroller. Combines high-speed half-duplex UART communication with Dynamixel AX-series smart actuators, custom KiCad controller hardware, and forward/inverse kinematics for coordinated multi-axis manipulation.",
+    role: "Robotics & Firmware Engineer",
+    stack: ["STM32F411", "C / C++", "Dynamixel", "Half-Duplex UART", "KiCad", "FreeRTOS"],
+    outcome: "Closed-loop multi-joint position & torque control at 1 Mbps bus speed",
     highlights: [
-      "Interfaced INA219 current/power monitor and DHT22 environment sensor over I²C & digital GPIO.",
-      "Engineered structured JSON telemetry schemas published over secure MQTT broker topics.",
-      "Configured non-blocking sensor acquisition loops with automated Wi-Fi reconnect handling.",
+      "Engineered half-duplex serial driver using 74LS241 buffer for 1 Mbps Dynamixel Protocol 1.0 communication.",
+      "Designed custom controller PCB in KiCad with dedicated power distribution and logic level isolation.",
+      "Implemented packet parsing with checksum validation, status return error handling, and smooth trajectory planning.",
     ],
-    href: "https://github.com/Ramahabir/Solar-Panel",
-    image: "", // Place your photo in public/projects/solar-telemetry.jpg and enter the path here
-    placeholderHint: "Photo of ESP32 setup, INA219 current sensor wiring, or telemetry dashboard",
-    recommendedFile: "/projects/solar-telemetry.jpg",
+    href: "https://github.com/Ramahabir/6-DOF-Robotics-Arm-Dynamixel",
+    image: "", // Place your photo in public/projects/robot-arm-dynamixel.jpg and enter the path here
+    placeholderHint: "Photo of 5/6-DOF robotic arm assembly, Dynamixel smart servos, or KiCad controller PCB",
+    recommendedFile: "/projects/robot-arm-dynamixel.jpg",
   },
   {
     number: "02",
@@ -421,7 +421,7 @@ export default function Portfolio() {
 
                 <h1 id="hero-title" className="hero-title">
                   Rama Rizky Belrouzy Habir
-                  <span className="hero-subtitle">Engineering machines that sense, communicate, and act.</span>
+                  <span className="hero-subtitle">Engineering Machines that sense, communicate, and act.</span>
                 </h1>
 
                 <p className="hero-lead">

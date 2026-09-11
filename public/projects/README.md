@@ -3,7 +3,7 @@
 Drop your real-world project photos (breadboards, PCBs, hardware setups, oscilloscope traces, UI dashboards) here.
 
 ### Recommended Files:
-- `solar-telemetry.jpg` — Photo of your ESP32 solar telemetry setup, sensors (INA219, DHT22), and wiring.
+- `robot-arm-dynamixel.jpg` — Photo of your 5/6-DOF robotic arm assembly, Dynamixel actuators, or KiCad controller board.
 - `stm32-esp32-serial.jpg` — Photo of your STM32F401 and ESP32 connected via UART on breadboard / logic analyzer capture.
 - `hardy-iot.jpg` — Photo of your custom KiCad PCB, assembled board, or hardware enclosure.
 
@@ -14,6 +14,6 @@ Drop your real-world project photos (breadboards, PCBs, hardware setups, oscillo
 
 Once you add an image here, simply update the `image` field in `app/portfolio.tsx`:
 ```ts
-image: "/projects/solar-telemetry.jpg",
+image: "/projects/robot-arm-dynamixel.jpg",
 ```
 

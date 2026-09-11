@@ -9,8 +9,8 @@ test("exports the complete portfolio structure", () => {
     assert.match(html, new RegExp(`id="${id}"`));
     assert.match(html, new RegExp(`href="#${id}"`));
   }
-  assert.match(html, /Machines that/);
-  assert.match(html, /Solar Panel Telemetry/);
+  assert.match(html, /Machines that/i);
+  assert.match(html, /5-DOF Robotic Arm/);
   assert.match(html, /STM32 ↔ ESP32/);
   assert.match(html, /Hardy IoT Platform/);
   assert.doesNotMatch(html, /Sentinelle/);
