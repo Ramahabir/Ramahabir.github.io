@@ -164,10 +164,14 @@ const experience: Experience[] = [
       "Key Courses: Microprocessors & Microcontrollers, Telecommunication Systems, Control Engineering, Signals & Systems.",
       "Selected as Academic Peer Tutor for university remedial physics program (PKRb).",
     ],
-    images: [], // Pass multiple photos: ["/activities/brawijaya-lab-1.jpg", "/activities/brawijaya-lab-2.jpg"]
+    images: [
+      "/activities/brawijaya-ee-cohort-1.jpg",
+      "/activities/brawijaya-ee-cohort-2.jpg",
+      "/activities/brawijaya-ee-cohort-3.jpg",
+    ],
     image: "",
-    placeholderHint: "Activity Photos: University electronics workbench, oscilloscope testing, or campus lab",
-    recommendedFile: "/activities/brawijaya-lab.jpg",
+    placeholderHint: "Photos: Electrical Engineering student cohort at Universitas Brawijaya",
+    recommendedFile: "/activities/brawijaya-ee-cohort-1.jpg",
   },
   {
     period: "2025",
