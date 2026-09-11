@@ -26,6 +26,7 @@ interface Project {
   outcome: string;
   highlights: string[];
   href: string;
+  liveUrl?: string;
   images?: string[];
   image?: string | string[];
   placeholderHint: string;
@@ -98,23 +99,39 @@ const projects: Project[] = [
   },
   {
     number: "03",
-    category: "Hardware & PCB Integration",
+    category: "Smart Agriculture & IoT Systems",
     title: "Hardy IoT Platform",
     summary:
-      "An end-to-end hardware-to-cloud device monitoring platform integrating custom schematic design, PCB layout in KiCad, ESP32 firmware, and a real-time monitoring web dashboard.",
-    role: "Hardware & Systems Integrator",
-    stack: ["KiCad", "PCB Design", "ESP32", "Node.js", "WebSockets", "IoT"],
-    outcome: "Modular hardware prototype from schematic to connected web interface",
+      "A modular IoT telemetry system engineered for greenhouse environmental monitoring—measuring soil moisture, ambient temperature, and humidity across crop beds. The architecture connects environmental sensor modules to distributed ESP32 nodes; each node transmits readings wirelessly to a centralized main node (gateway), which aggregates data and forwards packets to the cloud server and live web dashboard.",
+    role: "IoT Systems & Embedded Hardware Engineer",
+    stack: [
+      "ESP32",
+      "KiCad (Schematic & PCB)",
+      "Soil Moisture Sensing",
+      "DHT22 (Temp & Humidity)",
+      "TP4056 & XL6009 Power Mgmt",
+      "Wireless Telemetry",
+      "Node.js",
+      "Chart.js",
+      "Smart Agriculture",
+    ],
+    outcome: "Modular multi-node greenhouse telemetry network streaming live soil & climate analytics to https://devel-ai.ub.ac.id/agrinode/",
     highlights: [
-      "Engineered 2-layer PCB layout in KiCad with dedicated ground planes and power isolation.",
-      "Integrated sensor breakouts, onboard status LEDs, and flash programming headers.",
-      "Constructed lightweight Node.js telemetry receiver for live data streaming.",
+      "Modular Sensor Nodes: Engineered modular ESP32 node devices interfacing with capacitive soil moisture sensors and DHT22 digital probes to capture microclimate variations across greenhouse beds.",
+      "Two-Tier Node-to-Gateway Pipeline: Implemented wireless node-to-main-node transmission where decentralized field nodes broadcast telemetry to a central gateway node that relays aggregated payloads to the cloud server.",
+      "Custom PCB & Power Management: Designed 2-layer circuit boards in KiCad with integrated TP4056 lithium battery charging and XL6009 DC-DC boost conversion for autonomous off-grid greenhouse operation.",
+      "Live Web Dashboard Integration: Connected telemetry streams directly to the AgriNode live web platform (devel-ai.ub.ac.id/agrinode) for real-time monitoring, 30-day sensor analytics, and automated irrigation relay triggers.",
     ],
     href: "https://github.com/Ramahabir/IoT-Hardy",
-    images: [], // Pass multiple photos: ["/projects/hardy-iot-1.jpg", "/projects/hardy-iot-2.jpg"]
+    liveUrl: "https://devel-ai.ub.ac.id/agrinode/",
+    images: [
+      "/projects/hardy-iot-pcb-isometric.png",
+      "/projects/hardy-iot-schematic.png",
+      "/projects/hardy-iot-pcb-3d.png",
+    ],
     image: "",
-    placeholderHint: "Photos of KiCad 3D PCB render, assembled circuit board, or web telemetry dashboard",
-    recommendedFile: "/projects/hardy-iot.jpg",
+    placeholderHint: "Photos: KiCad 3D PCB render, circuit schematic, and modular ESP32 greenhouse node",
+    recommendedFile: "/projects/hardy-iot-pcb-isometric.png",
   },
 ];
 
@@ -955,7 +972,18 @@ export default function Portfolio() {
                     </div>
 
                     <div className="project-btn-row">
-                      <a className="btn btn-sm btn-primary" href={project.href} target="_blank" rel="noreferrer">
+                      {project.liveUrl && (
+                        <a className="btn btn-sm btn-primary" href={project.liveUrl} target="_blank" rel="noreferrer">
+                          Live Web Dashboard
+                          <IconExternal />
+                        </a>
+                      )}
+                      <a
+                        className={`btn btn-sm ${project.liveUrl ? "btn-outline" : "btn-primary"}`}
+                        href={project.href}
+                        target="_blank"
+                        rel="noreferrer"
+                      >
                         View on GitHub
                         <IconExternal />
                       </a>

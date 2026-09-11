@@ -1009,6 +1009,10 @@ button {
 
 .project-btn-row {
   margin-top: auto;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
 /* Experience Cards */
