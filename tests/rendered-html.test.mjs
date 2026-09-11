@@ -11,7 +11,7 @@ test("exports the complete portfolio structure", () => {
   }
   assert.match(html, /Machines that/i);
   assert.match(html, /5-DOF Robotic Arm/);
-  assert.match(html, /STM32 ↔ ESP32/);
+  assert.match(html, /LA-Braille/);
   assert.match(html, /Hardy IoT Platform/);
   assert.doesNotMatch(html, /Sentinelle/);
 });
