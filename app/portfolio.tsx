@@ -100,7 +100,7 @@ const projects: Project[] = [
   {
     number: "03",
     category: "Smart Agriculture & IoT Systems",
-    title: "Hardy IoT Platform",
+    title: "AgriNode: Modular Greenhouse IoT & Telemetry System",
     summary:
       "A modular IoT telemetry system engineered for greenhouse environmental monitoring—measuring soil moisture, ambient temperature, and humidity across crop beds. The architecture connects environmental sensor modules to distributed ESP32 nodes; each node transmits readings wirelessly to a centralized main node (gateway), which aggregates data and forwards packets to the cloud server and live web dashboard.",
     role: "IoT Systems & Embedded Hardware Engineer",
