@@ -17,6 +17,15 @@ const navItems = [
   ["Contact", "contact"],
 ] as const;
 
+interface ProjectSpec {
+  controller: string;
+  interface: string;
+  actuators: string;
+  hardware: string;
+  firmware: string;
+  status: string;
+}
+
 interface Project {
   number: string;
   category: string;
@@ -24,6 +33,7 @@ interface Project {
   summary: string;
   role: string;
   stack: string[];
+  specs: ProjectSpec;
   outcome: string;
   highlights: string[];
   href: string;
@@ -43,6 +53,14 @@ const projects: Project[] = [
       "An articulated robotic manipulator controlled by an STM32F411 microcontroller. Combines high-speed half-duplex UART communication with Dynamixel AX-series smart actuators, custom KiCad controller hardware, and forward/inverse kinematics for coordinated multi-axis manipulation.",
     role: "Robotics & Firmware Engineer",
     stack: ["STM32F411", "C / C++", "Dynamixel", "Half-Duplex UART", "KiCad", "FreeRTOS"],
+    specs: {
+      controller: "STM32F411 (ARM Cortex-M4 @ 100MHz)",
+      interface: "1 Mbps Half-Duplex UART (74LS241 Buffer)",
+      actuators: "Dynamixel AX-Series Smart Actuators",
+      hardware: "Custom 2-Layer KiCad Board (12V/5V Isolated Rails)",
+      firmware: "C/C++, FreeRTOS, Protocol 1.0 Packet CRC",
+      status: "Closed-loop multi-joint position & torque validated",
+    },
     outcome: "Closed-loop multi-joint position & torque control over a 1 Mbps half-duplex bus with sub-millisecond control latency",
     highlights: [
       "High-Speed Bus Driver: Engineered custom half-duplex serial driver with 74LS241 tri-state buffer, sustaining error-free 1 Mbps Dynamixel Protocol 1.0 packet transactions.",
@@ -79,6 +97,14 @@ const projects: Project[] = [
       "PostgreSQL",
       "3D Printing",
     ],
+    specs: {
+      controller: "Raspberry Pi SBC + Embedded Python Engine",
+      interface: "DMOS High/Low-Side Driver Matrix + 74HC238D Decoders",
+      actuators: "Custom 3D-Printed Micro-Cams + 1×0.5mm NdFeB Magnets",
+      hardware: "Low-Loss Custom KiCad Switching PCB",
+      firmware: "Zero-Power Mechanical Latching State Machine",
+      status: "Validated in user trials with visually impaired students at UB",
+    },
     outcome: "Slashed hardware unit cost by ~80% vs. commercial piezoelectric displays with 0 mW static hold power, validated with visually impaired students at Universitas Brawijaya",
     highlights: [
       "Zero-Static-Power Cam Actuators: Replaced expensive piezoelectric modules (~$2,000+) with custom 3D-printed rotary-to-linear cams and 1 × 0.5 mm NdFeB micro-magnets that lock pins mechanically with 0 mW idle draw.",
@@ -116,6 +142,14 @@ const projects: Project[] = [
       "Chart.js",
       "Smart Agriculture",
     ],
+    specs: {
+      controller: "ESP32 Dual-Core Tensilica Xtensa LX6",
+      interface: "Two-Tier Node-to-Gateway RF / Wi-Fi Telemetry",
+      actuators: "Capacitive Soil Moisture Probes + DHT22 Microclimate Array",
+      hardware: "Custom 2-Layer KiCad PCB with TP4056 & XL6009 Boost",
+      firmware: "Low-Power FreeRTOS Routine, MQTT/REST Payload Ingestion",
+      status: "Continuous 24/7 cloud telemetry streaming to live web platform",
+    },
     outcome: "Autonomous off-grid multi-node telemetry network streaming continuous 24/7 soil moisture & microclimate analytics to https://devel-ai.ub.ac.id/agrinode/",
     highlights: [
       "Modular Sensor Nodes: Engineered plug-and-play ESP32 node modules interfacing with capacitive soil moisture sensors and DHT22 digital probes to detect localized microclimate stress across greenhouse beds.",
@@ -386,28 +420,32 @@ const credentials: Credential[] = [
 
 const skillCategories = [
   {
+    index: "01",
     name: "Hardware & Microcontrollers",
     skills: ["STM32 (Cortex-M)", "ESP32", "Arduino", "Raspberry Pi", "FreeRTOS", "PlatformIO"],
   },
   {
+    index: "02",
     name: "Communication & Bus Protocols",
     skills: ["UART / USART", "MQTT", "I²C", "SPI", "CAN Bus", "Wi-Fi (802.11)", "Bluetooth BLE", "LoRa"],
   },
   {
+    index: "03",
     name: "Programming & Intelligence",
     skills: ["C", "C++", "Python", "OpenCV", "TensorFlow", "TinyML", "MATLAB", "Simulink"],
   },
   {
+    index: "04",
     name: "Engineering Tools & Design",
     skills: ["KiCad (Schematic & PCB)", "Fusion 360", "Linux / Bash", "Git", "Docker", "Microsoft Azure", "Oscilloscopes & Logic Analyzers"],
   },
 ];
 
-// Clean standard SVG icons (Lucide / Feather style)
+// Clean standard SVG icons
 function IconMail() {
   return (
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      <rect width="20" height="16" x="2" y="4" rx="2" />
+    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <rect width="20" height="16" x="2" y="4" rx="1" />
       <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
     </svg>
   );
@@ -415,7 +453,7 @@ function IconMail() {
 
 function IconGithub() {
   return (
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
       <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
       <path d="M9 18c-4.51 2-5-2-7-2" />
     </svg>
@@ -424,7 +462,7 @@ function IconGithub() {
 
 function IconLinkedin() {
   return (
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
       <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
       <rect width="4" height="12" x="2" y="9" />
       <circle cx="4" cy="4" r="2" />
@@ -434,7 +472,7 @@ function IconLinkedin() {
 
 function IconExternal() {
   return (
-    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
       <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
       <polyline points="15 3 21 3 21 9" />
       <line x1="10" y1="14" x2="21" y2="3" />
@@ -444,7 +482,7 @@ function IconExternal() {
 
 function IconMapPin() {
   return (
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
       <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
       <circle cx="12" cy="10" r="3" />
     </svg>
@@ -453,7 +491,7 @@ function IconMapPin() {
 
 function IconAward() {
   return (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
       <circle cx="12" cy="8" r="6" />
       <path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11" />
     </svg>
@@ -462,7 +500,7 @@ function IconAward() {
 
 function IconFileText() {
   return (
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
       <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
       <polyline points="14 2 14 8 20 8" />
       <line x1="16" y1="13" x2="8" y2="13" />
@@ -474,7 +512,7 @@ function IconFileText() {
 
 function IconCamera() {
   return (
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
       <path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z" />
       <circle cx="12" cy="13" r="3" />
     </svg>
@@ -483,7 +521,7 @@ function IconCamera() {
 
 function IconChevronLeft() {
   return (
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
       <polyline points="15 18 9 12 15 6" />
     </svg>
   );
@@ -491,7 +529,7 @@ function IconChevronLeft() {
 
 function IconChevronRight() {
   return (
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
       <polyline points="9 18 15 12 9 6" />
     </svg>
   );
@@ -499,7 +537,7 @@ function IconChevronRight() {
 
 function IconZoomIn() {
   return (
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
       <circle cx="11" cy="11" r="8" />
       <line x1="21" y1="21" x2="16.65" y2="16.65" />
       <line x1="11" y1="8" x2="11" y2="14" />
@@ -510,7 +548,7 @@ function IconZoomIn() {
 
 function IconClose() {
   return (
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
       <line x1="18" y1="6" x2="6" y2="18" />
       <line x1="6" y1="6" x2="18" y2="18" />
     </svg>
@@ -519,7 +557,7 @@ function IconClose() {
 
 function IconSun() {
   return (
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
       <circle cx="12" cy="12" r="4" />
       <path d="M12 2v2" />
       <path d="M12 20v2" />
@@ -535,7 +573,7 @@ function IconSun() {
 
 function IconMoon() {
   return (
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
       <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" />
     </svg>
   );
@@ -543,8 +581,8 @@ function IconMoon() {
 
 function IconCopy() {
   return (
-    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      <rect width="14" height="14" x="8" y="8" rx="2" ry="2" />
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <rect width="14" height="14" x="8" y="8" rx="1" ry="1" />
       <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" />
     </svg>
   );
@@ -552,7 +590,7 @@ function IconCopy() {
 
 function IconCheck() {
   return (
-    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
       <polyline points="20 6 9 17 4 12" />
     </svg>
   );
@@ -560,7 +598,7 @@ function IconCheck() {
 
 function IconArrowDown() {
   return (
-    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
       <path d="M12 5v14" />
       <path d="m19 12-7 7-7-7" />
     </svg>
@@ -586,7 +624,6 @@ function ActivityImageGallery({
   const [currentIdx, setCurrentIdx] = useState(0);
   const [isLightboxOpen, setIsLightboxOpen] = useState(false);
 
-  // Normalize photo sources from both array and single string prop
   const photoList = [
     ...(Array.isArray(images) ? images : []),
     ...(Array.isArray(image) ? image : image ? [image] : []),
@@ -643,7 +680,7 @@ function ActivityImageGallery({
             onClick={() => setIsLightboxOpen(true)}
             role="button"
             tabIndex={0}
-            title="Click to expand photo"
+            title="Click to inspect plate full view"
             onKeyDown={(e) => {
               if (e.key === "Enter" || e.key === " ") {
                 e.preventDefault();
@@ -654,14 +691,14 @@ function ActivityImageGallery({
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={activePhoto}
-              alt={`${alt} (Photo ${activeIndex + 1} of ${photoList.length})`}
+              alt={`${alt} (Plate ${activeIndex + 1} of ${photoList.length})`}
               className="activity-img"
               loading="lazy"
             />
 
             <div className="gallery-zoom-hint" aria-hidden="true">
               <IconZoomIn />
-              <span>Click to expand</span>
+              <span>Inspect Plate</span>
             </div>
           </div>
 
@@ -671,7 +708,7 @@ function ActivityImageGallery({
                 type="button"
                 className="gallery-nav-btn gallery-prev"
                 onClick={prevPhoto}
-                aria-label="Previous photo"
+                aria-label="Previous plate photo"
               >
                 <IconChevronLeft />
               </button>
@@ -679,13 +716,13 @@ function ActivityImageGallery({
                 type="button"
                 className="gallery-nav-btn gallery-next"
                 onClick={nextPhoto}
-                aria-label="Next photo"
+                aria-label="Next plate photo"
               >
                 <IconChevronRight />
               </button>
 
               <div className="gallery-counter-badge">
-                {activeIndex + 1} / {photoList.length}
+                PLATE {activeIndex + 1} / {photoList.length}
               </div>
 
               <div className="gallery-dots-row">
@@ -699,7 +736,7 @@ function ActivityImageGallery({
                       e.stopPropagation();
                       setCurrentIdx(idx);
                     }}
-                    aria-label={`View photo ${idx + 1}`}
+                    aria-label={`Jump to plate ${idx + 1}`}
                   />
                 ))}
               </div>
@@ -721,7 +758,7 @@ function ActivityImageGallery({
                   <span>{alt}</span>
                   {photoList.length > 1 && (
                     <span className="lightbox-counter">
-                      ({activeIndex + 1} of {photoList.length})
+                      [ PLATE {activeIndex + 1} / {photoList.length} ]
                     </span>
                   )}
                 </div>
@@ -729,7 +766,7 @@ function ActivityImageGallery({
                   type="button"
                   className="lightbox-close-btn"
                   onClick={() => setIsLightboxOpen(false)}
-                  aria-label="Close full view"
+                  aria-label="Close plate view"
                 >
                   <IconClose />
                 </button>
@@ -793,13 +830,13 @@ function ActivityImageGallery({
         <div className="placeholder-icon-wrap" aria-hidden="true">
           <IconCamera />
         </div>
-        <span className="placeholder-tag">PHOTO GALLERY PLACEHOLDER</span>
+        <span className="placeholder-tag">ARCHIVAL PHOTO DEPOSIT</span>
         <p className="placeholder-hint">{placeholderHint}</p>
         <span className="placeholder-path">
-          File: <code>public{recommendedFile}</code>
+          Deposit File: <code>public{recommendedFile}</code>
         </span>
         <span className="placeholder-multi-hint">
-          Supports multiple photos: <code>images: [&quot;...&quot;, &quot;...&quot;]</code>
+          Multi-plate array: <code>images: [&quot;...&quot;]</code>
         </span>
       </div>
     </div>
@@ -885,13 +922,18 @@ export default function Portfolio() {
         Skip to content
       </a>
 
-      {/* Clean Light/Dark Header */}
+      {/* Broadsheet Masthead Header */}
       <header className="site-header">
+        <div className="masthead-ticker">
+          <span>{"VOL. 2026 // ED. 01 — ARCHIVAL ENGINEERING FOLIO"}</span>
+          <span>MALANG, EAST JAVA — INDONESIA</span>
+        </div>
+
         <div className="header-container">
           <a className="brand" href="#top" aria-label="Rama Habir, top of page">
             <span className="brand-badge">RH</span>
             <span className="brand-name">Rama Habir</span>
-            <span className="brand-role">· Robotics &amp; Embedded</span>
+            <span className="brand-role">· Robotics &amp; Telecommunications</span>
           </a>
 
           <div className="header-right-group">
@@ -917,7 +959,7 @@ export default function Portfolio() {
                 <span>Resume / CV</span>
               </a>
               <a className="nav-cta" href={links.email} onClick={closeMenu}>
-                Contact
+                Dispatch
               </a>
             </nav>
 
@@ -947,19 +989,19 @@ export default function Portfolio() {
       </header>
 
       <main id="content">
-        {/* Clean Hero Section */}
+        {/* Frontispiece / Hero Section */}
         <section className="hero" id="top" aria-labelledby="hero-title">
           <div className="hero-container">
             <div className="hero-layout">
               <div className="hero-text-col">
-                <div className="hero-tag-group">
-                  <div className="hero-tag hero-status-tag">
-                    <span className="status-dot-pulse" aria-hidden="true" />
-                    <span>Open to Robotics &amp; Embedded Opportunities · 2026</span>
+                <div className="hero-dispatch-stamp">
+                  <div className="dispatch-badge">
+                    <span className="dispatch-pulse" aria-hidden="true" />
+                    <span>Open to Robotics &amp; Embedded Roles · 2026</span>
                   </div>
-                  <div className="hero-tag hero-location-tag">
+                  <div className="dispatch-location">
                     <IconMapPin />
-                    <span>Malang, Indonesia</span>
+                    <span>Malang, East Java, Indonesia</span>
                   </div>
                 </div>
 
@@ -976,7 +1018,7 @@ export default function Portfolio() {
                 <div className="hero-cta-block">
                   <div className="hero-primary-actions">
                     <a className="btn btn-primary btn-lg" href="#projects">
-                      View Projects
+                      Explore Folio
                       <IconArrowDown />
                     </a>
                     <a className="btn btn-cv btn-lg" href="/CV-Rama-Rizky-Belrouzy-Habir.pdf" target="_blank" rel="noreferrer">
@@ -997,7 +1039,7 @@ export default function Portfolio() {
                     </button>
                     <a className="btn-chip" href={links.email} title="Send email via mail client">
                       <IconMail />
-                      <span>Email</span>
+                      <span>Direct Email</span>
                     </a>
                     <a className="btn-chip" href={links.github} target="_blank" rel="noreferrer" title="GitHub profile">
                       <IconGithub />
@@ -1010,35 +1052,39 @@ export default function Portfolio() {
                   </div>
                 </div>
 
-                <div className="hero-stats-row">
-                  <div className="hero-stat-card">
-                    <span className="stat-label">Current Role</span>
-                    <strong className="stat-val">KRSRI Software Engineer</strong>
-                    <span className="stat-sub">Brawijaya Robotics Team</span>
+                <div className="hero-colophon-grid">
+                  <div className="colophon-cell">
+                    <span className="colophon-label">Current Post</span>
+                    <strong className="colophon-value">KRSRI Software Engineer</strong>
+                    <span className="colophon-meta">Brawijaya Robotics Team</span>
                   </div>
-                  <div className="hero-stat-card">
-                    <span className="stat-label">Education</span>
-                    <strong className="stat-val">Electrical Engineering</strong>
-                    <span className="stat-sub">Universitas Brawijaya (GPA 3.35)</span>
+                  <div className="colophon-cell">
+                    <span className="colophon-label">Academic Station</span>
+                    <strong className="colophon-value">Electrical Engineering</strong>
+                    <span className="colophon-meta">Universitas Brawijaya · 3.35 GPA</span>
                   </div>
-                  <div className="hero-stat-card">
-                    <span className="stat-label">Core Stack</span>
-                    <strong className="stat-val">STM32 · ESP32 · C/C++</strong>
-                    <span className="stat-sub">FreeRTOS · MQTT · KiCad</span>
+                  <div className="colophon-cell">
+                    <span className="colophon-label">Primary Silicon</span>
+                    <strong className="colophon-value">STM32 · ESP32 · C/C++</strong>
+                    <span className="colophon-meta">FreeRTOS · MQTT · KiCad</span>
                   </div>
                 </div>
               </div>
 
               <div className="hero-photo-col">
-                <div className="hero-photo-card">
-                  <div className="hero-photo-wrap">
+                <div className="hero-plate-card">
+                  <div className="hero-plate-header">
+                    <span>{"PLATE 01 // FIG. 01"}</span>
+                    <span className="plate-serial">PORTRAIT DEPOSIT</span>
+                  </div>
+                  <div className="hero-plate-wrap">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img src="/rama-profile.jpg" alt="Rama Rizky Belrouzy Habir" className="hero-profile-img" />
                   </div>
-                  <div className="hero-photo-caption">
+                  <div className="hero-plate-caption">
                     <h3>Rama Habir</h3>
-                    <p>Robotics & Embedded Systems</p>
-                    <span>Universitas Brawijaya</span>
+                    <p>Robotics &amp; Embedded Firmware Engineer</p>
+                    <span>Faculty of Engineering, Universitas Brawijaya</span>
                   </div>
                 </div>
               </div>
@@ -1046,34 +1092,46 @@ export default function Portfolio() {
           </div>
         </section>
 
-        {/* About Section */}
+        {/* Section 01: Engineering Background */}
         <section className="section section-alt" id="about">
           <div className="section-container">
             <div className="section-header">
-              <span className="section-label">ABOUT ME</span>
+              <div className="section-header-top">
+                <span className="section-stamp">SECTION 01</span>
+                <span className="section-category">BACKGROUND &amp; DISCIPLINE</span>
+              </div>
               <h2>Engineering Background</h2>
               <p className="section-desc">
-                Bridging embedded electronics, software algorithms, and physical actuation.
+                Bridging embedded electronics, deterministic firmware, and real-world physical actuation.
               </p>
             </div>
 
             <div className="about-cards-grid">
               <div className="info-card">
-                <h3>Embedded Hardware & Firmware</h3>
+                <div className="info-card-header">
+                  <span className="info-card-num">INDEX 01</span>
+                  <h3>Embedded Hardware &amp; Firmware</h3>
+                </div>
                 <p>
                   I build firmware close to the metal: sampling analog sensors with precision ADCs, controlling actuators, implementing hardware ring buffers, and organizing non-blocking tasks under FreeRTOS.
                 </p>
               </div>
 
               <div className="info-card">
-                <h3>Autonomous Robotics</h3>
+                <div className="info-card-header">
+                  <span className="info-card-num">INDEX 02</span>
+                  <h3>Autonomous Robotics</h3>
+                </div>
                 <p>
                   In the Brawijaya Robotics Team, I work on software algorithms for the national KRSRI autonomous fire-fighting robot contest—focusing on arena navigation, obstacle avoidance, and real-time responsiveness.
                 </p>
               </div>
 
               <div className="info-card">
-                <h3>Communication Protocols</h3>
+                <div className="info-card-header">
+                  <span className="info-card-num">INDEX 03</span>
+                  <h3>Communication Protocols</h3>
+                </div>
                 <p>
                   Specializing in reliable device communication: UART/USART serial bridges, packet framing with checksum verification, MQTT IoT telemetry, and bus protocols like I²C, SPI, and CAN.
                 </p>
@@ -1082,21 +1140,24 @@ export default function Portfolio() {
           </div>
         </section>
 
-        {/* Projects Section */}
+        {/* Section 02: Selected Engineering Projects (Folio Plates) */}
         <section className="section" id="projects">
           <div className="section-container">
             <div className="section-header">
-              <span className="section-label">FEATURED WORK</span>
-              <h2>Selected Engineering Projects</h2>
+              <div className="section-header-top">
+                <span className="section-stamp">SECTION 02</span>
+                <span className="section-category">SELECTED ENGINEERING PLATES</span>
+              </div>
+              <h2>Engineering Folio</h2>
               <p className="section-desc">
-                Practical hardware and firmware implementations with verifiable source code.
+                Curated physical computing systems, embedded firmware, and verifiable hardware designs.
               </p>
             </div>
 
             <div className="project-cards-container">
               {projects.map((project) => (
-                <article className="project-card" key={project.title}>
-                  <div className="project-image-side">
+                <article className="folio-plate" key={project.title}>
+                  <div className="folio-plate-media">
                     <ActivityImageGallery
                       images={project.images}
                       image={project.image}
@@ -1105,19 +1166,53 @@ export default function Portfolio() {
                       recommendedFile={project.recommendedFile}
                       aspectRatio="16/10"
                     />
+                    <div className="plate-media-caption">
+                      <span><strong>FIG. {project.number}</strong> — ARCHIVAL ARTIFACT</span>
+                      <span>DEPOSIT NO. {project.number}/03</span>
+                    </div>
                   </div>
 
-                  <div className="project-info-side">
-                    <div className="project-badge-row">
-                      <span className="project-category-badge">{project.category}</span>
-                      <span className="project-num-tag">Project {project.number}</span>
+                  <div className="folio-plate-content">
+                    <div className="folio-meta-bar">
+                      <span className="folio-stamp-tag">FOLIO {project.number}</span>
+                      <span className="folio-category-tag">{project.category}</span>
                     </div>
 
-                    <h3 className="project-card-title">{project.title}</h3>
-                    <p className="project-card-summary">{project.summary}</p>
+                    <h3 className="folio-title">{project.title}</h3>
+                    <p className="folio-summary">{project.summary}</p>
 
-                    <div className="project-key-points">
-                      <strong>Key Engineering Work:</strong>
+                    {/* Technical Equipment Specification Table */}
+                    <div className="spec-table-box">
+                      <div className="spec-table-header">
+                        <span>TECHNICAL SPECIFICATION SHEET</span>
+                        <span>REV. 2026</span>
+                      </div>
+                      <div className="spec-table-grid">
+                        <div className="spec-cell">
+                          <span className="spec-label">CONTROLLER SILICON</span>
+                          <span className="spec-val">{project.specs.controller}</span>
+                        </div>
+                        <div className="spec-cell">
+                          <span className="spec-label">INTERFACE / BUS</span>
+                          <span className="spec-val">{project.specs.interface}</span>
+                        </div>
+                        <div className="spec-cell">
+                          <span className="spec-label">ACTUATORS / SENSORS</span>
+                          <span className="spec-val">{project.specs.actuators}</span>
+                        </div>
+                        <div className="spec-cell">
+                          <span className="spec-label">CIRCUIT HARDWARE</span>
+                          <span className="spec-val">{project.specs.hardware}</span>
+                        </div>
+                      </div>
+                      <div className="spec-outcome-banner">
+                        <strong>BENCHMARK &amp; DEPLOYMENT STATUS</strong>
+                        <span>{project.outcome}</span>
+                      </div>
+                    </div>
+
+                    <div className="folio-highlights">
+                      <strong>CORE ENGINEERING DELIVERABLES:</strong>
                       <ul>
                         {project.highlights.map((point, idx) => (
                           <li key={idx}>{point}</li>
@@ -1125,15 +1220,15 @@ export default function Portfolio() {
                       </ul>
                     </div>
 
-                    <div className="project-tags">
+                    <div className="folio-tech-tags">
                       {project.stack.map((item) => (
-                        <span className="tag-pill" key={item}>
+                        <span className="folio-tag" key={item}>
                           {item}
                         </span>
                       ))}
                     </div>
 
-                    <div className="project-btn-row">
+                    <div className="folio-btn-row">
                       {project.liveUrl && (
                         <a className="btn btn-sm btn-primary" href={project.liveUrl} target="_blank" rel="noreferrer">
                           Live Web Dashboard
@@ -1146,7 +1241,7 @@ export default function Portfolio() {
                         target="_blank"
                         rel="noreferrer"
                       >
-                        View on GitHub
+                        View Source Code
                         <IconExternal />
                       </a>
                     </div>
@@ -1157,42 +1252,49 @@ export default function Portfolio() {
           </div>
         </section>
 
-        {/* Technical Skills & Toolkit */}
+        {/* Section 03: Technical Skills & Toolkit */}
         <section className="section section-alt" id="skills">
           <div className="section-container">
             <div className="section-header">
-              <span className="section-label">CORE COMPETENCIES</span>
-              <h2>Technical Skills &amp; Toolkit</h2>
+              <div className="section-header-top">
+                <span className="section-stamp">SECTION 03</span>
+                <span className="section-category">TECHNICAL CAPABILITIES</span>
+              </div>
+              <h2>Technical Catalog</h2>
               <p className="section-desc">
                 Specialized hardware, bare-metal &amp; RTOS firmware, communication protocols, and engineering design tools.
               </p>
             </div>
 
-            <div className="skills-section-box">
-              <div className="skills-columns">
-                {skillCategories.map((cat) => (
-                  <div className="skill-col-card" key={cat.name}>
-                    <h4 className="skill-col-title">{cat.name}</h4>
-                    <div className="skill-pills-wrap">
-                      {cat.skills.map((skill) => (
-                        <span className="skill-badge" key={skill}>
-                          {skill}
-                        </span>
-                      ))}
-                    </div>
+            <div className="skills-compendium-grid">
+              {skillCategories.map((cat) => (
+                <div className="compendium-card" key={cat.name}>
+                  <div className="compendium-card-header">
+                    <span className="compendium-index-tag">{`CATALOG // ${cat.index}`}</span>
+                    <h3 className="compendium-title">{cat.name}</h3>
                   </div>
-                ))}
-              </div>
+                  <div className="compendium-items-wrap">
+                    {cat.skills.map((skill) => (
+                      <span className="compendium-item" key={skill}>
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </section>
 
-        {/* Experience & Activities */}
+        {/* Section 04: Experience & Field Chronicle */}
         <section className="section" id="experience">
           <div className="section-container">
             <div className="section-header">
-              <span className="section-label">ACTIVITIES & EXPERIENCE</span>
-              <h2>Practical Experience & Trajectory</h2>
+              <div className="section-header-top">
+                <span className="section-stamp">SECTION 04</span>
+                <span className="section-category">CHRONOLOGY &amp; FIELDWORK</span>
+              </div>
+              <h2>Archival Chronicle</h2>
               <p className="section-desc">
                 Hands-on engineering through robotics competitions, university lab work, community outreach, and leadership.
               </p>
@@ -1200,7 +1302,7 @@ export default function Portfolio() {
 
             <div className="experience-cards-container">
               {experience.map((item) => (
-                <article className="experience-card" key={`${item.period}-${item.role}`}>
+                <article className="chronicle-card" key={`${item.period}-${item.role}`}>
                   <div className="exp-image-side">
                     <ActivityImageGallery
                       images={item.images}
@@ -1213,20 +1315,20 @@ export default function Portfolio() {
                   </div>
 
                   <div className="exp-info-side">
-                    <div className="exp-top-line">
-                      <span className="exp-period-pill">{item.period}</span>
-                      <span className="exp-location-text">{item.location}</span>
+                    <div className="chronicle-top-line">
+                      <span className="chronicle-period-tag">{item.period}</span>
+                      <span className="chronicle-location">{item.location}</span>
                     </div>
 
-                    <h3 className="exp-title">{item.role}</h3>
-                    <p className="exp-org-name">
+                    <h3 className="chronicle-title">{item.role}</h3>
+                    <p className="chronicle-org">
                       <strong>{item.organization}</strong> · <span>{item.type}</span>
                     </p>
 
-                    <p className="exp-paragraph">{item.description}</p>
+                    <p className="chronicle-desc">{item.description}</p>
 
                     <div className="exp-checklist">
-                      <strong>Responsibilities & Outcomes:</strong>
+                      <strong>FIELD OPERATIONS &amp; CONTRIBUTIONS:</strong>
                       <ul>
                         {item.bullets.map((bullet, idx) => (
                           <li key={idx}>{bullet}</li>
@@ -1240,14 +1342,17 @@ export default function Portfolio() {
           </div>
         </section>
 
-        {/* Credentials & Verification */}
+        {/* Section 05: Credentials & Document Register */}
         <section className="section section-alt" id="credentials">
           <div className="section-container">
             <div className="section-header">
-              <span className="section-label">ACHIEVEMENTS</span>
-              <h2>Credentials & Competitions</h2>
+              <div className="section-header-top">
+                <span className="section-stamp">SECTION 05</span>
+                <span className="section-category">VERIFICATION &amp; AWARDS</span>
+              </div>
+              <h2>Credential Register</h2>
               <p className="section-desc">
-                Verified competitions, awards, and technical training.
+                Verified competition honors, international summits, and certified technical training.
               </p>
             </div>
 
@@ -1269,7 +1374,7 @@ export default function Portfolio() {
                       {cred.badge && <span className="cred-badge-pill">{cred.badge}</span>}
                     </div>
 
-                    <span className="cred-year-tag">{cred.year}</span>
+                    <span className="cred-year-tag">{`${cred.year} // REGISTERED`}</span>
                     <h3 className="cred-card-title">
                       {cred.href ? (
                         <a href={cred.href} target="_blank" rel="noreferrer" className="cred-title-link">
@@ -1301,7 +1406,7 @@ export default function Portfolio() {
             {totalCertPages > 1 && (
               <nav className="pagination-bar" aria-label="Certificates pagination">
                 <div className="pagination-info">
-                  Showing <strong>{(certPage - 1) * CERTS_PER_PAGE + 1}–{Math.min(certPage * CERTS_PER_PAGE, credentials.length)}</strong> of <strong>{credentials.length}</strong> certificates
+                  REGISTER: <strong>{(certPage - 1) * CERTS_PER_PAGE + 1}–{Math.min(certPage * CERTS_PER_PAGE, credentials.length)}</strong> OF <strong>{credentials.length}</strong> DOCUMENTS
                 </div>
                 <div className="pagination-controls">
                   <button
@@ -1343,41 +1448,43 @@ export default function Portfolio() {
                 </div>
               </nav>
             )}
-
           </div>
         </section>
 
-        {/* Contact Section */}
+        {/* Section 06: Contact & Correspondence Bureau */}
         <section className="section" id="contact">
           <div className="section-container">
             <div className="contact-card">
               <div className="contact-content">
-                <span className="section-label">GET IN TOUCH</span>
-                <h2>Let&apos;s Connect</h2>
+                <div className="section-header-top">
+                  <span className="section-stamp">SECTION 06</span>
+                  <span className="section-category">DIRECT CORRESPONDENCE</span>
+                </div>
+                <h2>Correspondence Bureau</h2>
                 <p>
-                  I am open to robotics engineering internships, embedded firmware roles, and IoT collaborations. Feel free to reach out directly.
+                  I am actively seeking robotics engineering internships, embedded firmware roles, and IoT collaborations. Direct correspondence is welcome.
                 </p>
 
                 <div className="contact-details-list">
                   <div className="contact-detail-item">
-                    <span className="cd-title">Email Address:</span>
+                    <span className="cd-title">ELECTRONIC MAIL:</span>
                     <a className="cd-link" href={links.email}>
                       rizkyhabir88@gmail.com
                     </a>
                   </div>
                   <div className="contact-detail-item">
-                    <span className="cd-title">Location:</span>
+                    <span className="cd-title">STATION LOCATION:</span>
                     <span className="cd-val">Malang, East Java, Indonesia</span>
                   </div>
                   <div className="contact-detail-item">
-                    <span className="cd-title">Profiles:</span>
+                    <span className="cd-title">PUBLIC DEPOSIT:</span>
                     <div className="cd-links">
                       <a href={links.github} target="_blank" rel="noreferrer">
-                        GitHub ↗
+                        GitHub Archive ↗
                       </a>
                       <span>·</span>
                       <a href={links.linkedin} target="_blank" rel="noreferrer">
-                        LinkedIn ↗
+                        LinkedIn Profile ↗
                       </a>
                     </div>
                   </div>
@@ -1385,14 +1492,14 @@ export default function Portfolio() {
 
                 <div className="contact-response-badge">
                   <span className="contact-response-dot" aria-hidden="true" />
-                  <span>Typically responds within 24 hours</span>
+                  <span>OFFICIAL DISPATCH: Typically acknowledged within 24 hours</span>
                 </div>
               </div>
 
               <div className="contact-cta-panel">
                 <a className="btn btn-primary btn-lg" href={links.email}>
                   <IconMail />
-                  Send Me an Email
+                  Transmit Message
                 </a>
                 <button
                   type="button"
@@ -1401,11 +1508,11 @@ export default function Portfolio() {
                   title="Click to copy email to clipboard"
                 >
                   {copiedEmail ? <IconCheck /> : <IconCopy />}
-                  {copiedEmail ? "Copied to Clipboard! ✓" : "Copy Email Address"}
+                  <span>{copiedEmail ? "Address Copied! ✓" : "Copy Email"}</span>
                 </button>
                 <a className="btn btn-secondary btn-lg" href={links.linkedin} target="_blank" rel="noreferrer">
                   <IconLinkedin />
-                  Connect on LinkedIn
+                  Connect via LinkedIn
                 </a>
               </div>
             </div>
@@ -1413,14 +1520,14 @@ export default function Portfolio() {
         </section>
       </main>
 
-      {/* Clean Footer */}
+      {/* Broadsheet Colophon Footer */}
       <footer className="site-footer">
         <div className="footer-container">
           <div className="footer-left">
             <span className="brand-badge">RH</span>
             <div>
               <strong>Rama Rizky Belrouzy Habir</strong>
-              <p>Robotics & Telecommunications · Universitas Brawijaya</p>
+              <p>Robotics &amp; Telecommunications · Universitas Brawijaya · Malang, Indonesia</p>
             </div>
           </div>
 
