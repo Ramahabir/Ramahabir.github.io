@@ -5,10 +5,11 @@ import test from "node:test";
 const html = await readFile(new URL("../out/index.html", import.meta.url), "utf8");
 
 test("exports the complete portfolio structure", () => {
-  for (const id of ["about", "projects", "experience", "credentials", "contact"]) {
+  for (const id of ["about", "projects", "skills", "experience", "credentials", "contact"]) {
     assert.match(html, new RegExp(`id="${id}"`));
     assert.match(html, new RegExp(`href="#${id}"`));
   }
+  assert.match(html, /Robotics &amp; Embedded Firmware Engineer/);
   assert.match(html, /Machines that/i);
   assert.match(html, /5-DOF Robotic Arm/);
   assert.match(html, /LA-Braille/);
@@ -28,6 +29,9 @@ test("includes navigation and accessibility affordances", () => {
   assert.match(html, /id="mobile-navigation"/);
   assert.match(html, /aria-controls="mobile-navigation"/);
   assert.match(html, /aria-label="Primary navigation"/);
+  assert.match(html, /theme-toggle-btn/);
+  assert.match(html, /CV-Rama-Rizky-Belrouzy-Habir\.pdf/);
+  assert.match(html, /Copy Email/);
 });
 
 test("includes portfolio social metadata without starter copy", () => {

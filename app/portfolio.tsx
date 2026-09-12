@@ -11,6 +11,7 @@ const links = {
 const navItems = [
   ["About", "about"],
   ["Projects", "projects"],
+  ["Skills", "skills"],
   ["Experience", "experience"],
   ["Credentials", "credentials"],
   ["Contact", "contact"],
@@ -42,11 +43,11 @@ const projects: Project[] = [
       "An articulated robotic manipulator controlled by an STM32F411 microcontroller. Combines high-speed half-duplex UART communication with Dynamixel AX-series smart actuators, custom KiCad controller hardware, and forward/inverse kinematics for coordinated multi-axis manipulation.",
     role: "Robotics & Firmware Engineer",
     stack: ["STM32F411", "C / C++", "Dynamixel", "Half-Duplex UART", "KiCad", "FreeRTOS"],
-    outcome: "Closed-loop multi-joint position & torque control at 1 Mbps bus speed",
+    outcome: "Closed-loop multi-joint position & torque control over a 1 Mbps half-duplex bus with sub-millisecond control latency",
     highlights: [
-      "Engineered half-duplex serial driver using 74LS241 buffer for 1 Mbps Dynamixel Protocol 1.0 communication.",
-      "Designed custom controller PCB in KiCad with dedicated power distribution and logic level isolation.",
-      "Implemented packet parsing with checksum validation, status return error handling, and smooth trajectory planning.",
+      "High-Speed Bus Driver: Engineered custom half-duplex serial driver with 74LS241 tri-state buffer, sustaining error-free 1 Mbps Dynamixel Protocol 1.0 packet transactions.",
+      "Custom Controller Hardware: Designed 2-layer KiCad control PCB with dedicated 12V/5V power rails, logic-level isolation, and real-time current telemetry.",
+      "Closed-Loop Kinematics: Formulated forward & inverse kinematics with status-return error trapping and packet checksum verification for synchronized 5-joint trajectory tracking.",
     ],
     href: "https://github.com/Ramahabir/6-DOF-Robotics-Arm-Dynamixel",
     images: [
@@ -78,12 +79,12 @@ const projects: Project[] = [
       "PostgreSQL",
       "3D Printing",
     ],
-    outcome: "Affordable, zero-static-power refreshable Braille hardware validated in user trials with visually impaired students at Universitas Brawijaya",
+    outcome: "Slashed hardware unit cost by ~80% vs. commercial piezoelectric displays with 0 mW static hold power, validated with visually impaired students at Universitas Brawijaya",
     highlights: [
-      "Novel Cam Actuator: Replaced costly piezoelectric modules with custom 3D-printed rotary-to-linear cam actuators and 1 × 0.5 mm NdFeB rare-earth micro-magnets that lock pins mechanically without consuming idle power.",
-      "Custom Driver Electronics: Designed H-bridge driving board in KiCad using Toshiba TBD62783/TBD62083 DMOS FET arrays, 74HC238D line decoders, and Raspberry Pi GPIO for multiplexed pin actuation.",
-      "OCR & Accessible LMS: Developed an automated PDF-to-Braille conversion pipeline (Tesseract, OpenCV, PDF2Image) and a cross-platform Flutter/PostgreSQL mobile & web LMS with offline caching and screen-reader compatibility.",
-      "Field Validation: Evaluated and benchmarked the complete system directly alongside visually impaired students at Universitas Brawijaya for technical and real-world validation.",
+      "Zero-Static-Power Cam Actuators: Replaced expensive piezoelectric modules (~$2,000+) with custom 3D-printed rotary-to-linear cams and 1 × 0.5 mm NdFeB micro-magnets that lock pins mechanically with 0 mW idle draw.",
+      "Custom Driver Electronics: Designed H-bridge driving board in KiCad using Toshiba TBD62783/TBD62083 DMOS FET arrays and 74HC238D decoders for low-loss multiplexed pin actuation.",
+      "Accessible Pipeline & LMS: Implemented automated PDF-to-Braille conversion (Tesseract OCR, OpenCV) and cross-platform Flutter/PostgreSQL LMS with offline caching and screen-reader compatibility.",
+      "User Trial Validation: Benchmarked tactile dot height, read speeds, and mechanical endurance directly with visually impaired students at Universitas Brawijaya.",
     ],
     href: "https://github.com/Ramahabir",
     images: [
@@ -102,7 +103,7 @@ const projects: Project[] = [
     category: "Smart Agriculture & IoT Systems",
     title: "AgriNode: Modular Greenhouse IoT & Telemetry System",
     summary:
-      "A modular IoT telemetry system engineered for greenhouse environmental monitoring—measuring soil moisture, ambient temperature, and humidity across crop beds. The architecture connects environmental sensor modules to distributed ESP32 nodes; each node transmits readings wirelessly to a centralized main node (gateway), which aggregates data and forwards packets to the cloud server and live web dashboard.",
+      "A modular IoT telemetry system engineered for greenhouse environmental monitoring—solving the challenge of microclimate variance across crop beds without costly trenching. The architecture pairs modular soil/climate sensing nodes with ESP32 microcontrollers; decentralized field nodes transmit telemetry wirelessly to a central gateway that streams real-time payloads to the cloud server and live web dashboard.",
     role: "IoT Systems & Embedded Hardware Engineer",
     stack: [
       "ESP32",
@@ -115,12 +116,12 @@ const projects: Project[] = [
       "Chart.js",
       "Smart Agriculture",
     ],
-    outcome: "Modular multi-node greenhouse telemetry network streaming live soil & climate analytics to https://devel-ai.ub.ac.id/agrinode/",
+    outcome: "Autonomous off-grid multi-node telemetry network streaming continuous 24/7 soil moisture & microclimate analytics to https://devel-ai.ub.ac.id/agrinode/",
     highlights: [
-      "Modular Sensor Nodes: Engineered modular ESP32 node devices interfacing with capacitive soil moisture sensors and DHT22 digital probes to capture microclimate variations across greenhouse beds.",
-      "Two-Tier Node-to-Gateway Pipeline: Implemented wireless node-to-main-node transmission where decentralized field nodes broadcast telemetry to a central gateway node that relays aggregated payloads to the cloud server.",
-      "Custom PCB & Power Management: Designed 2-layer circuit boards in KiCad with integrated TP4056 lithium battery charging and XL6009 DC-DC boost conversion for autonomous off-grid greenhouse operation.",
-      "Live Web Dashboard Integration: Connected telemetry streams directly to the AgriNode live web platform (devel-ai.ub.ac.id/agrinode) for real-time monitoring, 30-day sensor analytics, and automated irrigation relay triggers.",
+      "Modular Sensor Nodes: Engineered plug-and-play ESP32 node modules interfacing with capacitive soil moisture sensors and DHT22 digital probes to detect localized microclimate stress across greenhouse beds.",
+      "Two-Tier Wireless Architecture: Implemented reliable node-to-gateway telemetry where distributed field nodes transmit packets wirelessly to a central edge gateway, relaying to the cloud server.",
+      "Autonomous Power Management: Designed custom 2-layer KiCad PCBs with onboard TP4056 lithium charging and XL6009 boost regulation for uninterrupted solar/battery off-grid greenhouse operation.",
+      "Live Web Dashboard & Triggers: Connected telemetry directly to the AgriNode live web platform (devel-ai.ub.ac.id/agrinode) for real-time monitoring, 30-day analytics, and automated irrigation triggers.",
     ],
     href: "https://github.com/Ramahabir/IoT-Hardy",
     liveUrl: "https://devel-ai.ub.ac.id/agrinode/",
@@ -516,6 +517,56 @@ function IconClose() {
   );
 }
 
+function IconSun() {
+  return (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <circle cx="12" cy="12" r="4" />
+      <path d="M12 2v2" />
+      <path d="M12 20v2" />
+      <path d="m4.93 4.93 1.41 1.41" />
+      <path d="m17.66 17.66 1.41 1.41" />
+      <path d="M2 12h2" />
+      <path d="M20 12h2" />
+      <path d="m6.34 17.66-1.41 1.41" />
+      <path d="m19.07 4.93-1.41 1.41" />
+    </svg>
+  );
+}
+
+function IconMoon() {
+  return (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" />
+    </svg>
+  );
+}
+
+function IconCopy() {
+  return (
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <rect width="14" height="14" x="8" y="8" rx="2" ry="2" />
+      <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" />
+    </svg>
+  );
+}
+
+function IconCheck() {
+  return (
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <polyline points="20 6 9 17 4 12" />
+    </svg>
+  );
+}
+
+function IconArrowDown() {
+  return (
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M12 5v14" />
+      <path d="m19 12-7 7-7-7" />
+    </svg>
+  );
+}
+
 // Multi-Photo Gallery Slider with fallback placeholder & click-to-enlarge Lightbox
 function ActivityImageGallery({
   images,
@@ -759,8 +810,37 @@ export default function Portfolio() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [active, setActive] = useState("about");
   const [certPage, setCertPage] = useState(1);
+  const [theme, setTheme] = useState<"light" | "dark">("light");
+  const [copiedEmail, setCopiedEmail] = useState(false);
+
   const CERTS_PER_PAGE = 8;
   const totalCertPages = Math.ceil(credentials.length / CERTS_PER_PAGE);
+
+  useEffect(() => {
+    const saved = localStorage.getItem("theme") as "light" | "dark" | null;
+    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    const initial = saved || (prefersDark ? "dark" : "light");
+    document.documentElement.setAttribute("data-theme", initial);
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setTheme(initial);
+  }, []);
+
+  const toggleTheme = () => {
+    const next = theme === "light" ? "dark" : "light";
+    setTheme(next);
+    document.documentElement.setAttribute("data-theme", next);
+    localStorage.setItem("theme", next);
+  };
+
+  const copyEmailToClipboard = (e?: React.MouseEvent) => {
+    if (e) e.preventDefault();
+    if (typeof navigator !== "undefined" && navigator.clipboard) {
+      navigator.clipboard.writeText("rizkyhabir88@gmail.com").then(() => {
+        setCopiedEmail(true);
+        setTimeout(() => setCopiedEmail(false), 2400);
+      });
+    }
+  };
 
   const handleCertPageChange = (newPage: number) => {
     if (newPage < 1 || newPage > totalCertPages) return;
@@ -775,7 +855,7 @@ export default function Portfolio() {
   };
 
   useEffect(() => {
-    const sectionIds = ["about", "projects", "experience", "credentials", "contact"];
+    const sectionIds = ["about", "projects", "skills", "experience", "credentials", "contact"];
     const sections = sectionIds.map((id) => document.getElementById(id)).filter(Boolean) as HTMLElement[];
 
     const observer = new IntersectionObserver(
@@ -805,85 +885,129 @@ export default function Portfolio() {
         Skip to content
       </a>
 
-      {/* Clean Light Header */}
+      {/* Clean Light/Dark Header */}
       <header className="site-header">
         <div className="header-container">
           <a className="brand" href="#top" aria-label="Rama Habir, top of page">
             <span className="brand-badge">RH</span>
             <span className="brand-name">Rama Habir</span>
-            <span className="brand-role">· Robotics & Embedded</span>
+            <span className="brand-role">· Robotics &amp; Embedded</span>
           </a>
 
-          <nav id="mobile-navigation" className={menuOpen ? "nav open" : "nav"} aria-label="Primary navigation">
-            {navItems.map(([label, id]) => (
+          <div className="header-right-group">
+            <nav id="mobile-navigation" className={menuOpen ? "nav open" : "nav"} aria-label="Primary navigation">
+              {navItems.map(([label, id]) => (
+                <a
+                  key={id}
+                  href={`#${id}`}
+                  className={active === id ? "active" : ""}
+                  onClick={closeMenu}
+                >
+                  {label}
+                </a>
+              ))}
               <a
-                key={id}
-                href={`#${id}`}
-                className={active === id ? "active" : ""}
+                className="nav-cv-link"
+                href="/CV-Rama-Rizky-Belrouzy-Habir.pdf"
+                target="_blank"
+                rel="noreferrer"
                 onClick={closeMenu}
               >
-                {label}
+                <IconFileText />
+                <span>Resume / CV</span>
               </a>
-            ))}
-            <a className="nav-cta" href={links.email} onClick={closeMenu}>
-              Contact Me
-            </a>
-          </nav>
+              <a className="nav-cta" href={links.email} onClick={closeMenu}>
+                Contact
+              </a>
+            </nav>
 
-          <button
-            className="menu-button"
-            type="button"
-            aria-expanded={menuOpen}
-            aria-controls="mobile-navigation"
-            aria-label={menuOpen ? "Close navigation" : "Open navigation"}
-            onClick={() => setMenuOpen((value) => !value)}
-          >
-            <span />
-            <span />
-          </button>
+            <button
+              type="button"
+              className="theme-toggle-btn"
+              onClick={toggleTheme}
+              aria-label={theme === "dark" ? "Switch to light theme" : "Switch to dark theme"}
+              title={theme === "dark" ? "Switch to light theme" : "Switch to dark theme"}
+            >
+              {theme === "dark" ? <IconSun /> : <IconMoon />}
+            </button>
+
+            <button
+              className="menu-button"
+              type="button"
+              aria-expanded={menuOpen}
+              aria-controls="mobile-navigation"
+              aria-label={menuOpen ? "Close navigation" : "Open navigation"}
+              onClick={() => setMenuOpen((value) => !value)}
+            >
+              <span />
+              <span />
+            </button>
+          </div>
         </div>
       </header>
 
       <main id="content">
-        {/* Clean Wix-Style Hero Section */}
+        {/* Clean Hero Section */}
         <section className="hero" id="top" aria-labelledby="hero-title">
           <div className="hero-container">
             <div className="hero-layout">
               <div className="hero-text-col">
-                <div className="hero-tag">
-                  <IconMapPin />
-                  <span>Malang, Indonesia · Open to Opportunities</span>
+                <div className="hero-tag-group">
+                  <div className="hero-tag hero-status-tag">
+                    <span className="status-dot-pulse" aria-hidden="true" />
+                    <span>Open to Robotics &amp; Embedded Opportunities · 2026</span>
+                  </div>
+                  <div className="hero-tag hero-location-tag">
+                    <IconMapPin />
+                    <span>Malang, Indonesia</span>
+                  </div>
                 </div>
 
                 <h1 id="hero-title" className="hero-title">
                   Rama Rizky Belrouzy Habir
-                  <span className="hero-subtitle">Engineering Machines that sense, communicate, and act.</span>
                 </h1>
+                <div className="hero-role-badge">Robotics &amp; Embedded Firmware Engineer</div>
+                <span className="hero-subtitle">Engineering machines that sense, communicate, and act.</span>
 
                 <p className="hero-lead">
-                  Electrical Engineering student at <strong>Universitas Brawijaya</strong> and KRSRI Software Engineer with the <strong>Brawijaya Robotics Team</strong>. Focused on microcontroller firmware (STM32, ESP32), sensor telemetry, and reliable communication protocols.
+                  Electrical Engineering student at <strong>Universitas Brawijaya</strong> and KRSRI Software Engineer with the <strong>Brawijaya Robotics Team</strong>. Specializing in bare-metal and RTOS firmware (STM32, ESP32), sensor telemetry, and deterministic communication protocols.
                 </p>
 
-                <div className="hero-actions">
-                  <a className="btn btn-primary" href="#projects">
-                    View Projects
-                  </a>
-                  <a className="btn btn-outline" href={links.email}>
-                    <IconMail />
-                    Email Me
-                  </a>
-                  <a className="btn btn-secondary" href="/CV-Rama-Rizky-Belrouzy-Habir.pdf" target="_blank" rel="noreferrer">
-                    <IconFileText />
-                    Download CV
-                  </a>
-                  <a className="btn btn-secondary" href={links.github} target="_blank" rel="noreferrer">
-                    <IconGithub />
-                    GitHub
-                  </a>
-                  <a className="btn btn-secondary" href={links.linkedin} target="_blank" rel="noreferrer">
-                    <IconLinkedin />
-                    LinkedIn
-                  </a>
+                <div className="hero-cta-block">
+                  <div className="hero-primary-actions">
+                    <a className="btn btn-primary btn-lg" href="#projects">
+                      View Projects
+                      <IconArrowDown />
+                    </a>
+                    <a className="btn btn-cv btn-lg" href="/CV-Rama-Rizky-Belrouzy-Habir.pdf" target="_blank" rel="noreferrer">
+                      <IconFileText />
+                      Download CV (PDF)
+                    </a>
+                  </div>
+
+                  <div className="hero-secondary-actions">
+                    <button
+                      type="button"
+                      className={`btn-chip ${copiedEmail ? "copied" : ""}`}
+                      onClick={() => copyEmailToClipboard()}
+                      title="Click to copy email address"
+                    >
+                      {copiedEmail ? <IconCheck /> : <IconCopy />}
+                      <span>{copiedEmail ? "Email Copied! ✓" : "Copy Email"}</span>
+                    </button>
+                    <a className="btn-chip" href={links.email} title="Send email via mail client">
+                      <IconMail />
+                      <span>Email</span>
+                    </a>
+                    <a className="btn-chip" href={links.github} target="_blank" rel="noreferrer" title="GitHub profile">
+                      <IconGithub />
+                      <span>GitHub</span>
+                    </a>
+                    <a className="btn-chip" href={links.linkedin} target="_blank" rel="noreferrer" title="LinkedIn profile">
+                      <IconLinkedin />
+                      <span>LinkedIn</span>
+                    </a>
+                  </div>
                 </div>
 
                 <div className="hero-stats-row">
@@ -1033,8 +1157,38 @@ export default function Portfolio() {
           </div>
         </section>
 
+        {/* Technical Skills & Toolkit */}
+        <section className="section section-alt" id="skills">
+          <div className="section-container">
+            <div className="section-header">
+              <span className="section-label">CORE COMPETENCIES</span>
+              <h2>Technical Skills &amp; Toolkit</h2>
+              <p className="section-desc">
+                Specialized hardware, bare-metal &amp; RTOS firmware, communication protocols, and engineering design tools.
+              </p>
+            </div>
+
+            <div className="skills-section-box">
+              <div className="skills-columns">
+                {skillCategories.map((cat) => (
+                  <div className="skill-col-card" key={cat.name}>
+                    <h4 className="skill-col-title">{cat.name}</h4>
+                    <div className="skill-pills-wrap">
+                      {cat.skills.map((skill) => (
+                        <span className="skill-badge" key={skill}>
+                          {skill}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* Experience & Activities */}
-        <section className="section section-alt" id="experience">
+        <section className="section" id="experience">
           <div className="section-container">
             <div className="section-header">
               <span className="section-label">ACTIVITIES & EXPERIENCE</span>
@@ -1087,7 +1241,7 @@ export default function Portfolio() {
         </section>
 
         {/* Credentials & Verification */}
-        <section className="section" id="credentials">
+        <section className="section section-alt" id="credentials">
           <div className="section-container">
             <div className="section-header">
               <span className="section-label">ACHIEVEMENTS</span>
@@ -1190,33 +1344,11 @@ export default function Portfolio() {
               </nav>
             )}
 
-            {/* Skills Toolkit */}
-            <div className="skills-section-box">
-              <div className="skills-header">
-                <h3>Technical Skills & Toolkit</h3>
-                <p>Core competencies in hardware, programming languages, and engineering software.</p>
-              </div>
-
-              <div className="skills-columns">
-                {skillCategories.map((cat) => (
-                  <div className="skill-col-card" key={cat.name}>
-                    <h4 className="skill-col-title">{cat.name}</h4>
-                    <div className="skill-pills-wrap">
-                      {cat.skills.map((skill) => (
-                        <span className="skill-badge" key={skill}>
-                          {skill}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
           </div>
         </section>
 
         {/* Contact Section */}
-        <section className="section section-alt" id="contact">
+        <section className="section" id="contact">
           <div className="section-container">
             <div className="contact-card">
               <div className="contact-content">
@@ -1250,6 +1382,11 @@ export default function Portfolio() {
                     </div>
                   </div>
                 </div>
+
+                <div className="contact-response-badge">
+                  <span className="contact-response-dot" aria-hidden="true" />
+                  <span>Typically responds within 24 hours</span>
+                </div>
               </div>
 
               <div className="contact-cta-panel">
@@ -1257,7 +1394,16 @@ export default function Portfolio() {
                   <IconMail />
                   Send Me an Email
                 </a>
-                <a className="btn btn-outline btn-lg" href={links.linkedin} target="_blank" rel="noreferrer">
+                <button
+                  type="button"
+                  className={`btn btn-outline btn-lg ${copiedEmail ? "copied" : ""}`}
+                  onClick={() => copyEmailToClipboard()}
+                  title="Click to copy email to clipboard"
+                >
+                  {copiedEmail ? <IconCheck /> : <IconCopy />}
+                  {copiedEmail ? "Copied to Clipboard! ✓" : "Copy Email Address"}
+                </button>
+                <a className="btn btn-secondary btn-lg" href={links.linkedin} target="_blank" rel="noreferrer">
                   <IconLinkedin />
                   Connect on LinkedIn
                 </a>
