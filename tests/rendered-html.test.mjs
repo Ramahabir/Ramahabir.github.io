@@ -18,6 +18,8 @@ test("exports the complete portfolio structure", () => {
   assert.match(html, /brawijaya-ee-cohort-1\.jpg/);
   assert.match(html, /devel-ai\.ub\.ac\.id\/agrinode/);
   assert.match(html, /hardy-iot-pcb-isometric\.png/);
+  assert.match(html, /Azure AI Fundamentals/);
+  assert.match(html, /Getting Started with Azure Cloud/);
   assert.doesNotMatch(html, /Sentinelle/);
 });
 
