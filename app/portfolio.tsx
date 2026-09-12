@@ -758,6 +758,21 @@ function ActivityImageGallery({
 export default function Portfolio() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [active, setActive] = useState("about");
+  const [certPage, setCertPage] = useState(1);
+  const CERTS_PER_PAGE = 8;
+  const totalCertPages = Math.ceil(credentials.length / CERTS_PER_PAGE);
+
+  const handleCertPageChange = (newPage: number) => {
+    if (newPage < 1 || newPage > totalCertPages) return;
+    setCertPage(newPage);
+    const section = document.getElementById("credentials");
+    if (section) {
+      const rect = section.getBoundingClientRect();
+      if (rect.top < 0) {
+        section.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+  };
 
   useEffect(() => {
     const sectionIds = ["about", "projects", "experience", "credentials", "contact"];
@@ -1083,42 +1098,97 @@ export default function Portfolio() {
             </div>
 
             <div className="credentials-grid">
-              {credentials.map((cred) => (
-                <article className="cred-card" key={cred.title}>
-                  <div className="cred-header">
-                    <div className="cred-icon-wrap">
-                      <IconAward />
+              {credentials.map((cred, index) => {
+                const itemPage = Math.floor(index / CERTS_PER_PAGE) + 1;
+                const isVisible = itemPage === certPage;
+                return (
+                  <article
+                    className={`cred-card ${isVisible ? "page-active" : "page-hidden"}`}
+                    key={cred.title}
+                    style={{ display: isVisible ? undefined : "none" }}
+                    aria-hidden={!isVisible}
+                  >
+                    <div className="cred-header">
+                      <div className="cred-icon-wrap">
+                        <IconAward />
+                      </div>
+                      {cred.badge && <span className="cred-badge-pill">{cred.badge}</span>}
                     </div>
-                    {cred.badge && <span className="cred-badge-pill">{cred.badge}</span>}
-                  </div>
 
-                  <span className="cred-year-tag">{cred.year}</span>
-                  <h3 className="cred-card-title">
-                    {cred.href ? (
-                      <a href={cred.href} target="_blank" rel="noreferrer" className="cred-title-link">
-                        {cred.title}
-                        <IconExternal />
-                      </a>
-                    ) : (
-                      cred.title
-                    )}
-                  </h3>
-                  <p className="cred-issuer-text">{cred.issuer}</p>
-                  <p className="cred-description">{cred.detail}</p>
+                    <span className="cred-year-tag">{cred.year}</span>
+                    <h3 className="cred-card-title">
+                      {cred.href ? (
+                        <a href={cred.href} target="_blank" rel="noreferrer" className="cred-title-link">
+                          {cred.title}
+                          <IconExternal />
+                        </a>
+                      ) : (
+                        cred.title
+                      )}
+                    </h3>
+                    <p className="cred-issuer-text">{cred.issuer}</p>
+                    <p className="cred-description">{cred.detail}</p>
 
-                  <div className="cred-photo-slot">
-                    <ActivityImageGallery
-                      images={cred.images}
-                      image={cred.image}
-                      alt={cred.title}
-                      placeholderHint={cred.placeholderHint}
-                      recommendedFile={cred.recommendedFile}
-                      aspectRatio="4/3"
-                    />
-                  </div>
-                </article>
-              ))}
+                    <div className="cred-photo-slot">
+                      <ActivityImageGallery
+                        images={cred.images}
+                        image={cred.image}
+                        alt={cred.title}
+                        placeholderHint={cred.placeholderHint}
+                        recommendedFile={cred.recommendedFile}
+                        aspectRatio="4/3"
+                      />
+                    </div>
+                  </article>
+                );
+              })}
             </div>
+
+            {totalCertPages > 1 && (
+              <nav className="pagination-bar" aria-label="Certificates pagination">
+                <div className="pagination-info">
+                  Showing <strong>{(certPage - 1) * CERTS_PER_PAGE + 1}–{Math.min(certPage * CERTS_PER_PAGE, credentials.length)}</strong> of <strong>{credentials.length}</strong> certificates
+                </div>
+                <div className="pagination-controls">
+                  <button
+                    type="button"
+                    className="pagination-btn pagination-nav-btn"
+                    onClick={() => handleCertPageChange(certPage - 1)}
+                    disabled={certPage === 1}
+                    aria-label="Previous page"
+                  >
+                    <IconChevronLeft />
+                    <span>Prev</span>
+                  </button>
+
+                  <div className="pagination-pages">
+                    {Array.from({ length: totalCertPages }, (_, i) => i + 1).map((pageNum) => (
+                      <button
+                        key={pageNum}
+                        type="button"
+                        className={`pagination-btn pagination-num-btn ${pageNum === certPage ? "active" : ""}`}
+                        onClick={() => handleCertPageChange(pageNum)}
+                        aria-current={pageNum === certPage ? "page" : undefined}
+                        aria-label={`Page ${pageNum}`}
+                      >
+                        {pageNum}
+                      </button>
+                    ))}
+                  </div>
+
+                  <button
+                    type="button"
+                    className="pagination-btn pagination-nav-btn"
+                    onClick={() => handleCertPageChange(certPage + 1)}
+                    disabled={certPage === totalCertPages}
+                    aria-label="Next page"
+                  >
+                    <span>Next</span>
+                    <IconChevronRight />
+                  </button>
+                </div>
+              </nav>
+            )}
 
             {/* Skills Toolkit */}
             <div className="skills-section-box">
