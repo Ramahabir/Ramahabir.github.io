@@ -350,6 +350,18 @@ const credentials: Credential[] = [
     recommendedFile: "/activities/certificate-matlab.png",
   },
   {
+    year: "2026",
+    title: "Matlab Course for Wireless Communication Engineering",
+    issuer: "Udemy (Dr. Khaled Ramadan)",
+    detail: "Completed certified coursework covering MATLAB applications in wireless communication engineering, digital signal processing, channel simulation, and communication system design.",
+    badge: "Certified",
+    href: "https://ude.my/UC-ad999357-423c-4018-8669-e7cecdea4f48",
+    images: ["/activities/certificate-matlab-wireless.png"],
+    image: "",
+    placeholderHint: "Certificate: Matlab course for wireless communication engineering by Udemy",
+    recommendedFile: "/activities/certificate-matlab-wireless.png",
+  },
+  {
     year: "2025",
     title: "Azure AI Fundamentals (AI-900)",
     issuer: "Microsoft & elevAIte",
@@ -925,7 +937,7 @@ export default function Portfolio() {
       {/* Broadsheet Masthead Header */}
       <header className="site-header">
         <div className="masthead-ticker">
-          <span>VOL. 2026 // ED. 01 — ARCHIVAL ENGINEERING FOLIO</span>
+          <span>VOL. 2026 · ED. 01 — ARCHIVAL ENGINEERING FOLIO</span>
           <span>MALANG, EAST JAVA — INDONESIA</span>
         </div>
 
@@ -1074,7 +1086,7 @@ export default function Portfolio() {
               <div className="hero-photo-col">
                 <div className="hero-plate-card">
                   <div className="hero-plate-header">
-                    <span>PLATE 01 // FIG. 01</span>
+                    <span>PLATE 01 · FIG. 01</span>
                     <span className="plate-serial">PORTRAIT DEPOSIT</span>
                   </div>
                   <div className="hero-plate-wrap">
@@ -1270,7 +1282,7 @@ export default function Portfolio() {
               {skillCategories.map((cat) => (
                 <div className="compendium-card" key={cat.name}>
                   <div className="compendium-card-header">
-                    <span className="compendium-index-tag">CATALOG // {cat.index}</span>
+                    <span className="compendium-index-tag">CATALOG · {cat.index}</span>
                     <h3 className="compendium-title">{cat.name}</h3>
                   </div>
                   <div className="compendium-items-wrap">
@@ -1374,7 +1386,7 @@ export default function Portfolio() {
                       {cred.badge && <span className="cred-badge-pill">{cred.badge}</span>}
                     </div>
 
-                    <span className="cred-year-tag">{cred.year} // REGISTERED</span>
+                    <span className="cred-year-tag">{cred.year} · REGISTERED</span>
                     <h3 className="cred-card-title">
                       {cred.href ? (
                         <a href={cred.href} target="_blank" rel="noreferrer" className="cred-title-link">
