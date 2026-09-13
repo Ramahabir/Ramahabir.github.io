@@ -21,6 +21,8 @@ test("exports the complete portfolio structure", () => {
   assert.match(html, /hardy-iot-pcb-isometric\.png/);
   assert.match(html, /Azure AI Fundamentals/);
   assert.match(html, /Getting Started with Azure Cloud/);
+  assert.match(html, /Matlab Course for Wireless Communication Engineering/i);
+  assert.match(html, /certificate-matlab-wireless\.png/);
   assert.doesNotMatch(html, /Sentinelle/);
 });
 
