@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 
 const links = {
   github: "https://github.com/Ramahabir",
@@ -756,7 +757,7 @@ function ActivityImageGallery({
           )}
         </div>
 
-        {isLightboxOpen && (
+        {typeof document !== "undefined" && isLightboxOpen && createPortal(
           <div
             className="lightbox-overlay"
             onClick={() => setIsLightboxOpen(false)}
@@ -787,6 +788,7 @@ function ActivityImageGallery({
               <div className="lightbox-image-container">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
+                  key={activePhoto}
                   src={activePhoto}
                   alt={`${alt} (Full view, photo ${activeIndex + 1} of ${photoList.length})`}
                   className="lightbox-image"
@@ -822,7 +824,11 @@ function ActivityImageGallery({
                         key={idx}
                         type="button"
                         className={`gallery-dot ${idx === activeIndex ? "active" : ""}`}
-                        onClick={() => setCurrentIdx(idx)}
+                        onClick={(e) => {
+                          e.preventDefault();
+                          e.stopPropagation();
+                          setCurrentIdx(idx);
+                        }}
                         aria-label={`Jump to photo ${idx + 1}`}
                       />
                     ))}
@@ -830,7 +836,8 @@ function ActivityImageGallery({
                 </div>
               )}
             </div>
-          </div>
+          </div>,
+          document.body
         )}
       </>
     );
