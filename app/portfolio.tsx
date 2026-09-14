@@ -45,6 +45,36 @@ interface Project {
   recommendedFile: string;
 }
 
+interface HeroSlide {
+  url: string;
+  title: string;
+  category: string;
+}
+
+// Hero Background Slideshow items (placeholders from archival project assets)
+const heroSlides: HeroSlide[] = [
+  {
+    url: "/projects/robot-arm-1.png",
+    title: "5-DOF Robotic Arm Manipulation",
+    category: "Robotics & Kinematics",
+  },
+  {
+    url: "/projects/hardy-iot-pcb-isometric.png",
+    title: "AgriNode Modular Greenhouse Telemetry",
+    category: "IoT Systems & Telemetry",
+  },
+  {
+    url: "/projects/la-braille-cad-concept.png",
+    title: "LA-Braille Refreshable Display",
+    category: "Assistive Embedded Tech",
+  },
+  {
+    url: "/activities/brawijaya-ee-cohort-full.jpg",
+    title: "Universitas Brawijaya Robotics & Lab Station",
+    category: "Autonomous Systems",
+  },
+];
+
 const projects: Project[] = [
   {
     number: "01",
@@ -868,9 +898,17 @@ export default function Portfolio() {
   const [certPage, setCertPage] = useState(1);
   const [theme, setTheme] = useState<"light" | "dark">("light");
   const [copiedEmail, setCopiedEmail] = useState(false);
+  const [currentHeroSlide, setCurrentHeroSlide] = useState(0);
 
   const CERTS_PER_PAGE = 8;
   const totalCertPages = Math.ceil(credentials.length / CERTS_PER_PAGE);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentHeroSlide((prev) => (prev + 1) % heroSlides.length);
+    }, 5500);
+    return () => clearInterval(timer);
+  }, []);
 
   useEffect(() => {
     const saved = localStorage.getItem("theme") as "light" | "dark" | null;
@@ -1008,8 +1046,56 @@ export default function Portfolio() {
       </header>
 
       <main id="content">
-        {/* Frontispiece / Hero Section */}
+        {/* Frontispiece / Hero Section with Background Slideshow */}
         <section className="hero" id="top" aria-labelledby="hero-title">
+          {/* Ambient Background Slideshow */}
+          <div className="hero-slideshow" aria-hidden="true">
+            {heroSlides.map((slide, idx) => (
+              <div
+                key={slide.url}
+                className={`hero-slide ${idx === currentHeroSlide ? "active" : ""}`}
+                style={{ backgroundImage: `url(${slide.url})` }}
+              />
+            ))}
+            <div className="hero-slideshow-overlay" />
+          </div>
+
+          {/* Slideshow Telemetry HUD / Controls */}
+          <div className="hero-slideshow-hud">
+            <span className="hero-hud-label">
+              ARCHIVAL TRANSMISSION [{String(currentHeroSlide + 1).padStart(2, "0")}/{String(heroSlides.length).padStart(2, "0")}] · {heroSlides[currentHeroSlide].title}
+            </span>
+            <div className="hero-hud-controls">
+              <button
+                type="button"
+                className="hero-hud-btn"
+                onClick={() => setCurrentHeroSlide((prev) => (prev === 0 ? heroSlides.length - 1 : prev - 1))}
+                aria-label="Previous background slide"
+              >
+                <IconChevronLeft />
+              </button>
+              <div className="hero-hud-dots">
+                {heroSlides.map((_, idx) => (
+                  <button
+                    key={idx}
+                    type="button"
+                    className={`hero-hud-dot ${idx === currentHeroSlide ? "active" : ""}`}
+                    onClick={() => setCurrentHeroSlide(idx)}
+                    aria-label={`Jump to background slide ${idx + 1}`}
+                  />
+                ))}
+              </div>
+              <button
+                type="button"
+                className="hero-hud-btn"
+                onClick={() => setCurrentHeroSlide((prev) => (prev === heroSlides.length - 1 ? 0 : prev + 1))}
+                aria-label="Next background slide"
+              >
+                <IconChevronRight />
+              </button>
+            </div>
+          </div>
+
           <div className="hero-container">
             <div className="hero-layout">
               <div className="hero-text-col">
