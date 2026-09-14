@@ -394,33 +394,34 @@ button {
 }
 
 .hero-slide.active {
-  opacity: 0.32;
+  opacity: 0.82;
   transform: scale(1);
+  filter: saturate(1.05) brightness(1.05);
 }
 
 [data-theme="dark"] .hero-slide.active {
-  opacity: 0.24;
-  filter: saturate(0.8) brightness(0.9);
+  opacity: 0.72;
+  filter: saturate(1.0) brightness(1.18);
 }
 
 .hero-slideshow-overlay {
   position: absolute;
   inset: 0;
-  /* Multi-stop gradient ensuring text and interactive elements remain high-contrast and legible */
+  /* Lightened gradient ensuring text remains crisp while images shine through brightly */
   background:
     linear-gradient(
       to right,
-      var(--bg) 0%,
-      rgba(250, 248, 245, 0.94) 50%,
-      rgba(250, 248, 245, 0.76) 82%,
-      rgba(250, 248, 245, 0.88) 100%
+      rgba(250, 248, 245, 0.88) 0%,
+      rgba(250, 248, 245, 0.65) 45%,
+      rgba(250, 248, 245, 0.20) 75%,
+      rgba(250, 248, 245, 0.35) 100%
     ),
     linear-gradient(
       to bottom,
-      rgba(250, 248, 245, 0.85) 0%,
-      transparent 25%,
-      transparent 75%,
-      var(--bg) 100%
+      rgba(250, 248, 245, 0.45) 0%,
+      transparent 20%,
+      transparent 80%,
+      rgba(250, 248, 245, 0.55) 100%
     );
 }
 
@@ -428,17 +429,17 @@ button {
   background:
     linear-gradient(
       to right,
-      var(--bg) 0%,
-      rgba(18, 19, 22, 0.95) 50%,
-      rgba(18, 19, 22, 0.80) 82%,
-      rgba(18, 19, 22, 0.90) 100%
+      rgba(18, 19, 22, 0.86) 0%,
+      rgba(18, 19, 22, 0.60) 45%,
+      rgba(18, 19, 22, 0.20) 75%,
+      rgba(18, 19, 22, 0.35) 100%
     ),
     linear-gradient(
       to bottom,
-      rgba(18, 19, 22, 0.88) 0%,
-      transparent 25%,
-      transparent 75%,
-      var(--bg) 100%
+      rgba(18, 19, 22, 0.40) 0%,
+      transparent 20%,
+      transparent 80%,
+      rgba(18, 19, 22, 0.50) 100%
     );
 }
 
