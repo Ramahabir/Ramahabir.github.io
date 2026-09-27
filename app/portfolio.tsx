@@ -12,7 +12,7 @@ const links = {
 const navItems = [
   ["About", "about"],
   ["Projects", "projects"],
-  ["Skills", "skills"],
+  ["Arsenal", "skills"],
   ["Experience", "experience"],
   ["Credentials", "credentials"],
   ["Contact", "contact"],
@@ -31,6 +31,7 @@ interface Project {
   number: string;
   category: string;
   title: string;
+  impactBadge: string;
   summary: string;
   role: string;
   stack: string[];
@@ -45,41 +46,12 @@ interface Project {
   recommendedFile: string;
 }
 
-interface HeroSlide {
-  url: string;
-  title: string;
-  category: string;
-}
-
-// Hero Background Slideshow items (placeholders from archival project assets)
-const heroSlides: HeroSlide[] = [
-  {
-    url: "/projects/robot-arm-1.png",
-    title: "5-DOF Robotic Arm Manipulation",
-    category: "Robotics & Kinematics",
-  },
-  {
-    url: "/projects/hardy-iot-pcb-isometric.png",
-    title: "AgriNode Modular Greenhouse Telemetry",
-    category: "IoT Systems & Telemetry",
-  },
-  {
-    url: "/projects/la-braille-cad-concept.png",
-    title: "LA-Braille Refreshable Display",
-    category: "Assistive Embedded Tech",
-  },
-  {
-    url: "/activities/brawijaya-ee-cohort-full.jpg",
-    title: "Universitas Brawijaya Robotics & Lab Station",
-    category: "Autonomous Systems",
-  },
-];
-
 const projects: Project[] = [
   {
     number: "01",
     category: "Robotics & Kinematics",
     title: "5-DOF Robotic Arm (Dynamixel)",
+    impactBadge: "⚡ 1 Mbps Real-Time Bus · Sub-Millisecond Multi-Joint Kinematics",
     summary:
       "An articulated robotic manipulator controlled by an STM32F411 microcontroller. Combines high-speed half-duplex UART communication with Dynamixel AX-series smart actuators, custom KiCad controller hardware, and forward/inverse kinematics for coordinated multi-axis manipulation.",
     role: "Robotics & Firmware Engineer",
@@ -113,8 +85,9 @@ const projects: Project[] = [
     number: "02",
     category: "Assistive Tech & Embedded Systems",
     title: "LA-Braille: Refreshable Braille Display",
+    impactBadge: "💡 ~80% Unit Cost Reduction · 0 mW Static Hold Power · User-Validated",
     summary:
-      "As Team Lead for PKM-KI 2026 at Universitas Brawijaya, I directed the development of LA-Braille—an affordable electromechanical refreshable braille display engineered to bridge the literacy access gap for visually impaired individuals in Indonesia. The system replaces expensive conventional piezoelectric units with custom 3D-printed cam actuators and rare-earth NdFeB micro-magnets, mechanically latching braille pins with zero continuous power draw.",
+      "As Team Lead for PKM-KI 2026 at Universitas Brawijaya, I directed the development of LA-Braille: an affordable electromechanical refreshable braille display engineered to bridge the literacy access gap for visually impaired individuals in Indonesia. The system replaces expensive conventional piezoelectric units with custom 3D-printed cam actuators and rare-earth NdFeB micro-magnets, mechanically latching braille pins with zero continuous power draw.",
     role: "Team Lead & Embedded Hardware Engineer (PKM-KI 2026)",
     stack: [
       "Raspberry Pi",
@@ -131,14 +104,14 @@ const projects: Project[] = [
     specs: {
       controller: "Raspberry Pi SBC + Embedded Python Engine",
       interface: "DMOS High/Low-Side Driver Matrix + 74HC238D Decoders",
-      actuators: "Custom 3D-Printed Micro-Cams + 1×0.5mm NdFeB Magnets",
+      actuators: "Custom 3D-Printed Micro-Cams + 1x0.5mm NdFeB Magnets",
       hardware: "Low-Loss Custom KiCad Switching PCB",
       firmware: "Zero-Power Mechanical Latching State Machine",
       status: "Validated in user trials with visually impaired students at UB",
     },
     outcome: "Slashed hardware unit cost by ~80% vs. commercial piezoelectric displays with 0 mW static hold power, validated with visually impaired students at Universitas Brawijaya",
     highlights: [
-      "Zero-Static-Power Cam Actuators: Replaced expensive piezoelectric modules (~$2,000+) with custom 3D-printed rotary-to-linear cams and 1 × 0.5 mm NdFeB micro-magnets that lock pins mechanically with 0 mW idle draw.",
+      "Zero-Static-Power Cam Actuators: Replaced expensive piezoelectric modules (~$2,000+) with custom 3D-printed rotary-to-linear cams and 1 x 0.5 mm NdFeB micro-magnets that lock pins mechanically with 0 mW idle draw.",
       "Custom Driver Electronics: Designed H-bridge driving board in KiCad using Toshiba TBD62783/TBD62083 DMOS FET arrays and 74HC238D decoders for low-loss multiplexed pin actuation.",
       "Accessible Pipeline & LMS: Implemented automated PDF-to-Braille conversion (Tesseract OCR, OpenCV) and cross-platform Flutter/PostgreSQL LMS with offline caching and screen-reader compatibility.",
       "User Trial Validation: Benchmarked tactile dot height, read speeds, and mechanical endurance directly with visually impaired students at Universitas Brawijaya.",
@@ -159,8 +132,9 @@ const projects: Project[] = [
     number: "03",
     category: "Smart Agriculture & IoT Systems",
     title: "AgriNode: Modular Greenhouse IoT & Telemetry System",
+    impactBadge: "🌱 24/7 Multi-Node Telemetry · Off-Grid Solar Regulation · Live Web Platform",
     summary:
-      "A modular IoT telemetry system engineered for greenhouse environmental monitoring—solving the challenge of microclimate variance across crop beds without costly trenching. The architecture pairs modular soil/climate sensing nodes with ESP32 microcontrollers; decentralized field nodes transmit telemetry wirelessly to a central gateway that streams real-time payloads to the cloud server and live web dashboard.",
+      "A modular IoT telemetry system engineered for greenhouse environmental monitoring, solving the challenge of microclimate variance across crop beds without costly trenching. The architecture pairs modular soil/climate sensing nodes with ESP32 microcontrollers; decentralized field nodes transmit telemetry wirelessly to a central gateway that streams real-time payloads to the cloud server and live web dashboard.",
     role: "IoT Systems & Embedded Hardware Engineer",
     stack: [
       "ESP32",
@@ -181,12 +155,12 @@ const projects: Project[] = [
       firmware: "Low-Power FreeRTOS Routine, MQTT/REST Payload Ingestion",
       status: "Continuous 24/7 cloud telemetry streaming to live web platform",
     },
-    outcome: "Autonomous off-grid multi-node telemetry network streaming continuous 24/7 soil moisture & microclimate analytics to https://devel-ai.ub.ac.id/agrinode/",
+    outcome: "Autonomous off-grid multi-node telemetry network streaming continuous 24/7 soil moisture & microclimate analytics to live web platform",
     highlights: [
       "Modular Sensor Nodes: Engineered plug-and-play ESP32 node modules interfacing with capacitive soil moisture sensors and DHT22 digital probes to detect localized microclimate stress across greenhouse beds.",
       "Two-Tier Wireless Architecture: Implemented reliable node-to-gateway telemetry where distributed field nodes transmit packets wirelessly to a central edge gateway, relaying to the cloud server.",
       "Autonomous Power Management: Designed custom 2-layer KiCad PCBs with onboard TP4056 lithium charging and XL6009 boost regulation for uninterrupted solar/battery off-grid greenhouse operation.",
-      "Live Web Dashboard & Triggers: Connected telemetry directly to the AgriNode live web platform (devel-ai.ub.ac.id/agrinode) for real-time monitoring, 30-day analytics, and automated irrigation triggers.",
+      "Live Web Dashboard & Triggers: Connected telemetry directly to the AgriNode live web platform for real-time monitoring, 30-day analytics, and automated irrigation triggers.",
     ],
     href: "https://github.com/Ramahabir/IoT-Hardy",
     liveUrl: "https://devel-ai.ub.ac.id/agrinode/",
@@ -217,7 +191,7 @@ interface Experience {
 
 const experience: Experience[] = [
   {
-    period: "2025 — Present",
+    period: "2025 - Present",
     role: "KRSRI Software Engineer",
     organization: "Brawijaya Robotics Team",
     type: "Autonomous Robotics Division",
@@ -235,7 +209,7 @@ const experience: Experience[] = [
     recommendedFile: "/activities/sertifikat-krsri-hme.png",
   },
   {
-    period: "2023 — Present",
+    period: "2023 - Present",
     role: "Electrical Engineering Student",
     organization: "Universitas Brawijaya",
     type: "Undergraduate Program (GPA 3.35 / 4.00)",
@@ -281,7 +255,7 @@ const experience: Experience[] = [
   },
   {
     period: "2024",
-    role: "Community Volunteer — Bone Bolango, Gorontalo",
+    role: "Community Volunteer: Bone Bolango, Gorontalo",
     organization: "Community Volunteer Program",
     type: "Youth Education & Environmental Advocacy",
     location: "Bone Bolango, Gorontalo, Indonesia",
@@ -303,7 +277,7 @@ const experience: Experience[] = [
     recommendedFile: "/activities/volunteer-bone-bolango-children.jpg",
   },
   {
-    period: "2022 — 2023",
+    period: "2022 - 2023",
     role: "Secretary I, Student Council",
     organization: "MAN Insan Cendekia Gorontalo",
     type: "Student Leadership & Administration",
@@ -339,7 +313,7 @@ const credentials: Credential[] = [
     year: "2026",
     title: "Gemini Certified University Student",
     issuer: "Google for Education",
-    detail: "Demonstrated foundational knowledge and practical competence in generative AI concepts, prompt engineering, and core Gemini capabilities in educational and technical workflows. Valid 2026 — 2029.",
+    detail: "Demonstrated foundational knowledge and practical competence in generative AI concepts, prompt engineering, and core Gemini capabilities in educational and technical workflows. Valid 2026 - 2029.",
     badge: "Google Certified",
     href: "https://edu.google.accredible.com/b816db6c-c9ea-477a-8a01-83f4f04bd14c#acc.niwKq5Nt",
     images: ["/activities/google-gemini-certified.png", "/activities/google-gemini-badge.png"],
@@ -351,7 +325,7 @@ const credentials: Credential[] = [
     year: "2026",
     title: "PRIME Business Case Competition",
     issuer: "Petroleum Research & Innovation to Magnify Engineers",
-    detail: "Semifinalist — Formulated comprehensive technical solutions and business strategies for complex engineering scenarios.",
+    detail: "Semifinalist: Formulated comprehensive technical solutions and business strategies for complex engineering scenarios.",
     badge: "Semifinalist",
     images: ["/activities/certificate-prime.png"],
     image: "",
@@ -362,7 +336,7 @@ const credentials: Credential[] = [
     year: "2026",
     title: "2nd International Student Summit (ISS)",
     issuer: "Sentosa Foundation & INSAN, USIM, WAYS (Malaysia)",
-    detail: "Poster Presentation Finalist — Selected as finalist representing international academic collaboration across Indonesia and Malaysia.",
+    detail: "Poster Presentation Finalist: Selected as finalist representing international academic collaboration across Indonesia and Malaysia.",
     badge: "International Finalist",
     images: ["/activities/sertif-iss.png"],
     image: "",
@@ -419,7 +393,7 @@ const credentials: Credential[] = [
     year: "2025",
     title: "Scientific Design Competition",
     issuer: "Online Asian Agrocomplex Student Competition (OAASC)",
-    detail: "1st Place (Gold Medal) — Designed and defended an engineering technology concept evaluated by an international academic jury.",
+    detail: "1st Place (Gold Medal): Designed and defended an engineering technology concept evaluated by an international academic jury.",
     badge: "1st Place Winner",
     images: ["/activities/sertif-oaasc.jpg"],
     image: "",
@@ -451,7 +425,7 @@ const credentials: Credential[] = [
   {
     year: "2023",
     title: "Physics Peer Tutor (PKRb)",
-    issuer: "PKRb Remedial Learning Program — MAN Insan Cendekia Gorontalo",
+    issuer: "PKRb Remedial Learning Program, MAN Insan Cendekia Gorontalo",
     detail: "Selected as instructor to mentor students in foundational physics, problem analysis, and circuit fundamentals.",
     badge: "Academic Honor",
     images: ["/activities/sertif-tutor.png"],
@@ -461,34 +435,50 @@ const credentials: Credential[] = [
   },
 ];
 
-const skillCategories = [
+interface SkillCategory {
+  index: string;
+  name: string;
+  badge: string;
+  description: string;
+  skills: string[];
+}
+
+const skillCategories: SkillCategory[] = [
   {
     index: "01",
-    name: "Hardware & Microcontrollers",
-    skills: ["STM32 (Cortex-M)", "ESP32", "Arduino", "Raspberry Pi", "FreeRTOS", "PlatformIO"],
+    name: "Hardware, Silicon & Firmware",
+    badge: "Core Engineering",
+    description: "Bare-metal & RTOS firmware execution, precision analog sensing, and KiCad PCB fabrication.",
+    skills: ["STM32 (ARM Cortex-M)", "ESP32", "FreeRTOS", "KiCad PCB Design", "Raspberry Pi", "Arduino", "PlatformIO", "8051 Architecture"],
   },
   {
     index: "02",
-    name: "Communication & Bus Protocols",
-    skills: ["UART / USART", "MQTT", "I²C", "SPI", "CAN Bus", "Wi-Fi (802.11)", "Bluetooth BLE", "LoRa"],
+    name: "Deterministic Protocols & Hardware Buses",
+    badge: "Industrial & Telemetry",
+    description: "High-speed differential/serial communication, packet checksumming, and cloud IoT streaming.",
+    skills: ["1 Mbps Half-Duplex UART", "CAN Bus", "MQTT Telemetry", "SPI", "I2C", "Packet CRC Verification", "Wi-Fi (802.11)", "Bluetooth BLE", "LoRa"],
   },
   {
     index: "03",
-    name: "Programming & Intelligence",
-    skills: ["C", "C++", "Python", "OpenCV", "TensorFlow", "TinyML", "MATLAB", "Simulink"],
+    name: "Kinematics, Control & Embedded Vision",
+    badge: "Robotics Intelligence",
+    description: "Multi-joint forward/inverse kinematics, closed-loop PID control, and numerical simulation.",
+    skills: ["Forward & Inverse Kinematics", "Closed-Loop PID Control", "Dynamixel Protocol 1.0", "C / C++ (C11/C++17)", "Python & NumPy", "MATLAB & Simulink", "OpenCV", "Git & CI/CD"],
   },
   {
     index: "04",
-    name: "Engineering Tools & Design",
-    skills: ["KiCad (Schematic & PCB)", "Fusion 360", "Linux / Bash", "Git", "Docker", "Microsoft Azure", "Oscilloscopes & Logic Analyzers"],
+    name: "Engineering Tools & Lab Instrumentation",
+    badge: "Lab & Prototyping",
+    description: "Hardware-in-the-loop debugging, circuit analysis, and rapid mechanical integration.",
+    skills: ["Digital Oscilloscope", "Logic Analyzer", "SolidWorks", "Fusion 360", "3D Printing (Additive)", "Linux / Bash", "Docker", "VS Code"],
   },
 ];
 
-// Clean standard SVG icons
+/* Clean SVG Icons */
 function IconMail() {
   return (
-    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      <rect width="20" height="16" x="2" y="4" rx="1" />
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <rect width="20" height="16" x="2" y="4" rx="2" />
       <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
     </svg>
   );
@@ -496,7 +486,7 @@ function IconMail() {
 
 function IconGithub() {
   return (
-    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
       <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
       <path d="M9 18c-4.51 2-5-2-7-2" />
     </svg>
@@ -505,7 +495,7 @@ function IconGithub() {
 
 function IconLinkedin() {
   return (
-    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
       <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
       <rect width="4" height="12" x="2" y="9" />
       <circle cx="4" cy="4" r="2" />
@@ -516,17 +506,17 @@ function IconLinkedin() {
 function IconExternal() {
   return (
     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M15 3h6v6" />
+      <path d="M10 14 21 3" />
       <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
-      <polyline points="15 3 21 3 21 9" />
-      <line x1="10" y1="14" x2="21" y2="3" />
     </svg>
   );
 }
 
 function IconMapPin() {
   return (
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0" />
       <circle cx="12" cy="10" r="3" />
     </svg>
   );
@@ -534,53 +524,44 @@ function IconMapPin() {
 
 function IconAward() {
   return (
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="m15.477 12.89 1.515 8.526a.5.5 0 0 1-.747.468L12 19.471l-4.245 2.413a.5.5 0 0 1-.747-.468l1.515-8.526" />
       <circle cx="12" cy="8" r="6" />
-      <path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11" />
     </svg>
   );
 }
 
 function IconFileText() {
   return (
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-      <polyline points="14 2 14 8 20 8" />
-      <line x1="16" y1="13" x2="8" y2="13" />
-      <line x1="16" y1="17" x2="8" y2="17" />
-      <polyline points="10 9 9 9 8 9" />
-    </svg>
-  );
-}
-
-function IconCamera() {
-  return (
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      <path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z" />
-      <circle cx="12" cy="13" r="3" />
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z" />
+      <path d="M14 2v4a2 2 0 0 0 2 2h4" />
+      <path d="M10 9H8" />
+      <path d="M16 13H8" />
+      <path d="M16 17H8" />
     </svg>
   );
 }
 
 function IconChevronLeft() {
   return (
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      <polyline points="15 18 9 12 15 6" />
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="m15 18-6-6 6-6" />
     </svg>
   );
 }
 
 function IconChevronRight() {
   return (
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      <polyline points="9 18 15 12 9 6" />
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="m9 18 6-6-6-6" />
     </svg>
   );
 }
 
 function IconZoomIn() {
   return (
-    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
       <circle cx="11" cy="11" r="8" />
       <line x1="21" y1="21" x2="16.65" y2="16.65" />
       <line x1="11" y1="8" x2="11" y2="14" />
@@ -591,16 +572,16 @@ function IconZoomIn() {
 
 function IconClose() {
   return (
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      <line x1="18" y1="6" x2="6" y2="18" />
-      <line x1="6" y1="6" x2="18" y2="18" />
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M18 6 6 18" />
+      <path d="m6 6 12 12" />
     </svg>
   );
 }
 
 function IconSun() {
   return (
-    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
       <circle cx="12" cy="12" r="4" />
       <path d="M12 2v2" />
       <path d="M12 20v2" />
@@ -616,7 +597,7 @@ function IconSun() {
 
 function IconMoon() {
   return (
-    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
       <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" />
     </svg>
   );
@@ -625,7 +606,7 @@ function IconMoon() {
 function IconCopy() {
   return (
     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      <rect width="14" height="14" x="8" y="8" rx="1" ry="1" />
+      <rect width="14" height="14" x="8" y="8" rx="2" ry="2" />
       <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" />
     </svg>
   );
@@ -641,9 +622,9 @@ function IconCheck() {
 
 function IconArrowDown() {
   return (
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      <path d="M12 5v14" />
-      <path d="m19 12-7 7-7-7" />
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <line x1="12" y1="5" x2="12" y2="19" />
+      <polyline points="19 12 12 19 5 12" />
     </svg>
   );
 }
@@ -653,15 +634,13 @@ function ActivityImageGallery({
   images,
   image,
   alt,
-  placeholderHint,
-  recommendedFile,
   aspectRatio = "16/10",
 }: {
   images?: string[];
   image?: string | string[];
   alt: string;
-  placeholderHint: string;
-  recommendedFile: string;
+  placeholderHint?: string;
+  recommendedFile?: string;
   aspectRatio?: string;
 }) {
   const [currentIdx, setCurrentIdx] = useState(0);
@@ -723,7 +702,7 @@ function ActivityImageGallery({
             onClick={() => setIsLightboxOpen(true)}
             role="button"
             tabIndex={0}
-            title="Click to inspect plate full view"
+            title="Click to view full image"
             onKeyDown={(e) => {
               if (e.key === "Enter" || e.key === " ") {
                 e.preventDefault();
@@ -734,14 +713,14 @@ function ActivityImageGallery({
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={activePhoto}
-              alt={`${alt} (Plate ${activeIndex + 1} of ${photoList.length})`}
+              alt={`${alt} (Photo ${activeIndex + 1} of ${photoList.length})`}
               className="activity-img"
               loading="lazy"
             />
 
             <div className="gallery-zoom-hint" aria-hidden="true">
               <IconZoomIn />
-              <span>Inspect Plate</span>
+              <span>Inspect</span>
             </div>
           </div>
 
@@ -749,37 +728,29 @@ function ActivityImageGallery({
             <>
               <button
                 type="button"
-                className="gallery-nav-btn gallery-prev"
+                className="gallery-nav-btn gallery-nav-prev"
                 onClick={prevPhoto}
-                aria-label="Previous plate photo"
+                aria-label="Previous image"
               >
                 <IconChevronLeft />
               </button>
               <button
                 type="button"
-                className="gallery-nav-btn gallery-next"
+                className="gallery-nav-btn gallery-nav-next"
                 onClick={nextPhoto}
-                aria-label="Next plate photo"
+                aria-label="Next image"
               >
                 <IconChevronRight />
               </button>
-
-              <div className="gallery-counter-badge">
-                PLATE {activeIndex + 1} / {photoList.length}
-              </div>
-
-              <div className="gallery-dots-row">
-                {photoList.map((_, idx) => (
-                  <button
-                    key={idx}
-                    type="button"
-                    className={`gallery-dot ${idx === activeIndex ? "active" : ""}`}
+              <div className="gallery-nav-dots" aria-hidden="true">
+                {photoList.map((_, i) => (
+                  <span
+                    key={i}
+                    className={`gallery-dot ${i === activeIndex ? "active" : ""}`}
                     onClick={(e) => {
-                      e.preventDefault();
                       e.stopPropagation();
-                      setCurrentIdx(idx);
+                      setCurrentIdx(i);
                     }}
-                    aria-label={`Jump to plate ${idx + 1}`}
                   />
                 ))}
               </div>
@@ -787,105 +758,47 @@ function ActivityImageGallery({
           )}
         </div>
 
-        {typeof document !== "undefined" && isLightboxOpen && createPortal(
-          <div
-            className="lightbox-overlay"
-            onClick={() => setIsLightboxOpen(false)}
-            role="dialog"
-            aria-modal="true"
-            aria-label={`${alt} full view`}
-          >
-            <div className="lightbox-content" onClick={(e) => e.stopPropagation()}>
-              <div className="lightbox-header">
-                <div className="lightbox-title-text">
-                  <span>{alt}</span>
-                  {photoList.length > 1 && (
-                    <span className="lightbox-counter">
-                      [ PLATE {activeIndex + 1} / {photoList.length} ]
-                    </span>
-                  )}
-                </div>
+        {isLightboxOpen && typeof document !== "undefined" &&
+          createPortal(
+            <div
+              className="lightbox-backdrop"
+              onClick={() => setIsLightboxOpen(false)}
+              role="dialog"
+              aria-modal="true"
+              aria-label="Image Lightbox Viewer"
+            >
+              <div className="lightbox-content" onClick={(e) => e.stopPropagation()}>
                 <button
                   type="button"
                   className="lightbox-close-btn"
                   onClick={() => setIsLightboxOpen(false)}
-                  aria-label="Close plate view"
+                  aria-label="Close full view"
                 >
                   <IconClose />
+                  <span>Esc</span>
                 </button>
-              </div>
-
-              <div className="lightbox-image-container">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                  key={activePhoto}
                   src={activePhoto}
-                  alt={`${alt} (Full view, photo ${activeIndex + 1} of ${photoList.length})`}
-                  className="lightbox-image"
+                  alt={`${alt} - Full View`}
+                  className="lightbox-img"
                 />
-
-                {photoList.length > 1 && (
-                  <>
-                    <button
-                      type="button"
-                      className="lightbox-nav-btn lightbox-prev"
-                      onClick={prevPhoto}
-                      aria-label="Previous photo"
-                    >
-                      <IconChevronLeft />
-                    </button>
-                    <button
-                      type="button"
-                      className="lightbox-nav-btn lightbox-next"
-                      onClick={nextPhoto}
-                      aria-label="Next photo"
-                    >
-                      <IconChevronRight />
-                    </button>
-                  </>
-                )}
-              </div>
-
-              {photoList.length > 1 && (
-                <div className="lightbox-footer">
-                  <div className="gallery-dots-row static-dots">
-                    {photoList.map((_, idx) => (
-                      <button
-                        key={idx}
-                        type="button"
-                        className={`gallery-dot ${idx === activeIndex ? "active" : ""}`}
-                        onClick={(e) => {
-                          e.preventDefault();
-                          e.stopPropagation();
-                          setCurrentIdx(idx);
-                        }}
-                        aria-label={`Jump to photo ${idx + 1}`}
-                      />
-                    ))}
-                  </div>
+                <div className="lightbox-caption">
+                  {alt} ({activeIndex + 1} of {photoList.length})
                 </div>
-              )}
-            </div>
-          </div>,
-          document.body
-        )}
+              </div>
+            </div>,
+            document.body
+          )}
       </>
     );
   }
 
   return (
-    <div className="activity-placeholder" style={{ aspectRatio }} aria-label={`Placeholder for: ${alt}`}>
-      <div className="placeholder-content">
-        <div className="placeholder-icon-wrap" aria-hidden="true">
-          <IconCamera />
-        </div>
-        <span className="placeholder-tag">ARCHIVAL PHOTO DEPOSIT</span>
-        <p className="placeholder-hint">{placeholderHint}</p>
-        <span className="placeholder-path">
-          Deposit File: <code>public{recommendedFile}</code>
-        </span>
-        <span className="placeholder-multi-hint">
-          Multi-plate array: <code>images: [&quot;...&quot;]</code>
+    <div className="activity-gallery-box" style={{ aspectRatio }}>
+      <div className="gallery-slide-wrap" style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
+        <span style={{ fontSize: "12px", color: "var(--text-subtle)", fontFamily: "var(--font-mono)" }}>
+          Asset pending deposit
         </span>
       </div>
     </div>
@@ -898,17 +811,10 @@ export default function Portfolio() {
   const [certPage, setCertPage] = useState(1);
   const [theme, setTheme] = useState<"light" | "dark">("light");
   const [copiedEmail, setCopiedEmail] = useState(false);
-  const [currentHeroSlide, setCurrentHeroSlide] = useState(0);
+  const [projectCategory, setProjectCategory] = useState<string>("All");
 
   const CERTS_PER_PAGE = 8;
   const totalCertPages = Math.ceil(credentials.length / CERTS_PER_PAGE);
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentHeroSlide((prev) => (prev + 1) % heroSlides.length);
-    }, 5500);
-    return () => clearInterval(timer);
-  }, []);
 
   useEffect(() => {
     const saved = localStorage.getItem("theme") as "light" | "dark" | null;
@@ -973,24 +879,25 @@ export default function Portfolio() {
 
   const closeMenu = () => setMenuOpen(false);
 
+  const filteredProjects = projectCategory === "All"
+    ? projects
+    : projects.filter((p) => p.category.toLowerCase().includes(projectCategory.toLowerCase()));
+
   return (
     <div className="portfolio-shell">
       <a className="skip-link" href="#content">
         Skip to content
       </a>
 
-      {/* Broadsheet Masthead Header */}
+      {/* Main Navigation Header */}
       <header className="site-header">
-        <div className="masthead-ticker">
-          <span>VOL. 2026 · ED. 01 — ARCHIVAL ENGINEERING FOLIO</span>
-          <span>MALANG, EAST JAVA — INDONESIA</span>
-        </div>
-
         <div className="header-container">
           <a className="brand" href="#top" aria-label="Rama Habir, top of page">
             <span className="brand-badge">RH</span>
-            <span className="brand-name">Rama Habir</span>
-            <span className="brand-role">· Robotics &amp; Telecommunications</span>
+            <div className="brand-text">
+              <span className="brand-name">Rama Habir</span>
+              <span className="brand-role">Robotics &amp; Telecommunications</span>
+            </div>
           </a>
 
           <div className="header-right-group">
@@ -1016,9 +923,14 @@ export default function Portfolio() {
                 <span>Resume / CV</span>
               </a>
               <a className="nav-cta" href={links.email} onClick={closeMenu}>
-                Dispatch
+                Contact
               </a>
             </nav>
+
+            <div className="status-beacon-badge" title="Open to robotics engineering roles">
+              <span className="beacon-dot" aria-hidden="true" />
+              <span>Available for Roles</span>
+            </div>
 
             <button
               type="button"
@@ -1046,101 +958,56 @@ export default function Portfolio() {
       </header>
 
       <main id="content">
-        {/* Frontispiece / Hero Section with Background Slideshow */}
+        {/* Hero Section: Asymmetric Precision Split */}
         <section className="hero" id="top" aria-labelledby="hero-title">
-          {/* Ambient Background Slideshow */}
-          <div className="hero-slideshow" aria-hidden="true">
-            {heroSlides.map((slide, idx) => (
-              <div
-                key={slide.url}
-                className={`hero-slide ${idx === currentHeroSlide ? "active" : ""}`}
-                style={{ backgroundImage: `url(${slide.url})` }}
-              />
-            ))}
-            <div className="hero-slideshow-overlay" />
-          </div>
-
-          {/* Slideshow Telemetry HUD / Controls */}
-          <div className="hero-slideshow-hud">
-            <span className="hero-hud-label">
-              ARCHIVAL TRANSMISSION [{String(currentHeroSlide + 1).padStart(2, "0")}/{String(heroSlides.length).padStart(2, "0")}] · {heroSlides[currentHeroSlide].title}
-            </span>
-            <div className="hero-hud-controls">
-              <button
-                type="button"
-                className="hero-hud-btn"
-                onClick={() => setCurrentHeroSlide((prev) => (prev === 0 ? heroSlides.length - 1 : prev - 1))}
-                aria-label="Previous background slide"
-              >
-                <IconChevronLeft />
-              </button>
-              <div className="hero-hud-dots">
-                {heroSlides.map((_, idx) => (
-                  <button
-                    key={idx}
-                    type="button"
-                    className={`hero-hud-dot ${idx === currentHeroSlide ? "active" : ""}`}
-                    onClick={() => setCurrentHeroSlide(idx)}
-                    aria-label={`Jump to background slide ${idx + 1}`}
-                  />
-                ))}
-              </div>
-              <button
-                type="button"
-                className="hero-hud-btn"
-                onClick={() => setCurrentHeroSlide((prev) => (prev === heroSlides.length - 1 ? 0 : prev + 1))}
-                aria-label="Next background slide"
-              >
-                <IconChevronRight />
-              </button>
-            </div>
-          </div>
-
-          <div className="hero-container">
-            <div className="hero-layout">
-              <div className="hero-text-col">
-                <div className="hero-dispatch-stamp">
-                  <div className="dispatch-badge">
-                    <span className="dispatch-pulse" aria-hidden="true" />
-                    <span>Open to Robotics &amp; Embedded Roles · 2026</span>
-                  </div>
-                  <div className="dispatch-location">
+          <div className="section-container">
+            <div className="hero-grid">
+              {/* Left Column: Core Positioning */}
+              <div className="hero-content">
+                <div className="hero-tag-row">
+                  <span className="hero-tag">
+                    <span className="beacon-dot" aria-hidden="true" />
+                    Open to Robotics &amp; Embedded Roles · 2026
+                  </span>
+                  <span className="hero-tag" style={{ color: "var(--text-subtle)", fontWeight: 400 }}>
                     <IconMapPin />
-                    <span>Malang, East Java, Indonesia</span>
-                  </div>
+                    Malang, Indonesia
+                  </span>
                 </div>
 
                 <h1 id="hero-title" className="hero-title">
                   Rama Rizky Belrouzy Habir
                 </h1>
-                <div className="hero-role-badge">Robotics &amp; Embedded Firmware Engineer</div>
-                <span className="hero-subtitle">Engineering machines that sense, communicate, and act.</span>
 
-                <p className="hero-lead">
-                  Electrical Engineering student at <strong>Universitas Brawijaya</strong> and KRSRI Software Engineer with the <strong>Brawijaya Robotics Team</strong>. Specializing in bare-metal and RTOS firmware (STM32, ESP32), sensor telemetry, and deterministic communication protocols.
+                <p className="hero-subtitle">
+                  Robotics &amp; Embedded Firmware Engineer
                 </p>
 
-                <div className="hero-cta-block">
-                  <div className="hero-primary-actions">
+                <p className="hero-bio">
+                  Electrical Engineering student at <strong>Universitas Brawijaya</strong> and KRSRI Software Engineer with the <strong>Brawijaya Robotics Team</strong>. Specializing in bare-metal and RTOS firmware (STM32, ESP32), high-speed serial bus drivers, sensor telemetry, and KiCad PCB hardware.
+                </p>
+
+                <div className="hero-cta-group">
+                  <div className="hero-primary-btns">
                     <a className="btn btn-primary btn-lg" href="#projects">
-                      Explore Folio
+                      Explore Projects
                       <IconArrowDown />
                     </a>
-                    <a className="btn btn-cv btn-lg" href="/CV-Rama-Rizky-Belrouzy-Habir.pdf" target="_blank" rel="noreferrer">
+                    <a className="btn btn-outline btn-lg" href="/CV-Rama-Rizky-Belrouzy-Habir.pdf" target="_blank" rel="noreferrer">
                       <IconFileText />
                       Download CV (PDF)
                     </a>
                   </div>
 
-                  <div className="hero-secondary-actions">
+                  <div className="hero-secondary-chips">
                     <button
                       type="button"
                       className={`btn-chip ${copiedEmail ? "copied" : ""}`}
                       onClick={() => copyEmailToClipboard()}
-                      title="Click to copy email address"
+                      title="Copy email to clipboard"
                     >
                       {copiedEmail ? <IconCheck /> : <IconCopy />}
-                      <span>{copiedEmail ? "Email Copied! ✓" : "Copy Email"}</span>
+                      <span>{copiedEmail ? "Email Copied!" : "Copy Email"}</span>
                     </button>
                     <a className="btn-chip" href={links.email} title="Send email via mail client">
                       <IconMail />
@@ -1157,167 +1024,270 @@ export default function Portfolio() {
                   </div>
                 </div>
 
-                <div className="hero-colophon-grid">
-                  <div className="colophon-cell">
-                    <span className="colophon-label">Current Post</span>
-                    <strong className="colophon-value">KRSRI Software Engineer</strong>
-                    <span className="colophon-meta">Brawijaya Robotics Team</span>
+                <div className="hero-telemetry-grid">
+                  <div className="telemetry-cell">
+                    <span className="telemetry-label">Silicon &amp; Hardware</span>
+                    <strong className="telemetry-val">STM32 · ESP32 · KiCad</strong>
+                    <span className="telemetry-sub">Half-Duplex UART · FreeRTOS</span>
                   </div>
-                  <div className="colophon-cell">
-                    <span className="colophon-label">Academic Station</span>
-                    <strong className="colophon-value">Electrical Engineering</strong>
-                    <span className="colophon-meta">Universitas Brawijaya · 3.35 GPA</span>
+                  <div className="telemetry-cell">
+                    <span className="telemetry-label">Robotics Station</span>
+                    <strong className="telemetry-val">KRSRI Software Engineer</strong>
+                    <span className="telemetry-sub">Brawijaya Robotics Team</span>
                   </div>
-                  <div className="colophon-cell">
-                    <span className="colophon-label">Primary Silicon</span>
-                    <strong className="colophon-value">STM32 · ESP32 · C/C++</strong>
-                    <span className="colophon-meta">FreeRTOS · MQTT · KiCad</span>
+                  <div className="telemetry-cell">
+                    <span className="telemetry-label">Academic Base</span>
+                    <strong className="telemetry-val">Universitas Brawijaya</strong>
+                    <span className="telemetry-sub">Electrical Eng · 3.35 GPA</span>
                   </div>
                 </div>
               </div>
 
-              <div className="hero-photo-col">
-                <div className="hero-plate-card">
-                  <div className="hero-plate-header">
-                    <span>PLATE 01 · FIG. 01</span>
-                    <span className="plate-serial">PORTRAIT DEPOSIT</span>
+              {/* Right Column: Hardware Feature Card with 3D Sim Link */}
+              <div className="hero-feature-card-wrap">
+                <article className="hero-hardware-card">
+                  <div className="card-spec-header">
+                    <span className="card-spec-id">FEATURED ROBOTICS PLATFORM</span>
+                    <span className="card-spec-status">
+                      <span className="beacon-dot" aria-hidden="true" />
+                      Hardware Validated
+                    </span>
                   </div>
-                  <div className="hero-plate-wrap">
+
+                  <div className="hero-card-media">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src="/rama-profile.jpg" alt="Rama Rizky Belrouzy Habir" className="hero-profile-img" />
+                    <img
+                      src="/projects/robot-arm-1.png"
+                      alt="5-DOF Robotic Arm with Dynamixel AX Actuators"
+                      className="hero-card-img"
+                    />
                   </div>
-                  <div className="hero-plate-caption">
-                    <h3>Rama Habir</h3>
-                    <p>Robotics &amp; Embedded Firmware Engineer</p>
-                    <span>Faculty of Engineering, Universitas Brawijaya</span>
+
+                  <div className="hero-card-meta">
+                    <div className="card-meta-top">
+                      <h2 className="card-meta-title">5-DOF Robotic Manipulator (Dynamixel)</h2>
+                      <p className="card-meta-sub">
+                        Cortex-M4 100MHz microcontroller driving high-speed half-duplex UART bus communication, custom 2-layer KiCad controller PCB, and forward/inverse kinematics.
+                      </p>
+                    </div>
+
+                    <div className="card-spec-pills">
+                      <span className="card-pill">STM32F411</span>
+                      <span className="card-pill">1 Mbps Half-Duplex</span>
+                      <span className="card-pill">Dynamixel Protocol 1.0</span>
+                      <span className="card-pill">KiCad Custom PCB</span>
+                    </div>
+
+                    <div className="card-action-bar">
+                      <a
+                        className="card-sim-link"
+                        href="/6dof-simulator/index.html"
+                        target="_blank"
+                        rel="noreferrer"
+                        title="Open interactive 3D Web Simulator"
+                      >
+                        <span>Launch 3D Web Simulator</span>
+                        <IconExternal />
+                      </a>
+                      <a
+                        className="btn btn-sm btn-outline"
+                        href="https://github.com/Ramahabir/6-DOF-Robotics-Arm-Dynamixel"
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        <IconGithub />
+                        <span>Source Code</span>
+                      </a>
+                    </div>
                   </div>
+                </article>
+              </div>
+            </div>
+
+            {/* Executive Recruiter Impact Bar */}
+            <div className="recruiter-impact-bar">
+              <div className="impact-metric-card">
+                <div className="impact-metric-top">
+                  <span className="impact-metric-tag">National Robotics</span>
+                  <span className="impact-metric-badge">Contestant</span>
                 </div>
+                <div className="impact-metric-val">KRSRI Engineer</div>
+                <div className="impact-metric-desc">Autonomous fire-fighting robot software &amp; motor control with Brawijaya Robotics Team.</div>
+              </div>
+
+              <div className="impact-metric-card">
+                <div className="impact-metric-top">
+                  <span className="impact-metric-tag">High-Speed Bus</span>
+                  <span className="impact-metric-badge">&lt; 1 ms Latency</span>
+                </div>
+                <div className="impact-metric-val">1 Mbps UART</div>
+                <div className="impact-metric-desc">Engineered custom half-duplex serial driver with error-free Dynamixel Protocol 1.0 CRC.</div>
+              </div>
+
+              <div className="impact-metric-card">
+                <div className="impact-metric-top">
+                  <span className="impact-metric-tag">Assistive Tech Lead</span>
+                  <span className="impact-metric-badge">PKM-KI 2026</span>
+                </div>
+                <div className="impact-metric-val">~80% Cost Cut</div>
+                <div className="impact-metric-desc">Zero-static-power latching braille display validated with visually impaired students at UB.</div>
+              </div>
+
+              <div className="impact-metric-card">
+                <div className="impact-metric-top">
+                  <span className="impact-metric-tag">Academic Rigor</span>
+                  <span className="impact-metric-badge">3.35 GPA</span>
+                </div>
+                <div className="impact-metric-val">Electrical Eng.</div>
+                <div className="impact-metric-desc">Universitas Brawijaya · Peer Physics Tutor · Google &amp; MathWorks Certified.</div>
               </div>
             </div>
           </div>
         </section>
 
-        {/* Section 01: Engineering Background */}
+        {/* Section 01: Core Competencies */}
         <section className="section section-alt" id="about">
           <div className="section-container">
             <div className="section-header">
-              <div className="section-header-top">
-                <span className="section-stamp">SECTION 01</span>
-                <span className="section-category">BACKGROUND &amp; DISCIPLINE</span>
-              </div>
-              <h2>Engineering Background</h2>
+              <span className="section-tag">[ 01 // COMPETENCIES ]</span>
+              <h2>Core Engineering Disciplines</h2>
               <p className="section-desc">
                 Bridging embedded electronics, deterministic firmware, and real-world physical actuation.
               </p>
             </div>
 
-            <div className="about-cards-grid">
-              <div className="info-card">
-                <div className="info-card-header">
-                  <span className="info-card-num">INDEX 01</span>
-                  <h3>Embedded Hardware &amp; Firmware</h3>
-                </div>
+            <div className="competencies-grid">
+              <div className="competency-card">
+                <span className="competency-num">01.01</span>
+                <h3>Embedded Hardware &amp; Firmware</h3>
                 <p>
-                  I build firmware close to the metal: sampling analog sensors with precision ADCs, controlling actuators, implementing hardware ring buffers, and organizing non-blocking tasks under FreeRTOS.
+                  Building firmware close to the silicon: sampling analog sensors with precision ADCs, controlling actuators, implementing hardware ring buffers, and organizing non-blocking tasks under FreeRTOS.
                 </p>
+                <div className="competency-tags">
+                  <span className="competency-tag">STM32</span>
+                  <span className="competency-tag">ESP32</span>
+                  <span className="competency-tag">FreeRTOS</span>
+                  <span className="competency-tag">C/C++</span>
+                  <span className="competency-tag">KiCad</span>
+                </div>
               </div>
 
-              <div className="info-card">
-                <div className="info-card-header">
-                  <span className="info-card-num">INDEX 02</span>
-                  <h3>Autonomous Robotics</h3>
-                </div>
+              <div className="competency-card">
+                <span className="competency-num">01.02</span>
+                <h3>Autonomous Robotics &amp; Kinematics</h3>
                 <p>
-                  In the Brawijaya Robotics Team, I work on software algorithms for the national KRSRI autonomous fire-fighting robot contest—focusing on arena navigation, obstacle avoidance, and real-time responsiveness.
+                  Engineering algorithms for the national KRSRI autonomous fire-fighting robot contest with the Brawijaya Robotics Team: focusing on arena navigation, obstacle avoidance, forward/inverse kinematics, and real-time responsiveness.
                 </p>
+                <div className="competency-tags">
+                  <span className="competency-tag">KRSRI Contest</span>
+                  <span className="competency-tag">Inverse Kinematics</span>
+                  <span className="competency-tag">Sensor Fusion</span>
+                  <span className="competency-tag">PID Loops</span>
+                </div>
               </div>
 
-              <div className="info-card">
-                <div className="info-card-header">
-                  <span className="info-card-num">INDEX 03</span>
-                  <h3>Communication Protocols</h3>
-                </div>
+              <div className="competency-card">
+                <span className="competency-num">01.03</span>
+                <h3>Deterministic Protocols &amp; Telemetry</h3>
                 <p>
-                  Specializing in reliable device communication: UART/USART serial bridges, packet framing with checksum verification, MQTT IoT telemetry, and bus protocols like I²C, SPI, and CAN.
+                  Specializing in reliable device communication: UART/USART serial bridges, packet framing with CRC error trapping, MQTT IoT telemetry, and industrial bus protocols like I2C, SPI, and CAN.
                 </p>
+                <div className="competency-tags">
+                  <span className="competency-tag">1 Mbps UART</span>
+                  <span className="competency-tag">CAN Bus</span>
+                  <span className="competency-tag">SPI / I2C</span>
+                  <span className="competency-tag">MQTT</span>
+                </div>
               </div>
             </div>
           </div>
         </section>
 
-        {/* Section 02: Selected Engineering Projects (Folio Plates) */}
+        {/* Section 02: Selected Engineering Projects */}
         <section className="section" id="projects">
           <div className="section-container">
             <div className="section-header">
-              <div className="section-header-top">
-                <span className="section-stamp">SECTION 02</span>
-                <span className="section-category">SELECTED ENGINEERING PLATES</span>
-              </div>
-              <h2>Engineering Folio</h2>
+              <span className="section-tag">[ 02 // PORTFOLIO ]</span>
+              <h2>Featured Engineering Systems</h2>
               <p className="section-desc">
-                Curated physical computing systems, embedded firmware, and verifiable hardware designs.
+                Curated physical computing systems, embedded firmware architectures, and verifiable hardware designs.
               </p>
             </div>
 
-            <div className="project-cards-container">
-              {projects.map((project) => (
-                <article className="folio-plate" key={project.title}>
-                  <div className="folio-plate-media">
+            <div className="project-filter-bar" role="tablist" aria-label="Project Categories">
+              {["All", "Robotics", "Assistive", "IoT"].map((cat) => (
+                <button
+                  key={cat}
+                  type="button"
+                  className={`filter-btn ${projectCategory === cat ? "active" : ""}`}
+                  onClick={() => setProjectCategory(cat)}
+                  role="tab"
+                  aria-selected={projectCategory === cat}
+                >
+                  {cat === "All" ? "All Projects (3)" : cat === "Robotics" ? "Robotics & Kinematics" : cat === "Assistive" ? "Assistive Tech" : "IoT & Telemetry"}
+                </button>
+              ))}
+            </div>
+
+            <div className="projects-list">
+              {filteredProjects.map((project) => (
+                <article className="project-card" key={project.title}>
+                  <div className="project-media-col">
                     <ActivityImageGallery
                       images={project.images}
                       image={project.image}
                       alt={project.title}
-                      placeholderHint={project.placeholderHint}
-                      recommendedFile={project.recommendedFile}
                       aspectRatio="16/10"
                     />
-                    <div className="plate-media-caption">
-                      <span><strong>FIG. {project.number}</strong> — ARCHIVAL ARTIFACT</span>
-                      <span>DEPOSIT NO. {project.number}/03</span>
-                    </div>
                   </div>
 
-                  <div className="folio-plate-content">
-                    <div className="folio-meta-bar">
-                      <span className="folio-stamp-tag">FOLIO {project.number}</span>
-                      <span className="folio-category-tag">{project.category}</span>
+                  <div className="project-content-col">
+                    <div className="project-header-row">
+                      <span className="project-category-tag">{project.category}</span>
+                      <span className="project-serial">SYS {project.number}</span>
                     </div>
 
-                    <h3 className="folio-title">{project.title}</h3>
-                    <p className="folio-summary">{project.summary}</p>
+                    <h3 className="project-title">{project.title}</h3>
+                    <div className="project-impact-banner">
+                      <span>{project.impactBadge}</span>
+                    </div>
+                    <p className="project-summary">{project.summary}</p>
 
-                    {/* Technical Equipment Specification Table */}
-                    <div className="spec-table-box">
-                      <div className="spec-table-header">
-                        <span>TECHNICAL SPECIFICATION SHEET</span>
-                        <span>REV. 2026</span>
+                    {/* Hardware Spec Table */}
+                    <div className="spec-box">
+                      <div className="spec-header">
+                        <span>TECHNICAL ARCHITECTURE SPECIFICATION</span>
+                        <span className="spec-verified-pill">
+                          <span className="beacon-dot" aria-hidden="true" />
+                          VERIFIED HARDWARE
+                        </span>
                       </div>
-                      <div className="spec-table-grid">
-                        <div className="spec-cell">
-                          <span className="spec-label">CONTROLLER SILICON</span>
-                          <span className="spec-val">{project.specs.controller}</span>
+                      <div className="spec-grid">
+                        <div className="spec-item">
+                          <span className="spec-k">Controller Silicon</span>
+                          <span className="spec-v">{project.specs.controller}</span>
                         </div>
-                        <div className="spec-cell">
-                          <span className="spec-label">INTERFACE / BUS</span>
-                          <span className="spec-val">{project.specs.interface}</span>
+                        <div className="spec-item">
+                          <span className="spec-k">Interface / Bus</span>
+                          <span className="spec-v">{project.specs.interface}</span>
                         </div>
-                        <div className="spec-cell">
-                          <span className="spec-label">ACTUATORS / SENSORS</span>
-                          <span className="spec-val">{project.specs.actuators}</span>
+                        <div className="spec-item">
+                          <span className="spec-k">Actuators / Sensors</span>
+                          <span className="spec-v">{project.specs.actuators}</span>
                         </div>
-                        <div className="spec-cell">
-                          <span className="spec-label">CIRCUIT HARDWARE</span>
-                          <span className="spec-val">{project.specs.hardware}</span>
+                        <div className="spec-item">
+                          <span className="spec-k">Circuit Hardware</span>
+                          <span className="spec-v">{project.specs.hardware}</span>
                         </div>
                       </div>
-                      <div className="spec-outcome-banner">
-                        <strong>BENCHMARK &amp; DEPLOYMENT STATUS</strong>
+                      <div className="spec-outcome">
+                        <strong>BENCHMARK &amp; DEPLOYMENT OUTCOME</strong>
                         <span>{project.outcome}</span>
                       </div>
                     </div>
 
-                    <div className="folio-highlights">
-                      <strong>CORE ENGINEERING DELIVERABLES:</strong>
+                    <div className="project-highlights">
+                      <strong>Core Deliverables:</strong>
                       <ul>
                         {project.highlights.map((point, idx) => (
                           <li key={idx}>{point}</li>
@@ -1325,62 +1295,89 @@ export default function Portfolio() {
                       </ul>
                     </div>
 
-                    <div className="folio-tech-tags">
+                    <div className="project-tech-tags">
                       {project.stack.map((item) => (
-                        <span className="folio-tag" key={item}>
+                        <span className="project-tech-tag" key={item}>
                           {item}
                         </span>
                       ))}
                     </div>
 
-                    <div className="folio-btn-row">
+                    <div className="project-actions">
+                      {project.number === "01" && (
+                        <a className="btn btn-sm btn-primary" href="/6dof-simulator/index.html" target="_blank" rel="noreferrer">
+                          <IconExternal />
+                          Launch 3D Web Simulator
+                        </a>
+                      )}
                       {project.liveUrl && (
                         <a className="btn btn-sm btn-primary" href={project.liveUrl} target="_blank" rel="noreferrer">
-                          Live Web Dashboard
                           <IconExternal />
+                          Live Web Dashboard
                         </a>
                       )}
                       <a
-                        className={`btn btn-sm ${project.liveUrl ? "btn-outline" : "btn-primary"}`}
+                        className="btn btn-sm btn-outline"
                         href={project.href}
                         target="_blank"
                         rel="noreferrer"
                       >
-                        View Source Code
-                        <IconExternal />
+                        <IconGithub />
+                        Source Code
                       </a>
                     </div>
                   </div>
                 </article>
               ))}
             </div>
+
+            {/* 3D Simulator Spotlight Banner */}
+            <div className="simulator-spotlight-banner">
+              <div className="sim-banner-text">
+                <span className="sim-banner-tag">Interactive Simulation Module</span>
+                <h3>6-DOF Robotic Arm 3D Web Simulator</h3>
+                <p>
+                  Experience the interactive 3D kinematic model, URDF joint definitions, and coordinate transform visualization directly in your browser.
+                </p>
+              </div>
+              <a
+                className="btn btn-primary btn-lg"
+                href="/6dof-simulator/index.html"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Launch Simulator
+                <IconExternal />
+              </a>
+            </div>
           </div>
         </section>
 
-        {/* Section 03: Technical Skills & Toolkit */}
+        {/* Section 03: Technical Arsenal */}
         <section className="section section-alt" id="skills">
           <div className="section-container">
             <div className="section-header">
-              <div className="section-header-top">
-                <span className="section-stamp">SECTION 03</span>
-                <span className="section-category">TECHNICAL CAPABILITIES</span>
-              </div>
-              <h2>Technical Catalog</h2>
+              <span className="section-tag">[ 03 // TOOLKIT ]</span>
+              <h2>Technical Arsenal &amp; Silicon</h2>
               <p className="section-desc">
-                Specialized hardware, bare-metal &amp; RTOS firmware, communication protocols, and engineering design tools.
+                Specialized microcontrollers, bare-metal &amp; RTOS firmware, communication protocols, and engineering design tools.
               </p>
             </div>
 
-            <div className="skills-compendium-grid">
+            <div className="toolkit-grid">
               {skillCategories.map((cat) => (
-                <div className="compendium-card" key={cat.name}>
-                  <div className="compendium-card-header">
-                    <span className="compendium-index-tag">CATALOG · {cat.index}</span>
-                    <h3 className="compendium-title">{cat.name}</h3>
+                <div className="toolkit-card" key={cat.name}>
+                  <div className="toolkit-card-header">
+                    <div>
+                      <span className="toolkit-badge">{cat.badge}</span>
+                      <h3>{cat.name}</h3>
+                    </div>
+                    <span className="toolkit-index">CAT {cat.index}</span>
                   </div>
-                  <div className="compendium-items-wrap">
+                  <p className="toolkit-desc">{cat.description}</p>
+                  <div className="toolkit-pills">
                     {cat.skills.map((skill) => (
-                      <span className="compendium-item" key={skill}>
+                      <span className="toolkit-pill" key={skill}>
                         {skill}
                       </span>
                     ))}
@@ -1391,55 +1388,52 @@ export default function Portfolio() {
           </div>
         </section>
 
-        {/* Section 04: Experience & Field Chronicle */}
+        {/* Section 04: Experience & Chronology */}
         <section className="section" id="experience">
           <div className="section-container">
             <div className="section-header">
-              <div className="section-header-top">
-                <span className="section-stamp">SECTION 04</span>
-                <span className="section-category">CHRONOLOGY &amp; FIELDWORK</span>
-              </div>
-              <h2>Archival Chronicle</h2>
+              <span className="section-tag">[ 04 // FIELDWORK ]</span>
+              <h2>Chronology &amp; Engineering Experience</h2>
               <p className="section-desc">
                 Hands-on engineering through robotics competitions, university lab work, community outreach, and leadership.
               </p>
             </div>
 
-            <div className="experience-cards-container">
+            <div className="chronology-list">
               {experience.map((item) => (
-                <article className="chronicle-card" key={`${item.period}-${item.role}`}>
-                  <div className="exp-image-side">
+                <article className="chronology-item" key={`${item.period}-${item.role}`}>
+                  <div className="chronology-media">
                     <ActivityImageGallery
                       images={item.images}
                       image={item.image}
                       alt={`${item.role} at ${item.organization}`}
-                      placeholderHint={item.placeholderHint}
-                      recommendedFile={item.recommendedFile}
                       aspectRatio="16/10"
                     />
                   </div>
 
-                  <div className="exp-info-side">
-                    <div className="chronicle-top-line">
-                      <span className="chronicle-period-tag">{item.period}</span>
-                      <span className="chronicle-location">{item.location}</span>
+                  <div className="chronology-body">
+                    <div className="chronology-header">
+                      <span className="chronology-period">{item.period}</span>
+                      <span className="chronology-location">
+                        <IconMapPin />
+                        {item.location}
+                      </span>
                     </div>
 
-                    <h3 className="chronicle-title">{item.role}</h3>
-                    <p className="chronicle-org">
-                      <strong>{item.organization}</strong> · <span>{item.type}</span>
-                    </p>
-
-                    <p className="chronicle-desc">{item.description}</p>
-
-                    <div className="exp-checklist">
-                      <strong>FIELD OPERATIONS &amp; CONTRIBUTIONS:</strong>
-                      <ul>
-                        {item.bullets.map((bullet, idx) => (
-                          <li key={idx}>{bullet}</li>
-                        ))}
-                      </ul>
+                    <div>
+                      <h3 className="chronology-role">{item.role}</h3>
+                      <p className="chronology-org">
+                        <strong>{item.organization}</strong> · <span>{item.type}</span>
+                      </p>
                     </div>
+
+                    <p className="chronology-desc">{item.description}</p>
+
+                    <ul className="chronology-bullets">
+                      {item.bullets.map((bullet, idx) => (
+                        <li key={idx}>{bullet}</li>
+                      ))}
+                    </ul>
                   </div>
                 </article>
               ))}
@@ -1447,15 +1441,12 @@ export default function Portfolio() {
           </div>
         </section>
 
-        {/* Section 05: Credentials & Document Register */}
+        {/* Section 05: Verified Credentials */}
         <section className="section section-alt" id="credentials">
           <div className="section-container">
             <div className="section-header">
-              <div className="section-header-top">
-                <span className="section-stamp">SECTION 05</span>
-                <span className="section-category">VERIFICATION &amp; AWARDS</span>
-              </div>
-              <h2>Credential Register</h2>
+              <span className="section-tag">[ 05 // VERIFICATION ]</span>
+              <h2>Credentials &amp; Verified Honors</h2>
               <p className="section-desc">
                 Verified competition honors, international summits, and certified technical training.
               </p>
@@ -1465,24 +1456,23 @@ export default function Portfolio() {
               {credentials.map((cred, index) => {
                 const itemPage = Math.floor(index / CERTS_PER_PAGE) + 1;
                 const isVisible = itemPage === certPage;
+                if (!isVisible) return null;
+
                 return (
-                  <article
-                    className={`cred-card ${isVisible ? "page-active" : "page-hidden"}`}
-                    key={cred.title}
-                    style={{ display: isVisible ? undefined : "none" }}
-                    aria-hidden={!isVisible}
-                  >
-                    <div className="cred-header">
-                      <div className="cred-icon-wrap">
-                        <IconAward />
-                      </div>
-                      {cred.badge && <span className="cred-badge-pill">{cred.badge}</span>}
+                  <article className="credential-card" key={cred.title}>
+                    <div className="cred-top">
+                      <span className="cred-year">{cred.year}</span>
+                      {cred.badge && (
+                        <span className="cred-badge">
+                          <IconAward />
+                          <span>{cred.badge}</span>
+                        </span>
+                      )}
                     </div>
 
-                    <span className="cred-year-tag">{cred.year} · REGISTERED</span>
-                    <h3 className="cred-card-title">
+                    <h3 className="cred-title">
                       {cred.href ? (
-                        <a href={cred.href} target="_blank" rel="noreferrer" className="cred-title-link">
+                        <a href={cred.href} target="_blank" rel="noreferrer" title="Verify credential online">
                           {cred.title}
                           <IconExternal />
                         </a>
@@ -1490,17 +1480,16 @@ export default function Portfolio() {
                         cred.title
                       )}
                     </h3>
-                    <p className="cred-issuer-text">{cred.issuer}</p>
-                    <p className="cred-description">{cred.detail}</p>
 
-                    <div className="cred-photo-slot">
+                    <p className="cred-issuer">{cred.issuer}</p>
+                    <p className="cred-detail">{cred.detail}</p>
+
+                    <div className="cred-gallery-slot">
                       <ActivityImageGallery
                         images={cred.images}
                         image={cred.image}
                         alt={cred.title}
-                        placeholderHint={cred.placeholderHint}
-                        recommendedFile={cred.recommendedFile}
-                        aspectRatio="4/3"
+                        aspectRatio="16/10"
                       />
                     </div>
                   </article>
@@ -1511,12 +1500,12 @@ export default function Portfolio() {
             {totalCertPages > 1 && (
               <nav className="pagination-bar" aria-label="Certificates pagination">
                 <div className="pagination-info">
-                  REGISTER: <strong>{(certPage - 1) * CERTS_PER_PAGE + 1}–{Math.min(certPage * CERTS_PER_PAGE, credentials.length)}</strong> OF <strong>{credentials.length}</strong> DOCUMENTS
+                  Showing <strong>{(certPage - 1) * CERTS_PER_PAGE + 1}-{Math.min(certPage * CERTS_PER_PAGE, credentials.length)}</strong> of <strong>{credentials.length}</strong> credentials
                 </div>
                 <div className="pagination-controls">
                   <button
                     type="button"
-                    className="pagination-btn pagination-nav-btn"
+                    className="pagination-btn"
                     onClick={() => handleCertPageChange(certPage - 1)}
                     disabled={certPage === 1}
                     aria-label="Previous page"
@@ -1525,24 +1514,22 @@ export default function Portfolio() {
                     <span>Prev</span>
                   </button>
 
-                  <div className="pagination-pages">
-                    {Array.from({ length: totalCertPages }, (_, i) => i + 1).map((pageNum) => (
-                      <button
-                        key={pageNum}
-                        type="button"
-                        className={`pagination-btn pagination-num-btn ${pageNum === certPage ? "active" : ""}`}
-                        onClick={() => handleCertPageChange(pageNum)}
-                        aria-current={pageNum === certPage ? "page" : undefined}
-                        aria-label={`Page ${pageNum}`}
-                      >
-                        {pageNum}
-                      </button>
-                    ))}
-                  </div>
+                  {Array.from({ length: totalCertPages }, (_, i) => i + 1).map((pageNum) => (
+                    <button
+                      key={pageNum}
+                      type="button"
+                      className={`pagination-btn ${pageNum === certPage ? "active" : ""}`}
+                      onClick={() => handleCertPageChange(pageNum)}
+                      aria-current={pageNum === certPage ? "page" : undefined}
+                      aria-label={`Page ${pageNum}`}
+                    >
+                      {pageNum}
+                    </button>
+                  ))}
 
                   <button
                     type="button"
-                    className="pagination-btn pagination-nav-btn"
+                    className="pagination-btn"
                     onClick={() => handleCertPageChange(certPage + 1)}
                     disabled={certPage === totalCertPages}
                     aria-label="Next page"
@@ -1556,68 +1543,67 @@ export default function Portfolio() {
           </div>
         </section>
 
-        {/* Section 06: Contact & Correspondence Bureau */}
+        {/* Section 06: Direct Correspondence */}
         <section className="section" id="contact">
           <div className="section-container">
-            <div className="contact-card">
-              <div className="contact-content">
-                <div className="section-header-top">
-                  <span className="section-stamp">SECTION 06</span>
-                  <span className="section-category">DIRECT CORRESPONDENCE</span>
+            <div className="contact-grid">
+              <div className="contact-info">
+                <div>
+                  <span className="section-tag">[ 06 // CORRESPONDENCE ]</span>
+                  <h2>Initiate Direct Contact</h2>
                 </div>
-                <h2>Correspondence Bureau</h2>
                 <p>
                   I am actively seeking robotics engineering internships, embedded firmware roles, and IoT collaborations. Direct correspondence is welcome.
                 </p>
 
-                <div className="contact-details-list">
-                  <div className="contact-detail-item">
-                    <span className="cd-title">ELECTRONIC MAIL:</span>
-                    <a className="cd-link" href={links.email}>
+                <div className="contact-fields">
+                  <div className="contact-field-row">
+                    <span className="field-label">Electronic Mail</span>
+                    <a className="field-link" href={links.email}>
                       rizkyhabir88@gmail.com
                     </a>
                   </div>
-                  <div className="contact-detail-item">
-                    <span className="cd-title">STATION LOCATION:</span>
-                    <span className="cd-val">Malang, East Java, Indonesia</span>
+                  <div className="contact-field-row">
+                    <span className="field-label">Location Station</span>
+                    <span className="field-value">Malang, East Java, Indonesia</span>
                   </div>
-                  <div className="contact-detail-item">
-                    <span className="cd-title">PUBLIC DEPOSIT:</span>
-                    <div className="cd-links">
-                      <a href={links.github} target="_blank" rel="noreferrer">
+                  <div className="contact-field-row">
+                    <span className="field-label">Public Archives</span>
+                    <div style={{ display: "flex", gap: "12px", marginTop: "4px" }}>
+                      <a className="field-link" href={links.github} target="_blank" rel="noreferrer">
                         GitHub Archive ↗
                       </a>
-                      <span>·</span>
-                      <a href={links.linkedin} target="_blank" rel="noreferrer">
+                      <span style={{ color: "var(--border)" }}>|</span>
+                      <a className="field-link" href={links.linkedin} target="_blank" rel="noreferrer">
                         LinkedIn Profile ↗
                       </a>
                     </div>
                   </div>
                 </div>
 
-                <div className="contact-response-badge">
-                  <span className="contact-response-dot" aria-hidden="true" />
-                  <span>OFFICIAL DISPATCH: Typically acknowledged within 24 hours</span>
+                <div className="contact-sla-badge">
+                  <span className="contact-sla-dot" aria-hidden="true" />
+                  <span>Typically acknowledged within 24 hours</span>
                 </div>
               </div>
 
-              <div className="contact-cta-panel">
+              <div className="contact-actions-panel">
                 <a className="btn btn-primary btn-lg" href={links.email}>
                   <IconMail />
-                  Transmit Message
+                  Transmit Email Message
                 </a>
                 <button
                   type="button"
                   className={`btn btn-outline btn-lg ${copiedEmail ? "copied" : ""}`}
                   onClick={() => copyEmailToClipboard()}
-                  title="Click to copy email to clipboard"
+                  title="Copy email to clipboard"
                 >
                   {copiedEmail ? <IconCheck /> : <IconCopy />}
-                  <span>{copiedEmail ? "Address Copied! ✓" : "Copy Email"}</span>
+                  <span>{copiedEmail ? "Address Copied!" : "Copy Email Address"}</span>
                 </button>
                 <a className="btn btn-secondary btn-lg" href={links.linkedin} target="_blank" rel="noreferrer">
                   <IconLinkedin />
-                  Connect via LinkedIn
+                  Connect on LinkedIn
                 </a>
               </div>
             </div>
@@ -1625,14 +1611,14 @@ export default function Portfolio() {
         </section>
       </main>
 
-      {/* Broadsheet Colophon Footer */}
+      {/* Swiss Colophon Footer */}
       <footer className="site-footer">
         <div className="footer-container">
           <div className="footer-left">
             <span className="brand-badge">RH</span>
-            <div>
+            <div className="footer-meta">
               <strong>Rama Rizky Belrouzy Habir</strong>
-              <p>Robotics &amp; Telecommunications · Universitas Brawijaya · Malang, Indonesia</p>
+              <span>Robotics &amp; Telecommunications · Universitas Brawijaya · Malang, Indonesia</span>
             </div>
           </div>
 
@@ -1646,8 +1632,8 @@ export default function Portfolio() {
             <a href={links.email}>
               Email
             </a>
-            <a href="#top">
-              Back to Top ↑
+            <a href="#top" title="Jump to top of page">
+              Top ↑
             </a>
           </div>
         </div>
