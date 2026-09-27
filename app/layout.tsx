@@ -8,7 +8,7 @@ const socialImage = new URL("og-v2.png", `${siteUrl.replace(/\/$/, "")}/`).toStr
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Rama Habir | Robotics & Telecommunications",
+    default: "Rama Habir — Robotics & Telecommunications",
     template: "%s | Rama Habir",
   },
   description:
@@ -19,14 +19,14 @@ export const metadata: Metadata = {
     icon: `${basePath}/favicon.svg`,
   },
   openGraph: {
-    title: "Rama Habir | Robotics & Telecommunications",
+    title: "Rama Habir — Robotics & Telecommunications",
     description: "Building machines that sense, communicate, and act.",
     type: "website",
-    images: [{ url: socialImage, width: 1660, height: 948, alt: "Rama Habir: Robotics & Telecommunications" }],
+    images: [{ url: socialImage, width: 1660, height: 948, alt: "Rama Habir — Robotics & Telecommunications" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Rama Habir | Robotics & Telecommunications",
+    title: "Rama Habir — Robotics & Telecommunications",
     description: "Building machines that sense, communicate, and act.",
     images: [socialImage],
   },
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  themeColor: "#FAFAFC",
+  themeColor: "#FAF8F5",
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
