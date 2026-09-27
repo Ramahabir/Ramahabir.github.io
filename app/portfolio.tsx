@@ -82,7 +82,7 @@ const projects: Project[] = [
     number: "01",
     category: "Robotics & Kinematics",
     title: "5-DOF Robotic Arm (Dynamixel)",
-    impactBadge: "⚡ 1 Mbps Real-Time Bus · Sub-Millisecond Multi-Joint Kinematics",
+    impactBadge: "1 Mbps Real-Time Bus · Sub-Millisecond Multi-Joint Kinematics",
     summary:
       "An articulated robotic manipulator controlled by an STM32F411 microcontroller. Combines high-speed half-duplex UART communication with Dynamixel AX-series smart actuators, custom KiCad controller hardware, and forward/inverse kinematics for coordinated multi-axis manipulation.",
     role: "Lead Firmware & Controls Developer",
@@ -118,7 +118,7 @@ const projects: Project[] = [
     number: "02",
     category: "Assistive Tech & Embedded Systems",
     title: "LA-Braille: Refreshable Braille Display",
-    impactBadge: "💡 ~80% Unit Cost Reduction · 0 mW Static Hold Power · User-Validated",
+    impactBadge: "~80% Unit Cost Reduction · 0 mW Static Hold Power · User-Validated",
     summary:
       "As Team Lead for PKM-KI 2026 at Universitas Brawijaya, I directed the development of LA-Braille—an affordable electromechanical refreshable braille display engineered to bridge the literacy access gap for visually impaired individuals in Indonesia. The system replaces expensive conventional piezoelectric units with custom 3D-printed cam actuators and rare-earth NdFeB micro-magnets, mechanically latching braille pins with zero continuous power draw.",
     role: "Team Lead & Embedded Hardware Engineer (PKM-KI 2026)",
@@ -167,7 +167,7 @@ const projects: Project[] = [
     number: "03",
     category: "Smart Agriculture & IoT Systems",
     title: "AgriNode: Modular Greenhouse IoT & Telemetry System",
-    impactBadge: "🌱 24/7 Multi-Node Telemetry · Off-Grid Solar Regulation · Live Web Platform",
+    impactBadge: "24/7 Multi-Node Telemetry · Off-Grid Solar Regulation · Live Web Platform",
     summary:
       "A modular IoT telemetry system engineered for greenhouse environmental monitoring—solving the challenge of microclimate variance across crop beds without costly trenching. The architecture pairs modular soil/climate sensing nodes with ESP32 microcontrollers; decentralized field nodes transmit telemetry wirelessly to a central gateway that streams real-time payloads to the cloud server and live web dashboard.",
     role: "Lead Embedded & IoT Systems Engineer",
@@ -1129,7 +1129,6 @@ export default function Portfolio() {
               <div className="hero-text-col">
                 <div className="hero-dispatch-stamp">
                   <div className="dispatch-badge">
-                    <span className="dispatch-pulse" aria-hidden="true" />
                     <span>Open to Full-Time &amp; Internship Roles · Expected Grad 2026/2027</span>
                   </div>
                   <div className="dispatch-location">
@@ -1343,7 +1342,6 @@ export default function Portfolio() {
 
                     <h3 className="folio-title">{project.title}</h3>
                     <div className="folio-impact-stamp">
-                      <span className="stamp-pulse" aria-hidden="true" />
                       <span>{project.impactBadge}</span>
                     </div>
                     <p className="folio-summary">{project.summary}</p>
@@ -1555,7 +1553,7 @@ export default function Portfolio() {
                   setCertPage(1);
                 }}
               >
-                🏆 Competitions &amp; Honors (4)
+                Competitions &amp; Honors (4)
               </button>
               <button
                 type="button"
@@ -1565,7 +1563,7 @@ export default function Portfolio() {
                   setCertPage(1);
                 }}
               >
-                📜 Professional &amp; Cloud (3)
+                Professional &amp; Cloud (3)
               </button>
               <button
                 type="button"
@@ -1575,7 +1573,7 @@ export default function Portfolio() {
                   setCertPage(1);
                 }}
               >
-                🎓 Technical Training (4)
+                Technical Training (4)
               </button>
             </div>
 

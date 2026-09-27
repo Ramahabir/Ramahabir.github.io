@@ -556,30 +556,6 @@ button {
   text-transform: uppercase;
 }
 
-.dispatch-pulse {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: #FFFFFF;
-  box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7);
-  animation: whitePulse 2s infinite;
-}
-
-@keyframes whitePulse {
-  0% {
-    transform: scale(0.95);
-    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7);
-  }
-  70% {
-    transform: scale(1);
-    box-shadow: 0 0 0 5px rgba(255, 255, 255, 0);
-  }
-  100% {
-    transform: scale(0.95);
-    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
-  }
-}
-
 .dispatch-location {
   display: inline-flex;
   align-items: center;
@@ -1533,30 +1509,6 @@ button {
   color: var(--primary);
   width: fit-content;
   margin-bottom: 14px;
-}
-
-.stamp-pulse {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--primary);
-  box-shadow: 0 0 0 rgba(194, 65, 12, 0.4);
-  animation: pulseDot 2s infinite ease-in-out;
-}
-
-@keyframes pulseDot {
-  0% {
-    transform: scale(0.95);
-    box-shadow: 0 0 0 0 rgba(194, 65, 12, 0.5);
-  }
-  70% {
-    transform: scale(1.15);
-    box-shadow: 0 0 0 5px rgba(194, 65, 12, 0);
-  }
-  100% {
-    transform: scale(0.95);
-    box-shadow: 0 0 0 0 rgba(194, 65, 12, 0);
-  }
 }
 
 .folio-summary {
