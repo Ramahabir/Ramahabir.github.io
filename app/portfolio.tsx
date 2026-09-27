@@ -34,6 +34,7 @@ interface Project {
   impactBadge: string;
   summary: string;
   role: string;
+  contribution: string;
   stack: string[];
   specs: ProjectSpec;
   outcome: string;
@@ -84,7 +85,9 @@ const projects: Project[] = [
     impactBadge: "⚡ 1 Mbps Real-Time Bus · Sub-Millisecond Multi-Joint Kinematics",
     summary:
       "An articulated robotic manipulator controlled by an STM32F411 microcontroller. Combines high-speed half-duplex UART communication with Dynamixel AX-series smart actuators, custom KiCad controller hardware, and forward/inverse kinematics for coordinated multi-axis manipulation.",
-    role: "Robotics & Firmware Engineer",
+    role: "Lead Firmware & Controls Developer",
+    contribution:
+      "Personally engineered the custom half-duplex UART serial bus driver with 74LS241 tri-state logic, derived forward/inverse kinematics equations in C/C++, and built the interactive WebGL 3D simulator.",
     stack: ["STM32F411", "C / C++", "Dynamixel", "Half-Duplex UART", "KiCad", "FreeRTOS"],
     specs: {
       controller: "STM32F411 (ARM Cortex-M4 @ 100MHz)",
@@ -119,6 +122,8 @@ const projects: Project[] = [
     summary:
       "As Team Lead for PKM-KI 2026 at Universitas Brawijaya, I directed the development of LA-Braille—an affordable electromechanical refreshable braille display engineered to bridge the literacy access gap for visually impaired individuals in Indonesia. The system replaces expensive conventional piezoelectric units with custom 3D-printed cam actuators and rare-earth NdFeB micro-magnets, mechanically latching braille pins with zero continuous power draw.",
     role: "Team Lead & Embedded Hardware Engineer (PKM-KI 2026)",
+    contribution:
+      "Conceptualized the 0 mW zero-power mechanical latching cam mechanism, routed the custom DMOS H-bridge switching PCB in KiCad, and organized user validation trials with visually impaired students at UB.",
     stack: [
       "Raspberry Pi",
       "KiCad",
@@ -165,7 +170,9 @@ const projects: Project[] = [
     impactBadge: "🌱 24/7 Multi-Node Telemetry · Off-Grid Solar Regulation · Live Web Platform",
     summary:
       "A modular IoT telemetry system engineered for greenhouse environmental monitoring—solving the challenge of microclimate variance across crop beds without costly trenching. The architecture pairs modular soil/climate sensing nodes with ESP32 microcontrollers; decentralized field nodes transmit telemetry wirelessly to a central gateway that streams real-time payloads to the cloud server and live web dashboard.",
-    role: "IoT Systems & Embedded Hardware Engineer",
+    role: "Lead Embedded & IoT Systems Engineer",
+    contribution:
+      "Architected the ESP32 wireless sensor telemetry pipeline, designed the 2-layer solar/battery power management PCB in KiCad (TP4056/XL6009), and developed the live public web dashboard.",
     stack: [
       "ESP32",
       "KiCad (Schematic & PCB)",
@@ -330,6 +337,7 @@ interface Credential {
   title: string;
   issuer: string;
   detail: string;
+  category: "award" | "certification" | "training";
   badge?: string;
   href?: string;
   images?: string[];
@@ -344,6 +352,7 @@ const credentials: Credential[] = [
     title: "Gemini Certified University Student",
     issuer: "Google for Education",
     detail: "Demonstrated foundational knowledge and practical competence in generative AI concepts, prompt engineering, and core Gemini capabilities in educational and technical workflows. Valid 2026 — 2029.",
+    category: "certification",
     badge: "Google Certified",
     href: "https://edu.google.accredible.com/b816db6c-c9ea-477a-8a01-83f4f04bd14c#acc.niwKq5Nt",
     images: ["/activities/google-gemini-certified.png", "/activities/google-gemini-badge.png"],
@@ -356,6 +365,7 @@ const credentials: Credential[] = [
     title: "PRIME Business Case Competition",
     issuer: "Petroleum Research & Innovation to Magnify Engineers",
     detail: "Semifinalist — Formulated comprehensive technical solutions and business strategies for complex engineering scenarios.",
+    category: "award",
     badge: "Semifinalist",
     images: ["/activities/certificate-prime.png"],
     image: "",
@@ -367,6 +377,7 @@ const credentials: Credential[] = [
     title: "2nd International Student Summit (ISS)",
     issuer: "Sentosa Foundation & INSAN, USIM, WAYS (Malaysia)",
     detail: "Poster Presentation Finalist — Selected as finalist representing international academic collaboration across Indonesia and Malaysia.",
+    category: "award",
     badge: "International Finalist",
     images: ["/activities/sertif-iss.png"],
     image: "",
@@ -378,6 +389,7 @@ const credentials: Credential[] = [
     title: "MATLAB & Simulink Onramp",
     issuer: "MathWorks",
     detail: "Completed certified self-paced training covering numerical computation, data visualization, dynamic modeling, and Simulink state machines.",
+    category: "training",
     badge: "Certified",
     images: ["/activities/certificate-matlab.png", "/activities/certificate-simulink.png"],
     image: "",
@@ -389,6 +401,7 @@ const credentials: Credential[] = [
     title: "Matlab Course for Wireless Communication Engineering",
     issuer: "Udemy (Dr. Khaled Ramadan)",
     detail: "Completed certified coursework covering MATLAB applications in wireless communication engineering, digital signal processing, channel simulation, and communication system design.",
+    category: "training",
     badge: "Certified",
     href: "https://ude.my/UC-ad999357-423c-4018-8669-e7cecdea4f48",
     images: ["/activities/certificate-matlab-wireless.png"],
@@ -401,6 +414,7 @@ const credentials: Credential[] = [
     title: "Azure AI Fundamentals (AI-900)",
     issuer: "Microsoft & elevAIte",
     detail: "Completed the certified preparation course for Microsoft Azure AI Fundamentals (AI-900), covering machine learning workloads, computer vision, natural language processing, and conversational AI on Microsoft Azure.",
+    category: "certification",
     badge: "Microsoft Certified",
     images: ["/activities/certificate-azure-ai900.png"],
     image: "",
@@ -412,6 +426,7 @@ const credentials: Credential[] = [
     title: "Getting Started with Azure Cloud",
     issuer: "Udemy (Houssem Dellai)",
     detail: "Completed 7.5 hours of foundational cloud computing training covering Azure infrastructure, resource groups, virtual machines, cloud storage, and virtual networks.",
+    category: "certification",
     badge: "Certified",
     href: "https://ude.my/UC-7e3504fc-0b55-4fe6-bdd7-d00fe42bef61",
     images: ["/activities/certificate-azure.jpg"],
@@ -424,6 +439,7 @@ const credentials: Credential[] = [
     title: "Scientific Design Competition",
     issuer: "Online Asian Agrocomplex Student Competition (OAASC)",
     detail: "1st Place (Gold Medal) — Designed and defended an engineering technology concept evaluated by an international academic jury.",
+    category: "award",
     badge: "1st Place Winner",
     images: ["/activities/sertif-oaasc.jpg"],
     image: "",
@@ -435,6 +451,7 @@ const credentials: Credential[] = [
     title: "Environmental Sustainability",
     issuer: "Universitas Brawijaya",
     detail: "Completed certified institutional coursework covering environmental sustainability, renewable resources, and ecological impact.",
+    category: "training",
     badge: "Certified",
     images: ["/activities/sertif-env-sustain.png"],
     image: "",
@@ -446,6 +463,7 @@ const credentials: Credential[] = [
     title: "Fundamental Python & Data Analysis",
     issuer: "Coding Studio Digital Skill Course",
     detail: "Certified mastery of foundational Python scripting, algorithmic problem solving, and professional data analysis in Excel.",
+    category: "training",
     badge: "Certified",
     images: ["/activities/sertif-python.png", "/activities/sertif-excel.png"],
     image: "",
@@ -457,6 +475,7 @@ const credentials: Credential[] = [
     title: "Physics Peer Tutor (PKRb)",
     issuer: "PKRb Remedial Learning Program — MAN Insan Cendekia Gorontalo",
     detail: "Selected as instructor to mentor students in foundational physics, problem analysis, and circuit fundamentals.",
+    category: "award",
     badge: "Academic Honor",
     images: ["/activities/sertif-tutor.png"],
     image: "",
@@ -900,12 +919,17 @@ export default function Portfolio() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [active, setActive] = useState("about");
   const [certPage, setCertPage] = useState(1);
+  const [certCategory, setCertCategory] = useState<"all" | "award" | "certification" | "training">("all");
   const [theme, setTheme] = useState<"light" | "dark">("light");
   const [copiedEmail, setCopiedEmail] = useState(false);
   const [currentHeroSlide, setCurrentHeroSlide] = useState(0);
 
+  const filteredCredentials = certCategory === "all"
+    ? credentials
+    : credentials.filter((c) => c.category === certCategory);
+
   const CERTS_PER_PAGE = 8;
-  const totalCertPages = Math.ceil(credentials.length / CERTS_PER_PAGE);
+  const totalCertPages = Math.ceil(filteredCredentials.length / CERTS_PER_PAGE);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -1017,7 +1041,7 @@ export default function Portfolio() {
                 onClick={closeMenu}
               >
                 <IconFileText />
-                <span>Resume / CV</span>
+                <span>CV</span>
               </a>
               <a className="nav-cta" href={links.email} onClick={closeMenu}>
                 Contact
@@ -1106,11 +1130,11 @@ export default function Portfolio() {
                 <div className="hero-dispatch-stamp">
                   <div className="dispatch-badge">
                     <span className="dispatch-pulse" aria-hidden="true" />
-                    <span>Open to Robotics &amp; Embedded Roles · 2026</span>
+                    <span>Open to Full-Time &amp; Internship Roles · Expected Grad 2026/2027</span>
                   </div>
                   <div className="dispatch-location">
                     <IconMapPin />
-                    <span>Malang, East Java, Indonesia</span>
+                    <span>Malang, Indonesia · Open to Relocation across Indonesia &amp; Remote</span>
                   </div>
                 </div>
 
@@ -1168,9 +1192,9 @@ export default function Portfolio() {
                     <span className="colophon-meta">Brawijaya Robotics Team</span>
                   </div>
                   <div className="colophon-cell">
-                    <span className="colophon-label">Academic Background</span>
+                    <span className="colophon-label">Education &amp; Availability</span>
                     <strong className="colophon-value">Electrical Engineering</strong>
-                    <span className="colophon-meta">Universitas Brawijaya · 3.35 GPA</span>
+                    <span className="colophon-meta">Universitas Brawijaya · Grad 2026/2027</span>
                   </div>
                   <div className="colophon-cell">
                     <span className="colophon-label">Core Stack</span>
@@ -1323,6 +1347,13 @@ export default function Portfolio() {
                       <span>{project.impactBadge}</span>
                     </div>
                     <p className="folio-summary">{project.summary}</p>
+
+                    <div className="folio-role-callout">
+                      <span className="role-callout-label">MY ROLE &amp; DIRECT CONTRIBUTIONS:</span>
+                      <p className="role-callout-text">
+                        <strong>{project.role}</strong> — {project.contribution}
+                      </p>
+                    </div>
 
                     {/* Technical Equipment Specification Table */}
                     <div className="spec-table-box">
@@ -1505,8 +1536,51 @@ export default function Portfolio() {
               </p>
             </div>
 
+            <div className="cert-filter-bar">
+              <button
+                type="button"
+                className={`cert-filter-btn ${certCategory === "all" ? "active" : ""}`}
+                onClick={() => {
+                  setCertCategory("all");
+                  setCertPage(1);
+                }}
+              >
+                All Documents ({credentials.length})
+              </button>
+              <button
+                type="button"
+                className={`cert-filter-btn ${certCategory === "award" ? "active" : ""}`}
+                onClick={() => {
+                  setCertCategory("award");
+                  setCertPage(1);
+                }}
+              >
+                🏆 Competitions &amp; Honors (4)
+              </button>
+              <button
+                type="button"
+                className={`cert-filter-btn ${certCategory === "certification" ? "active" : ""}`}
+                onClick={() => {
+                  setCertCategory("certification");
+                  setCertPage(1);
+                }}
+              >
+                📜 Professional &amp; Cloud (3)
+              </button>
+              <button
+                type="button"
+                className={`cert-filter-btn ${certCategory === "training" ? "active" : ""}`}
+                onClick={() => {
+                  setCertCategory("training");
+                  setCertPage(1);
+                }}
+              >
+                🎓 Technical Training (4)
+              </button>
+            </div>
+
             <div className="credentials-grid">
-              {credentials.map((cred, index) => {
+              {filteredCredentials.map((cred, index) => {
                 const itemPage = Math.floor(index / CERTS_PER_PAGE) + 1;
                 const isVisible = itemPage === certPage;
                 return (
@@ -1555,7 +1629,7 @@ export default function Portfolio() {
             {totalCertPages > 1 && (
               <nav className="pagination-bar" aria-label="Certificates pagination">
                 <div className="pagination-info">
-                  REGISTER: <strong>{(certPage - 1) * CERTS_PER_PAGE + 1}–{Math.min(certPage * CERTS_PER_PAGE, credentials.length)}</strong> OF <strong>{credentials.length}</strong> DOCUMENTS
+                  REGISTER: <strong>{(certPage - 1) * CERTS_PER_PAGE + 1}–{Math.min(certPage * CERTS_PER_PAGE, filteredCredentials.length)}</strong> OF <strong>{filteredCredentials.length}</strong> DOCUMENTS
                 </div>
                 <div className="pagination-controls">
                   <button
@@ -1623,7 +1697,7 @@ export default function Portfolio() {
                   </div>
                   <div className="contact-detail-item">
                     <span className="cd-title">LOCATION:</span>
-                    <span className="cd-val">Malang, East Java, Indonesia</span>
+                    <span className="cd-val">Malang, Indonesia · Open to Relocation across Indonesia &amp; Remote</span>
                   </div>
                   <div className="contact-detail-item">
                     <span className="cd-title">PROFILES &amp; CODE:</span>
@@ -1641,7 +1715,7 @@ export default function Portfolio() {
 
                 <div className="contact-response-badge">
                   <span className="contact-response-dot" aria-hidden="true" />
-                  <span>AVAILABILITY: Open to opportunities · Typically responds within 24 hours</span>
+                  <span>AVAILABILITY: Open for Full-Time Roles &amp; 3–6 Month Internships · Responds within 24 hours</span>
                 </div>
               </div>
 
