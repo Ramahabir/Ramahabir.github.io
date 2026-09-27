@@ -883,13 +883,13 @@ function ActivityImageGallery({
         <div className="placeholder-icon-wrap" aria-hidden="true">
           <IconCamera />
         </div>
-        <span className="placeholder-tag">ARCHIVAL PHOTO DEPOSIT</span>
+        <span className="placeholder-tag">PROJECT PHOTO ASSET</span>
         <p className="placeholder-hint">{placeholderHint}</p>
         <span className="placeholder-path">
-          Deposit File: <code>public{recommendedFile}</code>
+          Place file at: <code>public{recommendedFile}</code>
         </span>
         <span className="placeholder-multi-hint">
-          Multi-plate array: <code>images: [&quot;...&quot;]</code>
+          Gallery array: <code>images: [&quot;...&quot;]</code>
         </span>
       </div>
     </div>
@@ -986,7 +986,7 @@ export default function Portfolio() {
       {/* Broadsheet Masthead Header */}
       <header className="site-header">
         <div className="masthead-ticker">
-          <span>VOL. 2026 · ED. 01 — ARCHIVAL ENGINEERING FOLIO</span>
+          <span>VOL. 2026 · ED. 01 — ROBOTICS &amp; EMBEDDED ENGINEERING PORTFOLIO</span>
           <span>MALANG, EAST JAVA — INDONESIA</span>
         </div>
 
@@ -1127,7 +1127,7 @@ export default function Portfolio() {
                 <div className="hero-cta-block">
                   <div className="hero-primary-actions">
                     <a className="btn btn-primary btn-lg" href="#projects">
-                      Explore Folio
+                      Explore Projects
                       <IconArrowDown />
                     </a>
                     <a className="btn btn-cv btn-lg" href="/CV-Rama-Rizky-Belrouzy-Habir.pdf" target="_blank" rel="noreferrer">
@@ -1163,17 +1163,17 @@ export default function Portfolio() {
 
                 <div className="hero-colophon-grid">
                   <div className="colophon-cell">
-                    <span className="colophon-label">Current Post</span>
+                    <span className="colophon-label">Current Role</span>
                     <strong className="colophon-value">KRSRI Software Engineer</strong>
                     <span className="colophon-meta">Brawijaya Robotics Team</span>
                   </div>
                   <div className="colophon-cell">
-                    <span className="colophon-label">Academic Station</span>
+                    <span className="colophon-label">Academic Background</span>
                     <strong className="colophon-value">Electrical Engineering</strong>
                     <span className="colophon-meta">Universitas Brawijaya · 3.35 GPA</span>
                   </div>
                   <div className="colophon-cell">
-                    <span className="colophon-label">Primary Silicon</span>
+                    <span className="colophon-label">Core Stack</span>
                     <strong className="colophon-value">STM32 · ESP32 · C/C++</strong>
                     <span className="colophon-meta">FreeRTOS · MQTT · KiCad</span>
                   </div>
@@ -1184,7 +1184,7 @@ export default function Portfolio() {
                 <div className="hero-plate-card">
                   <div className="hero-plate-header">
                     <span>PLATE 01 · FIG. 01</span>
-                    <span className="plate-serial">PORTRAIT DEPOSIT</span>
+                    <span className="plate-serial">ENGINEER PROFILE</span>
                   </div>
                   <div className="hero-plate-wrap">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -1202,7 +1202,7 @@ export default function Portfolio() {
             {/* Archival Field Telemetry & Verified Outcomes Strip */}
             <div className="broadsheet-impact-strip">
               <div className="impact-strip-header">
-                <span className="impact-strip-badge">ARCHIVAL FIELD TELEMETRY &amp; VERIFIED OUTCOMES REGISTER</span>
+                <span className="impact-strip-badge">VERIFIED ENGINEERING METRICS &amp; PROJECT IMPACT</span>
                 <span className="impact-strip-location">MALANG · UNIVERSITAS BRAWIJAYA</span>
               </div>
               <div className="impact-strip-grid">
@@ -1279,17 +1279,17 @@ export default function Portfolio() {
           </div>
         </section>
 
-        {/* Section 02: Selected Engineering Projects (Folio Plates) */}
+        {/* Section 02: Selected Engineering Projects */}
         <section className="section" id="projects">
           <div className="section-container">
             <div className="section-header">
               <div className="section-header-top">
                 <span className="section-stamp">SECTION 02</span>
-                <span className="section-category">SELECTED ENGINEERING PLATES</span>
+                <span className="section-category">FEATURED ENGINEERING PROJECTS</span>
               </div>
-              <h2>Engineering Folio</h2>
+              <h2>Featured Engineering Projects</h2>
               <p className="section-desc">
-                Curated physical computing systems, embedded firmware, and verifiable hardware designs.
+                Curated embedded firmware, real-time robotics systems, and verified hardware designs.
               </p>
             </div>
 
@@ -1306,14 +1306,14 @@ export default function Portfolio() {
                       aspectRatio="16/10"
                     />
                     <div className="plate-media-caption">
-                      <span><strong>FIG. {project.number}</strong> — ARCHIVAL ARTIFACT</span>
-                      <span>DEPOSIT NO. {project.number}/03</span>
+                      <span><strong>PROJECT {project.number}</strong> — HARDWARE &amp; FIRMWARE SYSTEM</span>
+                      <span>SPEC SHEET {project.number} / 03</span>
                     </div>
                   </div>
 
                   <div className="folio-plate-content">
                     <div className="folio-meta-bar">
-                      <span className="folio-stamp-tag">FOLIO {project.number}</span>
+                      <span className="folio-stamp-tag">PROJECT {project.number}</span>
                       <span className="folio-category-tag">{project.category}</span>
                     </div>
 
@@ -1409,7 +1409,7 @@ export default function Portfolio() {
                 <span className="section-stamp">SECTION 03</span>
                 <span className="section-category">TECHNICAL CAPABILITIES</span>
               </div>
-              <h2>Technical Catalog</h2>
+              <h2>Technical Skills &amp; Toolkit</h2>
               <p className="section-desc">
                 Specialized hardware, bare-metal &amp; RTOS firmware, communication protocols, and engineering design tools.
               </p>
@@ -1419,7 +1419,7 @@ export default function Portfolio() {
               {skillCategories.map((cat) => (
                 <div className="compendium-card" key={cat.name}>
                   <div className="compendium-card-header">
-                    <span className="compendium-index-tag">CATALOG · {cat.index}</span>
+                    <span className="compendium-index-tag">CATEGORY · {cat.index}</span>
                     <h3 className="compendium-title">{cat.name}</h3>
                   </div>
                   <div className="compendium-items-wrap">
@@ -1435,15 +1435,15 @@ export default function Portfolio() {
           </div>
         </section>
 
-        {/* Section 04: Experience & Field Chronicle */}
+        {/* Section 04: Experience & Leadership */}
         <section className="section" id="experience">
           <div className="section-container">
             <div className="section-header">
               <div className="section-header-top">
                 <span className="section-stamp">SECTION 04</span>
-                <span className="section-category">CHRONOLOGY &amp; FIELDWORK</span>
+                <span className="section-category">EXPERIENCE &amp; LEADERSHIP</span>
               </div>
-              <h2>Archival Chronicle</h2>
+              <h2>Engineering Experience</h2>
               <p className="section-desc">
                 Hands-on engineering through robotics competitions, university lab work, community outreach, and leadership.
               </p>
@@ -1477,7 +1477,7 @@ export default function Portfolio() {
                     <p className="chronicle-desc">{item.description}</p>
 
                     <div className="exp-checklist">
-                      <strong>FIELD OPERATIONS &amp; CONTRIBUTIONS:</strong>
+                      <strong>KEY RESPONSIBILITIES &amp; IMPACT:</strong>
                       <ul>
                         {item.bullets.map((bullet, idx) => (
                           <li key={idx}>{bullet}</li>
@@ -1497,9 +1497,9 @@ export default function Portfolio() {
             <div className="section-header">
               <div className="section-header-top">
                 <span className="section-stamp">SECTION 05</span>
-                <span className="section-category">VERIFICATION &amp; AWARDS</span>
+                <span className="section-category">HONORS &amp; CERTIFICATIONS</span>
               </div>
-              <h2>Credential Register</h2>
+              <h2>Honors &amp; Certifications</h2>
               <p className="section-desc">
                 Verified competition honors, international summits, and certified technical training.
               </p>
@@ -1523,7 +1523,7 @@ export default function Portfolio() {
                       {cred.badge && <span className="cred-badge-pill">{cred.badge}</span>}
                     </div>
 
-                    <span className="cred-year-tag">{cred.year} · REGISTERED</span>
+                    <span className="cred-year-tag">{cred.year} · VERIFIED</span>
                     <h3 className="cred-card-title">
                       {cred.href ? (
                         <a href={cred.href} target="_blank" rel="noreferrer" className="cred-title-link">
@@ -1600,36 +1600,36 @@ export default function Portfolio() {
           </div>
         </section>
 
-        {/* Section 06: Contact & Correspondence Bureau */}
+        {/* Section 06: Contact & Opportunities */}
         <section className="section" id="contact">
           <div className="section-container">
             <div className="contact-card">
               <div className="contact-content">
                 <div className="section-header-top">
                   <span className="section-stamp">SECTION 06</span>
-                  <span className="section-category">DIRECT CORRESPONDENCE</span>
+                  <span className="section-category">CONTACT &amp; OPPORTUNITIES</span>
                 </div>
-                <h2>Correspondence Bureau</h2>
+                <h2>Get In Touch</h2>
                 <p>
-                  I am actively seeking robotics engineering internships, embedded firmware roles, and IoT collaborations. Direct correspondence is welcome.
+                  I am actively seeking robotics engineering internships, embedded firmware roles, and hardware/IoT engineering opportunities. Feel free to reach out directly.
                 </p>
 
                 <div className="contact-details-list">
                   <div className="contact-detail-item">
-                    <span className="cd-title">ELECTRONIC MAIL:</span>
+                    <span className="cd-title">EMAIL:</span>
                     <a className="cd-link" href={links.email}>
                       rizkyhabir88@gmail.com
                     </a>
                   </div>
                   <div className="contact-detail-item">
-                    <span className="cd-title">STATION LOCATION:</span>
+                    <span className="cd-title">LOCATION:</span>
                     <span className="cd-val">Malang, East Java, Indonesia</span>
                   </div>
                   <div className="contact-detail-item">
-                    <span className="cd-title">PUBLIC DEPOSIT:</span>
+                    <span className="cd-title">PROFILES &amp; CODE:</span>
                     <div className="cd-links">
                       <a href={links.github} target="_blank" rel="noreferrer">
-                        GitHub Archive ↗
+                        GitHub Profile ↗
                       </a>
                       <span>·</span>
                       <a href={links.linkedin} target="_blank" rel="noreferrer">
@@ -1641,14 +1641,14 @@ export default function Portfolio() {
 
                 <div className="contact-response-badge">
                   <span className="contact-response-dot" aria-hidden="true" />
-                  <span>OFFICIAL DISPATCH: Typically acknowledged within 24 hours</span>
+                  <span>AVAILABILITY: Open to opportunities · Typically responds within 24 hours</span>
                 </div>
               </div>
 
               <div className="contact-cta-panel">
                 <a className="btn btn-primary btn-lg" href={links.email}>
                   <IconMail />
-                  Transmit Message
+                  Send Email
                 </a>
                 <button
                   type="button"
