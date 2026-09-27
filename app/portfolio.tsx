@@ -31,6 +31,7 @@ interface Project {
   number: string;
   category: string;
   title: string;
+  impactBadge: string;
   summary: string;
   role: string;
   stack: string[];
@@ -80,6 +81,7 @@ const projects: Project[] = [
     number: "01",
     category: "Robotics & Kinematics",
     title: "5-DOF Robotic Arm (Dynamixel)",
+    impactBadge: "⚡ 1 Mbps Real-Time Bus · Sub-Millisecond Multi-Joint Kinematics",
     summary:
       "An articulated robotic manipulator controlled by an STM32F411 microcontroller. Combines high-speed half-duplex UART communication with Dynamixel AX-series smart actuators, custom KiCad controller hardware, and forward/inverse kinematics for coordinated multi-axis manipulation.",
     role: "Robotics & Firmware Engineer",
@@ -113,6 +115,7 @@ const projects: Project[] = [
     number: "02",
     category: "Assistive Tech & Embedded Systems",
     title: "LA-Braille: Refreshable Braille Display",
+    impactBadge: "💡 ~80% Unit Cost Reduction · 0 mW Static Hold Power · User-Validated",
     summary:
       "As Team Lead for PKM-KI 2026 at Universitas Brawijaya, I directed the development of LA-Braille—an affordable electromechanical refreshable braille display engineered to bridge the literacy access gap for visually impaired individuals in Indonesia. The system replaces expensive conventional piezoelectric units with custom 3D-printed cam actuators and rare-earth NdFeB micro-magnets, mechanically latching braille pins with zero continuous power draw.",
     role: "Team Lead & Embedded Hardware Engineer (PKM-KI 2026)",
@@ -159,6 +162,7 @@ const projects: Project[] = [
     number: "03",
     category: "Smart Agriculture & IoT Systems",
     title: "AgriNode: Modular Greenhouse IoT & Telemetry System",
+    impactBadge: "🌱 24/7 Multi-Node Telemetry · Off-Grid Solar Regulation · Live Web Platform",
     summary:
       "A modular IoT telemetry system engineered for greenhouse environmental monitoring—solving the challenge of microclimate variance across crop beds without costly trenching. The architecture pairs modular soil/climate sensing nodes with ESP32 microcontrollers; decentralized field nodes transmit telemetry wirelessly to a central gateway that streams real-time payloads to the cloud server and live web dashboard.",
     role: "IoT Systems & Embedded Hardware Engineer",
@@ -1016,7 +1020,7 @@ export default function Portfolio() {
                 <span>Resume / CV</span>
               </a>
               <a className="nav-cta" href={links.email} onClick={closeMenu}>
-                Dispatch
+                Contact
               </a>
             </nav>
 
@@ -1194,6 +1198,36 @@ export default function Portfolio() {
                 </div>
               </div>
             </div>
+
+            {/* Archival Field Telemetry & Verified Outcomes Strip */}
+            <div className="broadsheet-impact-strip">
+              <div className="impact-strip-header">
+                <span className="impact-strip-badge">ARCHIVAL FIELD TELEMETRY &amp; VERIFIED OUTCOMES REGISTER</span>
+                <span className="impact-strip-location">MALANG · UNIVERSITAS BRAWIJAYA</span>
+              </div>
+              <div className="impact-strip-grid">
+                <div className="impact-strip-cell">
+                  <span className="impact-cell-tag">AUTONOMOUS ROBOTICS</span>
+                  <strong className="impact-cell-title">KRSRI Software Engineer</strong>
+                  <span className="impact-cell-desc">National SAR fire-fighting autonomous contest · Brawijaya Robotics Team</span>
+                </div>
+                <div className="impact-strip-cell">
+                  <span className="impact-cell-tag">DETERMINISTIC BUS</span>
+                  <strong className="impact-cell-title">&lt; 1 ms Latency · 1 Mbps</strong>
+                  <span className="impact-cell-desc">STM32 half-duplex serial driver · Dynamixel Protocol 1.0 packet CRC</span>
+                </div>
+                <div className="impact-strip-cell">
+                  <span className="impact-cell-tag">ASSISTIVE HARDWARE LEAD</span>
+                  <strong className="impact-cell-title">~80% Unit Cost Reduction</strong>
+                  <span className="impact-cell-desc">LA-Braille zero-power latching display · PKM-KI 2026 Team Lead</span>
+                </div>
+                <div className="impact-strip-cell">
+                  <span className="impact-cell-tag">ACADEMIC &amp; HONORS</span>
+                  <strong className="impact-cell-title">3.35 GPA · OAASC Gold Medal</strong>
+                  <span className="impact-cell-desc">Electrical Engineering UB · MathWorks, Google &amp; Microsoft Certified</span>
+                </div>
+              </div>
+            </div>
           </div>
         </section>
 
@@ -1284,6 +1318,10 @@ export default function Portfolio() {
                     </div>
 
                     <h3 className="folio-title">{project.title}</h3>
+                    <div className="folio-impact-stamp">
+                      <span className="stamp-pulse" aria-hidden="true" />
+                      <span>{project.impactBadge}</span>
+                    </div>
                     <p className="folio-summary">{project.summary}</p>
 
                     {/* Technical Equipment Specification Table */}
@@ -1334,20 +1372,26 @@ export default function Portfolio() {
                     </div>
 
                     <div className="folio-btn-row">
+                      {project.number === "01" && (
+                        <a className="btn btn-sm btn-primary" href="/6dof-simulator/index.html" target="_blank" rel="noreferrer">
+                          <IconExternal />
+                          Launch 3D Web Simulator
+                        </a>
+                      )}
                       {project.liveUrl && (
                         <a className="btn btn-sm btn-primary" href={project.liveUrl} target="_blank" rel="noreferrer">
-                          Live Web Dashboard
                           <IconExternal />
+                          Live Web Dashboard
                         </a>
                       )}
                       <a
-                        className={`btn btn-sm ${project.liveUrl ? "btn-outline" : "btn-primary"}`}
+                        className="btn btn-sm btn-outline"
                         href={project.href}
                         target="_blank"
                         rel="noreferrer"
                       >
-                        View Source Code
-                        <IconExternal />
+                        <IconGithub />
+                        Source Code
                       </a>
                     </div>
                   </div>
@@ -1500,7 +1544,7 @@ export default function Portfolio() {
                         alt={cred.title}
                         placeholderHint={cred.placeholderHint}
                         recommendedFile={cred.recommendedFile}
-                        aspectRatio="4/3"
+                        aspectRatio="16/10"
                       />
                     </div>
                   </article>
