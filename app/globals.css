@@ -450,82 +450,6 @@ button {
   margin: 0 auto;
 }
 
-/* Slideshow Telemetry HUD in Hero */
-.hero-slideshow-hud {
-  position: absolute;
-  top: 16px;
-  right: 24px;
-  z-index: 3;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  background: var(--surface);
-  border: 1px solid var(--border-strong);
-  border-radius: var(--radius-sm);
-  padding: 4px 10px;
-  box-shadow: 2px 2px 0 var(--border-strong);
-}
-
-.hero-hud-label {
-  font-family: var(--font-mono);
-  font-size: 10.5px;
-  font-weight: 700;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  color: var(--text-muted);
-}
-
-.hero-hud-controls {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.hero-hud-btn {
-  width: 22px;
-  height: 22px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: var(--bg-alt);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-sm);
-  color: var(--text-main);
-  cursor: pointer;
-  transition: all 0.15s ease;
-  padding: 0;
-}
-
-.hero-hud-btn:hover {
-  background: var(--primary);
-  border-color: var(--primary);
-  color: #FFFFFF;
-}
-
-.hero-hud-dots {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-}
-
-.hero-hud-dot {
-  width: 5px;
-  height: 5px;
-  border-radius: var(--radius-sm);
-  background: var(--border-strong);
-  opacity: 0.35;
-  border: none;
-  cursor: pointer;
-  padding: 0;
-  transition: all 0.2s ease;
-}
-
-.hero-hud-dot.active {
-  opacity: 1;
-  background: var(--primary);
-  width: 12px;
-}
-
 .hero-layout {
   display: grid;
   grid-template-columns: 1.45fr 1fr;
@@ -2334,13 +2258,6 @@ button {
 
   .hero-title {
     font-size: 2.5rem;
-  }
-
-  .hero-slideshow-hud {
-    position: static;
-    margin-bottom: 20px;
-    justify-content: space-between;
-    width: 100%;
   }
 
   .hero-colophon-grid,

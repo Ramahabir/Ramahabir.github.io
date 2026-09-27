@@ -934,7 +934,7 @@ export default function Portfolio() {
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentHeroSlide((prev) => (prev + 1) % heroSlides.length);
-    }, 5500);
+    }, 5000);
     return () => clearInterval(timer);
   }, []);
 
@@ -1086,42 +1086,6 @@ export default function Portfolio() {
               />
             ))}
             <div className="hero-slideshow-overlay" />
-          </div>
-
-          {/* Slideshow Telemetry HUD / Controls */}
-          <div className="hero-slideshow-hud">
-            <span className="hero-hud-label">
-              ARCHIVAL TRANSMISSION [{String(currentHeroSlide + 1).padStart(2, "0")}/{String(heroSlides.length).padStart(2, "0")}] · {heroSlides[currentHeroSlide].title}
-            </span>
-            <div className="hero-hud-controls">
-              <button
-                type="button"
-                className="hero-hud-btn"
-                onClick={() => setCurrentHeroSlide((prev) => (prev === 0 ? heroSlides.length - 1 : prev - 1))}
-                aria-label="Previous background slide"
-              >
-                <IconChevronLeft />
-              </button>
-              <div className="hero-hud-dots">
-                {heroSlides.map((_, idx) => (
-                  <button
-                    key={idx}
-                    type="button"
-                    className={`hero-hud-dot ${idx === currentHeroSlide ? "active" : ""}`}
-                    onClick={() => setCurrentHeroSlide(idx)}
-                    aria-label={`Jump to background slide ${idx + 1}`}
-                  />
-                ))}
-              </div>
-              <button
-                type="button"
-                className="hero-hud-btn"
-                onClick={() => setCurrentHeroSlide((prev) => (prev === heroSlides.length - 1 ? 0 : prev + 1))}
-                aria-label="Next background slide"
-              >
-                <IconChevronRight />
-              </button>
-            </div>
           </div>
 
           <div className="hero-container">
