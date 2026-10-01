@@ -21,7 +21,7 @@ Rama Habir is positioned as the rare, high-value **bridge between the physical a
 | :--- | :--- | :--- |
 | **Domain Scope** | Siloed (only software OR only CAD) | **Full-Stack Mechatronic Ownership** (Schematic → PCB Layout → Bare-metal C → Kinematics) |
 | **System Reliability** | Breadboard prototypes & hobby demos | **Production & Field Mindset** (High-speed bus termination, 0 mW static hold, noise-immune rails) |
-| **Validation** | Academic theory only | **Battle-Tested Competition** (KRSRI National Firefighting Robot Contest, OAASC 1st Place Gold Medal) |
+| **Validation** | Academic theory only | **Battle-Tested Competition** (KRSRI National Search and Rescue Robot Contest, OAASC 1st Place Gold Medal) |
 | **Evidence & Transparency** | Buzzword claims & generic AI slop | **Concrete Technical Proof** (Real IC part numbers, baud rates, DMA transactions, 14 verified certificates) |
 
 ---

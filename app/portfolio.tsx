@@ -33,6 +33,8 @@ interface Project {
   highlights: string[];
   href: string;
   liveUrl?: string;
+  pdfUrl?: string;
+  pdfLabel?: string;
   images: string[];
   featured?: boolean;
 }
@@ -108,9 +110,13 @@ const projects: Project[] = [
       "Custom Driver Electronics: Designed H-bridge driving board in KiCad using Toshiba TBD62783/TBD62083 DMOS FET arrays and 74HC238D decoders for low-loss multiplexed pin actuation.",
       "Accessible Pipeline & LMS: Implemented automated PDF-to-Braille conversion (Tesseract OCR, OpenCV) and screen-reader compatibility.",
       "User Trial Validation: Benchmarked tactile dot height, read speeds, and mechanical endurance directly with visually impaired students at Universitas Brawijaya.",
+      "Official Proposal: Validated PKM-KI research proposal and electromechanical design documentation.",
     ],
     href: "https://github.com/Ramahabir",
+    pdfUrl: "/documents/la-braille-pkm-ki.pdf",
+    pdfLabel: "View PKM-KI Proposal (PDF) ↗",
     images: [
+      "/projects/la-braille-device.jpg",
       "/projects/la-braille-cad-concept.png",
       "/projects/la-braille-pcb-layout.png",
       "/projects/la-braille-schematic-driver.png",
@@ -152,7 +158,9 @@ const projects: Project[] = [
       "Autonomous Power Management: Designed custom 2-layer KiCad PCBs with onboard TP4056 lithium charging and XL6009 boost regulation for uninterrupted solar operation.",
     ],
     href: "https://github.com/Ramahabir/IoT-Hardy",
+    liveUrl: "https://devel-ai.ub.ac.id/agrinode/",
     images: [
+      "/projects/agrinode-dashboard-live.png",
       "/projects/hardy-iot-pcb-isometric.png",
       "/projects/hardy-iot-schematic.png",
       "/projects/hardy-iot-pcb-3d.png",
@@ -175,12 +183,12 @@ const experience: TimelineItem[] = [
     period: "2025 — PRESENT · MALANG, INDONESIA",
     role: "KRSRI Software Engineer",
     organization: "Brawijaya Robotics Team",
-    type: "Autonomous Robotics Division · Indonesian Fire-Fighting Robot Contest (KRSRI)",
+    type: "Autonomous Robotics Division · Indonesian Search and Rescue Robot Contest (KRSRI)",
     location: "Malang, Indonesia",
     description:
-      "Developing software, firmware routines, and motor drive algorithms for the Indonesian Fire-Fighting Robot Contest (Kontes Robot SAR Indonesia - KRSRI).",
+      "Developing software, firmware routines, and motor drive algorithms for the Indonesian Search and Rescue Robot Contest (Kontes Robot SAR Indonesia - KRSRI).",
     points: [
-      "Programming microcontroller logic for autonomous maze navigation, flame detection, and obstacle avoidance.",
+      "Programming microcontroller logic for autonomous arena navigation, victim localization, and obstacle avoidance.",
       "Calibrating actuator control loops and sensor timing for sub-millisecond reaction speeds.",
       "Conducting extensive arena testing, hardware-in-the-loop debugging, and field readiness evaluations.",
     ],
@@ -270,7 +278,7 @@ const credentials: Credential[] = [
   },
   {
     year: "2025",
-    title: "Indonesian Fire-Fighting Robot Contest (KRSRI)",
+    title: "Indonesian Search and Rescue Robot Contest (KRSRI)",
     issuer: "Brawijaya Robotics Team & Kemendikbudristek",
     detail:
       "Recognized for firmware development, sensor timing calibration, and deterministic maze navigation algorithms in the national autonomous robotics contest.",
@@ -681,6 +689,13 @@ void DXL_TransmitPacket(uint8_t id, uint8_t inst, uint8_t *params, uint16_t len)
                   >
                     <span className="case-study-cta">View details</span>
                     <div className="project-media">
+                      <div
+                        className="project-media-bg"
+                        style={{
+                          backgroundImage: `url('${project.images[0]}')`,
+                        }}
+                        aria-hidden="true"
+                      />
                       <img
                         src={project.images[0]}
                         alt={project.title}
@@ -1148,7 +1163,19 @@ void DXL_TransmitPacket(uint8_t id, uint8_t inst, uint8_t *params, uint16_t len)
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    Launch 3D Web Simulator ↗
+                    {activeModalProject.number === "01"
+                      ? "Launch 3D Web Simulator ↗"
+                      : "Open Live Telemetry Console ↗"}
+                  </a>
+                )}
+                {activeModalProject.pdfUrl && (
+                  <a
+                    className="button"
+                    href={activeModalProject.pdfUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {activeModalProject.pdfLabel || "View Attached Document (PDF) ↗"}
                   </a>
                 )}
                 <button
