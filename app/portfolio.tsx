@@ -76,39 +76,6 @@ const projects: Project[] = [
   },
   {
     number: "02",
-    category: "Autonomous Robotics",
-    title: "KRSRI Firefighting Autonomous Robot",
-    impactBadge: "Sub-Millisecond Control Loop · Real-Time Obstacle Avoidance",
-    summary:
-      "Microcontroller firmware routines, maze navigation algorithms, and sensor timing developed for the Indonesian Fire-Fighting Robot Contest (Kontes Robot SAR Indonesia - KRSRI). Engineered for sub-millisecond reaction speeds, flame localization, and autonomous arena navigation.",
-    role: "KRSRI Software & Robotics Engineer",
-    contribution:
-      "Programmed microcontroller navigation logic for real-time maze traversal, calibrated closed-loop actuator control loops, and integrated optical flame sensor arrays with ultrasonic telemetry.",
-    stack: ["STM32", "C++", "Closed-Loop PID", "Ultrasonic & Flame Sensing", "Hardware-in-the-Loop"],
-    specs: {
-      controller: "ARM Cortex-M / STM32 Architecture",
-      interface: "High-Speed SPI & Sensor ADC Bus",
-      actuators: "Precision Geared DC Actuators with Optical Encoders",
-      hardware: "Custom SAR Arena Modular Chassis & Sensor Rig",
-      firmware: "Deterministic C++ State Machine & Sub-ms Scheduling",
-      status: "Evaluated in full-arena physical competition runs",
-    },
-    outcome:
-      "Deterministic autonomous obstacle avoidance and flame detection under competition arena constraints.",
-    highlights: [
-      "Autonomous Maze Navigation: Developed deterministic wall-following and grid mapping state machines to navigate unstructured arena pathways.",
-      "High-Speed Sensor Processing: Tuned ADC sampling filters and interrupt-driven timing loops for rapid obstacle detection and flame verification.",
-      "Rigorous Field Validation: Executed extensive arena trials, hardware-in-the-loop debugging, and physical stress testing.",
-    ],
-    href: "https://github.com/Ramahabir",
-    images: [
-      "/activities/sertifikat-krsri-hme.png",
-      "/activities/brawijaya-ee-cohort-full.jpg",
-    ],
-    featured: true,
-  },
-  {
-    number: "03",
     category: "Assistive Tech & Embedded",
     title: "LA-Braille: Refreshable Braille Display",
     impactBadge: "~80% Unit Cost Reduction · 0 mW Static Hold Power · User-Validated",
@@ -149,9 +116,10 @@ const projects: Project[] = [
       "/projects/la-braille-schematic-driver.png",
       "/projects/la-braille-system-architecture.png",
     ],
+    featured: true,
   },
   {
-    number: "04",
+    number: "03",
     category: "Smart Agriculture & IoT",
     title: "AgriNode: Off-Grid Telemetry System",
     impactBadge: "24/7 Multi-Node Telemetry · Off-Grid Solar Regulation · Live Platform",
@@ -188,39 +156,6 @@ const projects: Project[] = [
       "/projects/hardy-iot-pcb-isometric.png",
       "/projects/hardy-iot-schematic.png",
       "/projects/hardy-iot-pcb-3d.png",
-    ],
-  },
-  {
-    number: "05",
-    category: "Embedded Hardware",
-    title: "Embedded Controller Hardware & PCBs",
-    impactBadge: "High-Speed Bus Integrity · Isolated Power Rails · KiCad DFM",
-    summary:
-      "Custom multi-layer PCB design for mechatronic control and IoT telemetry. Engineered with dedicated 12V/5V/3.3V power rails, logic-level isolation, high-speed half-duplex UART routing, and transient protection.",
-    role: "Hardware & PCB Designer",
-    contribution:
-      "Authored schematics, simulated power tree constraints, routed impedance-controlled traces in KiCad, and assembled surface-mount hardware on the test bench.",
-    stack: ["KiCad", "PCB Layout", "Power Integrity", "Signal Integrity", "DFM", "SMD Soldering"],
-    specs: {
-      controller: "STM32 & ESP32 Carrier Boards",
-      interface: "Controlled-Impedance Serial & Differential Signals",
-      actuators: "Smart Actuator Bus Headers & Sensor Ports",
-      hardware: "2-Layer & 4-Layer FR4 Boards, 1oz Copper, ENIG / HASL",
-      firmware: "Hardware Diagnostic & Test Bench Firmware",
-      status: "Fabricated, bench-tested, and actively deployed",
-    },
-    outcome:
-      "Reliable, noise-immune controller boards deployed across robotic arm and IoT telemetry prototypes.",
-    highlights: [
-      "Power Plane Isolation: Isolated sensitive microcontroller analog rails from high-current actuator return currents to prevent brownouts.",
-      "Bus Integrity: Optimized track lengths and termination resistors for reliable 1 Mbps communication across extended wire harnesses.",
-      "Bench Verification: Tested with digital storage oscilloscopes and logic analyzers for ripple suppression and signal rise times.",
-    ],
-    href: "https://github.com/Ramahabir",
-    images: [
-      "/projects/hardy-iot-pcb-3d.png",
-      "/projects/la-braille-pcb-layout.png",
-      "/projects/hardy-iot-schematic.png",
     ],
   },
 ];
@@ -441,6 +376,25 @@ export default function Portfolio() {
   const [activeModalCert, setActiveModalCert] = useState<Credential | null>(null);
   const [contactSubmitted, setContactSubmitted] = useState(false);
   const [contactSubmitting, setContactSubmitting] = useState(false);
+  const [certPage, setCertPage] = useState(1);
+  const CERTS_PER_PAGE = 6;
+  const totalCertPages = Math.ceil(credentials.length / CERTS_PER_PAGE);
+
+  const paginatedCredentials = credentials.slice(
+    (certPage - 1) * CERTS_PER_PAGE,
+    certPage * CERTS_PER_PAGE
+  );
+
+  const handleCertPageChange = (newPage: number) => {
+    setCertPage(newPage);
+    const section = document.getElementById("credentials");
+    if (section) {
+      const rect = section.getBoundingClientRect();
+      if (rect.top < 60) {
+        section.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    }
+  };
 
   // Scroll reveal observer
   useEffect(() => {
@@ -458,7 +412,7 @@ export default function Portfolio() {
     );
     reveals.forEach((el) => observer.observe(el));
     return () => observer.disconnect();
-  }, []);
+  }, [certPage]);
 
   // Glowing vertical timeline scroll progress tracker
   useEffect(() => {
@@ -618,7 +572,7 @@ void DXL_TransmitPacket(uint8_t id, uint8_t inst, uint8_t *params, uint16_t len)
                     strokeLinecap="round"
                   />
                 </svg>
-                Malang → Surabaya, Indonesia
+                Malang, Indonesia
               </div>
               <p className="hero-copy">
                 Electrical Engineering student at Universitas Brawijaya and KRSRI Robotics Engineer. I design embedded
@@ -626,7 +580,7 @@ void DXL_TransmitPacket(uint8_t id, uint8_t inst, uint8_t *params, uint16_t len)
               </p>
               <div className="hero-actions">
                 <a className="button primary" href="#work">
-                  Projects ↓
+                  Project
                 </a>
                 <a className="button" href="#profile">
                   About me
@@ -671,8 +625,7 @@ void DXL_TransmitPacket(uint8_t id, uint8_t inst, uint8_t *params, uint16_t len)
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <span>Download CV / Resume (PDF)</span>
-                <span>↗</span>
+                Resume
               </a>
             </div>
           </div>
@@ -705,18 +658,16 @@ void DXL_TransmitPacket(uint8_t id, uint8_t inst, uint8_t *params, uint16_t len)
           <div className="shell">
             <div className="section-head reveal">
               <div>
-                <div className="section-kicker">SELECTED PORTFOLIO</div>
                 <h2>Projects</h2>
               </div>
             </div>
 
             <div className="project-grid">
-              {projects.map((project, idx) => {
-                const isFeatured = idx < 2;
+              {projects.map((project) => {
                 return (
                   <article
                     key={project.number}
-                    className={`project ${isFeatured ? "featured" : "narrow"} reveal`}
+                    className="project reveal"
                     onClick={() => setActiveModalProject(project)}
                     role="button"
                     tabIndex={0}
@@ -788,7 +739,6 @@ void DXL_TransmitPacket(uint8_t id, uint8_t inst, uint8_t *params, uint16_t len)
         <section id="profile">
           <div className="shell profile-grid">
             <div className="profile-sticky reveal">
-              <div className="section-kicker">BIOGRAPHY &amp; VISION</div>
               <h2>About Rama Habir</h2>
               <div className="profile-visual">
                 <img
@@ -831,7 +781,6 @@ void DXL_TransmitPacket(uint8_t id, uint8_t inst, uint8_t *params, uint16_t len)
                 .
               </p>
               <div className="education-card reveal">
-                <div className="education-label">Undergraduate Studies · Malang, Indonesia</div>
                 <h3>Universitas Brawijaya</h3>
                 <p className="education-detail">B.Eng. in Electrical Engineering · GPA: 3.35 / 4.00 · Expected 2026</p>
                 <p className="education-note">
@@ -866,7 +815,6 @@ void DXL_TransmitPacket(uint8_t id, uint8_t inst, uint8_t *params, uint16_t len)
         <section id="timeline">
           <div className="shell profile-grid">
             <div className="profile-sticky reveal">
-              <div className="section-kicker">CAREER TRACK</div>
               <h2>Experience</h2>
             </div>
             <div className="timeline">
@@ -895,16 +843,15 @@ void DXL_TransmitPacket(uint8_t id, uint8_t inst, uint8_t *params, uint16_t len)
           <div className="shell">
             <div className="section-head reveal">
               <div>
-                <div className="section-kicker">AWARDS &amp; ACCREDITATION</div>
                 <h2>Honors &amp; Certifications</h2>
               </div>
             </div>
 
             <div className="credentials-grid">
-              {credentials.map((cred, idx) => (
+              {paginatedCredentials.map((cred, idx) => (
                 <article
-                  key={idx}
-                  className="credential-card reveal"
+                  key={`${certPage}-${idx}-${cred.title}`}
+                  className="credential-card reveal visible"
                   onClick={() => setActiveModalCert(cred)}
                   role="button"
                   tabIndex={0}
@@ -950,6 +897,50 @@ void DXL_TransmitPacket(uint8_t id, uint8_t inst, uint8_t *params, uint16_t len)
                 </article>
               ))}
             </div>
+
+            {totalCertPages > 1 && (
+              <div className="credentials-pagination" role="navigation" aria-label="Honors and certifications pagination">
+                <div className="pagination-controls">
+                  <button
+                    type="button"
+                    className="pagination-btn pagination-nav"
+                    onClick={() => handleCertPageChange(Math.max(1, certPage - 1))}
+                    disabled={certPage === 1}
+                    aria-label="Previous page"
+                  >
+                    ← Prev
+                  </button>
+
+                  <div className="pagination-pages">
+                    {Array.from({ length: totalCertPages }, (_, i) => i + 1).map((pageNum) => (
+                      <button
+                        key={pageNum}
+                        type="button"
+                        className={`pagination-btn pagination-num ${pageNum === certPage ? "active" : ""}`}
+                        onClick={() => handleCertPageChange(pageNum)}
+                        aria-current={pageNum === certPage ? "page" : undefined}
+                        aria-label={`Go to page ${pageNum}`}
+                      >
+                        {pageNum}
+                      </button>
+                    ))}
+                  </div>
+
+                  <button
+                    type="button"
+                    className="pagination-btn pagination-nav"
+                    onClick={() => handleCertPageChange(Math.min(totalCertPages, certPage + 1))}
+                    disabled={certPage === totalCertPages}
+                    aria-label="Next page"
+                  >
+                    Next →
+                  </button>
+                </div>
+                <div className="pagination-meta">
+                  Page {certPage} of {totalCertPages} · Showing {(certPage - 1) * CERTS_PER_PAGE + 1}–{Math.min(certPage * CERTS_PER_PAGE, credentials.length)} of {credentials.length} honors &amp; certifications
+                </div>
+              </div>
+            )}
           </div>
         </section>
 
@@ -958,7 +949,6 @@ void DXL_TransmitPacket(uint8_t id, uint8_t inst, uint8_t *params, uint16_t len)
           <div className="shell">
             <div className="contact-card reveal">
               <div className="contact-intro">
-                <div className="section-kicker">COLLABORATION &amp; INQUIRIES</div>
                 <h2>Ready to take your project to the next level?</h2>
                 <p>
                   Open to ambitious engineering projects, robotics roles, embedded firmware opportunities, and
@@ -973,7 +963,7 @@ void DXL_TransmitPacket(uint8_t id, uint8_t inst, uint8_t *params, uint16_t len)
                     GitHub
                   </a>
                   <a href={links.cv} target="_blank" rel="noopener noreferrer">
-                    Download CV
+                    Resume
                   </a>
                 </div>
               </div>
@@ -1057,7 +1047,7 @@ void DXL_TransmitPacket(uint8_t id, uint8_t inst, uint8_t *params, uint16_t len)
                 <a href="#profile">About</a>
                 <a href="#timeline">Experience</a>
                 <a href={links.cv} target="_blank" rel="noopener noreferrer">
-                  CV (PDF)
+                  Resume
                 </a>
               </div>
             </footer>

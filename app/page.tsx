@@ -2,9 +2,10 @@ import type { Metadata } from "next";
 import Portfolio from "./portfolio";
 
 export const metadata: Metadata = {
-  title: "Rama Habir — Robotics & Telecommunications",
-  description:
-    "Electrical Engineering student building robotics software, embedded systems, and connected devices.",
+  title: {
+    absolute: "Rama Habir | Robotics & Embedded",
+  },
+  description: "Rama Habir | Robotics & Embedded",
 };
 
 export default function Home() {

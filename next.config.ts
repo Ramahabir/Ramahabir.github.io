@@ -3,15 +3,17 @@ import type { NextConfig } from "next";
 const isGitHubPages = process.env.GITHUB_PAGES === "true";
 const basePath = process.env.PAGES_BASE_PATH || "";
 
-const nextConfig: NextConfig = isGitHubPages
-  ? {
-      output: "export",
-      trailingSlash: true,
-      basePath,
-      assetPrefix: basePath || undefined,
-      images: { unoptimized: true },
-      turbopack: { root: process.cwd() },
-    }
-  : {};
+const nextConfig: NextConfig = {
+  turbopack: { root: process.cwd() },
+  ...(isGitHubPages
+    ? {
+        output: "export",
+        trailingSlash: true,
+        basePath,
+        assetPrefix: basePath || undefined,
+        images: { unoptimized: true },
+      }
+    : {}),
+};
 
 export default nextConfig;
