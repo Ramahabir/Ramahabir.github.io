@@ -300,6 +300,7 @@ interface Credential {
   issuer: string;
   detail: string;
   badge: string;
+  image: string;
   href?: string;
 }
 
@@ -309,16 +310,18 @@ const credentials: Credential[] = [
     title: "Scientific Design Competition — 1st Place (Gold Medal)",
     issuer: "Online Asian Agrocomplex Student Competition (OAASC)",
     detail:
-      "Designed and defended an engineering technology concept evaluated by an international academic jury, securing the 1st Place Gold Medal.",
-    badge: "Gold Medalist",
+      "Designed and defended an advanced engineering technology concept evaluated by an international academic jury, securing the 1st Place Gold Medal.",
+    badge: "1st Place Gold Medal",
+    image: "/activities/sertif-oaasc.jpg",
   },
   {
     year: "2026",
     title: "Gemini Certified University Student",
     issuer: "Google for Education",
     detail:
-      "Demonstrated foundational knowledge and practical competence in AI concepts, prompt engineering, and technical workflows. Valid 2026 — 2029.",
+      "Demonstrated foundational knowledge and practical competence in generative AI, prompt engineering, and technical workflows. Valid 2026 — 2029.",
     badge: "Google Certified",
+    image: "/activities/google-gemini-certified.png",
     href: "https://edu.google.accredible.com/b816db6c-c9ea-477a-8a01-83f4f04bd14c#acc.niwKq5Nt",
   },
   {
@@ -328,44 +331,114 @@ const credentials: Credential[] = [
     detail:
       "Certified preparation covering machine learning workloads, computer vision, natural language processing, and conversational AI on Microsoft Azure.",
     badge: "Microsoft Certified",
+    image: "/activities/certificate-azure-ai900.png",
   },
   {
-    year: "2026",
-    title: "MATLAB & Simulink Onramp",
-    issuer: "MathWorks",
+    year: "2025",
+    title: "Indonesian Fire-Fighting Robot Contest (KRSRI)",
+    issuer: "Brawijaya Robotics Team & Kemendikbudristek",
     detail:
-      "Completed certified training covering numerical computation, data visualization, dynamic modeling, and Simulink control systems.",
-    badge: "MathWorks Certified",
-  },
-  {
-    year: "2026",
-    title: "Matlab for Wireless Communication Engineering",
-    issuer: "Udemy (Dr. Khaled Ramadan)",
-    detail:
-      "Certified coursework in wireless communication simulation, digital signal processing, channel modeling, and RF communication design.",
-    badge: "Certified",
-    href: "https://ude.my/UC-ad999357-423c-4018-8669-e7cecdea4f48",
-  },
-  {
-    year: "2026",
-    title: "2nd International Student Summit (ISS) Poster Finalist",
-    issuer: "Sentosa Foundation & INSAN, USIM, WAYS (Malaysia)",
-    detail:
-      "Selected as finalist representing international academic engineering collaboration across Indonesia and Malaysia.",
-    badge: "International Finalist",
+      "Recognized for firmware development, sensor timing calibration, and deterministic maze navigation algorithms in the national autonomous robotics contest.",
+    badge: "Robotics Division",
+    image: "/activities/sertifikat-krsri-hme.png",
   },
   {
     year: "2026",
     title: "PRIME Business Case Competition",
     issuer: "Petroleum Research & Innovation to Magnify Engineers",
     detail:
-      "Semifinalist — Formulated comprehensive technical solutions and implementation strategies for complex engineering scenarios.",
+      "Semifinalist — Formulated comprehensive technical solutions, risk analysis, and implementation strategies for complex engineering scenarios.",
     badge: "Semifinalist",
+    image: "/activities/certificate-prime.png",
+  },
+  {
+    year: "2026",
+    title: "2nd International Student Summit (ISS) Poster Finalist",
+    issuer: "Sentosa Foundation & INSAN, USIM, WAYS (Malaysia)",
+    detail:
+      "Selected as finalist representing international academic engineering collaboration and technological innovation across Indonesia and Malaysia.",
+    badge: "International Finalist",
+    image: "/activities/sertif-iss.png",
+  },
+  {
+    year: "2026",
+    title: "MATLAB Onramp",
+    issuer: "MathWorks",
+    detail:
+      "Certified training covering numerical computation, data visualization, dynamic matrix modeling, and algorithmic problem solving.",
+    badge: "MathWorks Certified",
+    image: "/activities/certificate-matlab.png",
+  },
+  {
+    year: "2026",
+    title: "Simulink Onramp",
+    issuer: "MathWorks",
+    detail:
+      "Certified training covering graphical dynamic modeling, feedback control loops, sensor simulation, and Simulink state machines.",
+    badge: "MathWorks Certified",
+    image: "/activities/certificate-simulink.png",
+  },
+  {
+    year: "2026",
+    title: "Matlab Course for Wireless Communication Engineering",
+    issuer: "Udemy (Dr. Khaled Ramadan)",
+    detail:
+      "Certified coursework in wireless communication simulation, digital signal processing, channel modeling, and RF communication design.",
+    badge: "Certified",
+    image: "/activities/certificate-matlab-wireless.png",
+    href: "https://ude.my/UC-ad999357-423c-4018-8669-e7cecdea4f48",
+  },
+  {
+    year: "2025",
+    title: "Getting Started with Azure Cloud",
+    issuer: "Udemy (Houssem Dellai)",
+    detail:
+      "Completed 7.5 hours of foundational cloud computing training covering Azure infrastructure, virtual machines, resource groups, storage, and networking.",
+    badge: "Certified",
+    image: "/activities/certificate-azure.jpg",
+    href: "https://ude.my/UC-7e3504fc-0b55-4fe6-bdd7-d00fe42bef61",
+  },
+  {
+    year: "2025",
+    title: "Environmental Sustainability",
+    issuer: "Universitas Brawijaya",
+    detail:
+      "Completed certified institutional coursework covering environmental sustainability, renewable resources, and ecological impact.",
+    badge: "Academic Certified",
+    image: "/activities/sertif-env-sustain.png",
+  },
+  {
+    year: "2024",
+    title: "Fundamental Python & Data Analysis",
+    issuer: "Coding Studio Digital Skill Course",
+    detail:
+      "Certified mastery of foundational Python scripting, algorithmic problem solving, and professional data analysis in spreadsheet environments.",
+    badge: "Certified",
+    image: "/activities/sertif-python.png",
+  },
+  {
+    year: "2023",
+    title: "Physics Peer Tutor (PKRb)",
+    issuer: "MAN Insan Cendekia Gorontalo",
+    detail:
+      "Selected as instructor to mentor students in foundational physics, kinematics, circuit fundamentals, and analytical problem solving.",
+    badge: "Academic Honor",
+    image: "/activities/sertif-tutor.png",
+  },
+  {
+    year: "2022 — 2023",
+    title: "Secretary I, Student Council (OSIS)",
+    issuer: "MAN Insan Cendekia Gorontalo",
+    detail:
+      "Headed executive administrative operations, official correspondence, and inter-organizational documentation for regional student initiatives.",
+    badge: "Leadership Honor",
+    image: "/activities/sertif-sekre-osis.jpg",
   },
 ];
 
 export default function Portfolio() {
   const [activeModalProject, setActiveModalProject] = useState<Project | null>(null);
+  const [activeModalCert, setActiveModalCert] = useState<Credential | null>(null);
   const [contactSubmitted, setContactSubmitted] = useState(false);
   const [contactSubmitting, setContactSubmitting] = useState(false);
 
@@ -453,6 +526,7 @@ export default function Portfolio() {
     function handleKeyDown(e: KeyboardEvent) {
       if (e.key === "Escape") {
         setActiveModalProject(null);
+        setActiveModalCert(null);
       }
     }
     window.addEventListener("keydown", handleKeyDown);
@@ -468,40 +542,11 @@ export default function Portfolio() {
       <div className="nav-wrap">
         <nav className="nav" aria-label="Main navigation">
           <div className="nav-links">
-            <a className="mark-link" href="#top" aria-label="Rama Habir home">
-              <svg className="nav-mark" viewBox="0 0 84 60" aria-hidden="true">
-                <path
-                  d="M9 52V45L5 41L13 37L5 33L13 29L9 25V11M9 11L23 37L38 11V52"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-                <path
-                  d="M76 14C71 10 65 8 58 9C48 9 42 14 42 21C42 27 47 29 55 31H57M63 31H65C72 33 76 37 76 43C76 51 68 54 59 54C51 54 46 52 42 48"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="5"
-                  strokeLinecap="round"
-                />
-                <path d="M58 25V37M62 25V37" fill="none" stroke="currentColor" strokeWidth="3.5" strokeLinecap="round" />
-              </svg>
-            </a>
             <a className="nav-link" href="#work">Projects</a>
             <a className="nav-link" href="#profile">About</a>
             <a className="nav-link" href="#timeline">Experience</a>
             <a className="nav-link" href="#credentials">Honors</a>
             <a className="nav-link" href="#contact">Contact</a>
-            <a
-              className="nav-cv-btn"
-              href={links.cv}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Download CV"
-            >
-              CV ↗
-            </a>
           </div>
         </nav>
       </div>
@@ -585,14 +630,6 @@ void DXL_TransmitPacket(uint8_t id, uint8_t inst, uint8_t *params, uint16_t len)
                 </a>
                 <a className="button" href="#profile">
                   About me
-                </a>
-                <a
-                  className="button"
-                  href="/6dof-simulator/index.html"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  3D Simulator ↗
                 </a>
                 <a className="button" href="#contact">
                   Let’s talk ↗
@@ -865,26 +902,51 @@ void DXL_TransmitPacket(uint8_t id, uint8_t inst, uint8_t *params, uint16_t len)
 
             <div className="credentials-grid">
               {credentials.map((cred, idx) => (
-                <article key={idx} className="credential-card reveal">
+                <article
+                  key={idx}
+                  className="credential-card reveal"
+                  onClick={() => setActiveModalCert(cred)}
+                  role="button"
+                  tabIndex={0}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter" || e.key === " ") {
+                      e.preventDefault();
+                      setActiveModalCert(cred);
+                    }
+                  }}
+                  aria-label={`View ${cred.title}`}
+                >
                   <div className="credential-meta">
                     <span className="credential-year">{cred.year}</span>
                     <span className="credential-badge">{cred.badge}</span>
                   </div>
                   <h3>{cred.title}</h3>
                   <div className="credential-issuer">{cred.issuer}</div>
+
+                  {cred.image && (
+                    <div className="credential-thumb" title="Click to view full certificate">
+                      <img src={cred.image} alt={cred.title} loading="lazy" decoding="async" />
+                    </div>
+                  )}
+
                   <p className="credential-detail">{cred.detail}</p>
-                  {cred.href && (
-                    <div style={{ marginTop: "14px" }}>
+                  
+                  <div style={{ marginTop: "14px", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                    <span style={{ color: "var(--accent)", fontSize: "12.5px", fontFamily: "var(--mono)", cursor: "pointer" }}>
+                      View Certificate ↗
+                    </span>
+                    {cred.href && (
                       <a
                         href={cred.href}
                         target="_blank"
                         rel="noopener noreferrer"
-                        style={{ color: "var(--accent)", fontSize: "12.5px", fontFamily: "var(--mono)" }}
+                        onClick={(e) => e.stopPropagation()}
+                        style={{ color: "#aeb8b6", fontSize: "12px", fontFamily: "var(--mono)", textDecoration: "underline" }}
                       >
-                        Verify Credential ↗
+                        Verify Online
                       </a>
-                    </div>
-                  )}
+                    )}
+                  </div>
                 </article>
               ))}
             </div>
@@ -1103,6 +1165,82 @@ void DXL_TransmitPacket(uint8_t id, uint8_t inst, uint8_t *params, uint16_t len)
                   type="button"
                   className="button"
                   onClick={() => setActiveModalProject(null)}
+                >
+                  Close
+                </button>
+              </div>
+            </div>
+          </div>,
+          document.body
+        )}
+
+      {/* Certificate Details Modal */}
+      {activeModalCert &&
+        typeof document !== "undefined" &&
+        createPortal(
+          <div
+            className="modal-backdrop"
+            onClick={() => setActiveModalCert(null)}
+            role="dialog"
+            aria-modal="true"
+            aria-label={activeModalCert.title}
+          >
+            <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+              <button
+                type="button"
+                className="modal-close-btn"
+                onClick={() => setActiveModalCert(null)}
+                aria-label="Close dialog"
+              >
+                ✕
+              </button>
+              <div className="modal-header">
+                <div className="modal-kicker">
+                  {activeModalCert.year} · {activeModalCert.badge}
+                </div>
+                <h2 className="modal-title">{activeModalCert.title}</h2>
+                <div style={{ color: "#8d9794", fontSize: "15px", marginTop: "6px" }}>
+                  {activeModalCert.issuer}
+                </div>
+              </div>
+
+              {activeModalCert.image && (
+                <img
+                  src={activeModalCert.image}
+                  alt={activeModalCert.title}
+                  className="cert-modal-img"
+                />
+              )}
+
+              <p style={{ color: "#d5dcda", fontSize: "15.5px", lineHeight: "1.65", margin: "16px 0" }}>
+                {activeModalCert.detail}
+              </p>
+
+              <div className="modal-actions">
+                {activeModalCert.href && (
+                  <a
+                    className="button primary"
+                    href={activeModalCert.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Verify Credential Online ↗
+                  </a>
+                )}
+                {activeModalCert.image && (
+                  <a
+                    className="button"
+                    href={activeModalCert.image}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Open Full Image ↗
+                  </a>
+                )}
+                <button
+                  type="button"
+                  className="button"
+                  onClick={() => setActiveModalCert(null)}
                 >
                   Close
                 </button>
