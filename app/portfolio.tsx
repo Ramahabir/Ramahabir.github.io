@@ -519,7 +519,7 @@ export default function Portfolio() {
           {/* Ambient Hero Art Assets */}
           <div
             className="hero-art hero-pcb-detail"
-            style={{ backgroundImage: `url('/projects/hardy-iot-pcb-isometric.png')` }}
+            style={{ backgroundImage: `url('/projects/la-braille-hero.png')` }}
             aria-hidden="true"
           />
 
