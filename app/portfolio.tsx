@@ -209,7 +209,7 @@ const experience: TimelineItem[] = [
   },
   {
     period: "2023 — PRESENT · MALANG, INDONESIA",
-    role: "Electrical Engineering Scholar & Peer Tutor",
+    role: "Electrical Engineering Scholar",
     organization: "Universitas Brawijaya",
     type: "Undergraduate Program (GPA 3.35 / 4.00)",
     location: "Malang, Indonesia",
@@ -217,7 +217,7 @@ const experience: TimelineItem[] = [
       "Pursuing a degree in Electrical Engineering with an academic concentration on telecommunications, embedded microcontroller systems, signal processing, and control engineering.",
     points: [
       "Hands-on lab work: analog & digital circuits, microprocessors (STM32 / 8051), and signal analysis.",
-      "Selected as Academic Peer Tutor for university remedial physics and circuit analysis program (PKRb).",
+      "Conducted robotics education for elementary school students, introducing mechatronics fundamentals and building functional transporter robots.",
       "Key coursework: Microprocessors & Microcontrollers, Telecommunications, Control Engineering, Signals & Systems.",
     ],
   },
@@ -583,7 +583,7 @@ void DXL_TransmitPacket(uint8_t id, uint8_t inst, uint8_t *params, uint16_t len)
                 Malang, Indonesia
               </div>
               <p className="hero-copy">
-                Electrical Engineering student at Universitas Brawijaya and KRSRI Robotics Engineer. I design embedded
+                Electrical Engineering student and Robotics Engineer at Universitas Brawijaya. I design embedded
                 firmware, high-speed PCBs, and mechatronic systems built to operate reliably in real-world environments.
               </p>
               <div className="hero-actions">
@@ -777,7 +777,8 @@ void DXL_TransmitPacket(uint8_t id, uint8_t inst, uint8_t *params, uint16_t len)
               <p className="reveal">
                 My engineering philosophy centers on end-to-end ownership: from drafting schematics and routing
                 multi-layer PCBs in KiCad to writing bare-metal C drivers, optimizing FreeRTOS tasks, and deriving
-                kinematic equations. I bridge the boundary between physical actuators and digital intelligence.
+                kinematic equations. In parallel, I build modern web applications dedicated to real-time IoT monitoring,
+                telemetry logging, and system diagnostics—connecting field hardware to intuitive browser dashboards.
               </p>
               <p className="profile-links reveal">
                 Verified profiles for Rama Habir:{" "}
@@ -800,8 +801,8 @@ void DXL_TransmitPacket(uint8_t id, uint8_t inst, uint8_t *params, uint16_t len)
                 <p className="education-detail">B.Eng. in Electrical Engineering · GPA: 3.35 / 4.00 · Expected 2026</p>
                 <p className="education-note">
                   Concentration on microprocessors &amp; microcontrollers, telecommunication systems, control
-                  engineering, and robotics. Selected as Academic Peer Tutor for university remedial physics and
-                  circuit fundamentals.
+                  engineering, and robotics. Active in robotics education, teaching elementary school students
+                  mechatronics fundamentals and guiding them to build transporter robots.
                 </p>
               </div>
               <div className="facts reveal">
@@ -813,13 +814,9 @@ void DXL_TransmitPacket(uint8_t id, uint8_t inst, uint8_t *params, uint16_t len)
                   <strong>KRSRI Robotics</strong>
                   <small>Brawijaya Robotics Team Engineer</small>
                 </div>
-                <div className="fact">
-                  <strong>Proven Track Record</strong>
-                  <small>1st Place Gold Medalist OAASC</small>
-                </div>
-                <div className="fact">
-                  <strong>End-to-End Ownership</strong>
-                  <small>Schematic to Bare-Metal C</small>
+                <div className="fact span-2">
+                  <strong>Full Embedded Engineer</strong>
+                  <small>Schematics, Multi-Layer PCBs, Bare-Metal Firmware &amp; IoT Web Logging</small>
                 </div>
               </div>
             </div>

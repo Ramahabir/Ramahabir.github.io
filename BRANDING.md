@@ -43,7 +43,7 @@ Rama Habir is positioned as the rare, high-value **bridge between the physical a
 
 ### Pillar 3: Academic Excellence & Collaborative Leadership
 - **Universitas Brawijaya:** B.Eng. in Electrical Engineering (GPA: 3.35 / 4.00, Concentration: Microcontrollers & Robotics).
-- **Academic Peer Tutor (PKRb):** Mentored university cohorts in remedial physics, circuit fundamentals, and signal analysis.
+- **Robotics STEM Educator:** Taught elementary school students foundational robotics and guided hands-on construction of transporter robots.
 - **Community STEM Outreach (PKM Quantum):** Led high school educational workshops on renewable energy and IoT architectures.
 - **Brand Takeaway:** *"A technical leader who articulates complex engineering principles with clarity to peers and non-technical stakeholders."*
 
